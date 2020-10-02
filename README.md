@@ -40,7 +40,7 @@ Things you may want to cover:
 ### Association
 
 - has_many :items
-- has_one_attached :order
+- has_many :orders
 
 ## items テーブル
 
