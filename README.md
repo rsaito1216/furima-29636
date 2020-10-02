@@ -26,16 +26,16 @@ Things you may want to cover:
 
 ## users テーブル
 
-| Column       | Type   | Options     |
-| ------------ | ------ | ----------- |
-| nickname     | string | null: false |
-| email        | string | null: false |
-| password     | string | null: false |
+| Column          | Type   | Options     |
+| --------------- | ------ | ----------- |
+| nickname        | string | null: false |
+| email           | string | null: false |
+| password        | string | null: false |
 | last_name       | string | null: false |
 | first_name      | string | null: false |
 | last_name_kana  | string | null: false |
 | first_name_kana | string | null: false |
-| birth_date   | date   | null: false |
+| birth_date      | date   | null: false |
 
 ### Association
 
@@ -45,18 +45,18 @@ Things you may want to cover:
 
 ## items テーブル
 
-| Column           | Type       | Options                        |
-| ---------------- | ---------- | ------------------------------ |
-| image            | text       | null: false                    |
-| product_name     | string     | null: false                    |
-| description      | text       | null: false                    |
+| Column              | Type       | Options                        |
+| ------------------- | ---------- | ------------------------------ |
+| image               | text       | null: false                    |
+| product_name        | string     | null: false                    |
+| description         | text       | null: false                    |
 | category_id         | integer    | null: false                    |
 | condition_id        | integer    | null: false                    |
 | delivery_burden_id  | integer    | null: false                    |
 | shipping_address_id | integer    | null: false                    |
 | shipping_days_id    | integer    | null: false                    |
-| price            | integer    | null: false                    |
-| user             | references | null: false, foreign_key: true |
+| price               | integer    | null: false                    |
+| user                | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -65,7 +65,7 @@ Things you may want to cover:
 - has_many :item_transactions table
 
 
-## order テーブル
+## orders テーブル
 
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
@@ -79,8 +79,8 @@ Things you may want to cover:
 
 ### Association
 
-- has_one_attached :users
-- has_one_attached :order
+- belongs_to :user
+- has_one :item
 - has_one :item_transactions table
 
 ## item_transactions table
