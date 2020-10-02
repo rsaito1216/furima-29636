@@ -59,7 +59,7 @@ Things you may want to cover:
 
 ### Association
 
-- belongs_to :users
+- belongs_to :user
 - has_one_attached :order
 
 
