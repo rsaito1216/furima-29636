@@ -49,11 +49,11 @@ Things you may want to cover:
 | image            | text       | null: false                    |
 | product_name     | string     | null: false                    |
 | description      | text       | null: false                    |
-| category         | integer    | null: false                    |
-| condition        | integer    | null: false                    |
-| delivery_burden  | integer    | null: false                    |
-| shipping_address | integer    | null: false                    |
-| shipping_days    | integer    | null: false                    |
+| category_id         | integer    | null: false                    |
+| condition_id        | integer    | null: false                    |
+| delivery_burden_id  | integer    | null: false                    |
+| shipping_address_id | integer    | null: false                    |
+| shipping_days_id    | integer    | null: false                    |
 | price            | integer    | null: false                    |
 | user             | references | null: false, foreign_key: true |
 
