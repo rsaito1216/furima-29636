@@ -40,7 +40,6 @@ Things you may want to cover:
 ### Association
 
 - has_many :items
-- has_many :orders
 - has_many :item_transactions
 
 ## items テーブル
@@ -60,11 +59,10 @@ Things you may want to cover:
 ### Association
 
 - belongs_to :user
-- has_one :order
 - has_many :item_transactions
 
 
-## orders テーブル
+## order テーブル
 
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
@@ -74,13 +72,10 @@ Things you may want to cover:
 | house_number  | string     | null: false                    |
 | building_name | string     |                                |
 | phone_number  | string     | null: false                    |
-| user          | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :user
-- has_one :item
-- has_one :item_transactions
+- has_one :item_transaction
 
 ## item_transactions テーブル
 
