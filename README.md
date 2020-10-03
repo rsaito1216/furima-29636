@@ -41,7 +41,7 @@ Things you may want to cover:
 
 - has_many :items
 - has_many :orders
-- has_many :item_transactions table
+- has_many :item_transactions
 
 ## items テーブル
 
@@ -61,7 +61,7 @@ Things you may want to cover:
 
 - belongs_to :user
 - has_one :order
-- has_many :item_transactions table
+- has_many :item_transactions
 
 
 ## orders テーブル
@@ -80,16 +80,17 @@ Things you may want to cover:
 
 - belongs_to :user
 - has_one :item
-- has_one :item_transactions table
+- has_one :item_transactions
 
-## item_transactions table
+## item_transactions テーブル
 
-| Column   | Type       | Option            |
-| user(FK) | references | foreign_key: true |
-| item(FK) | references | foreign_key: true |
+| Column    | Type       | Option            |
+| user(FK)  | references | foreign_key: true |
+| item(FK)  | references | foreign_key: true |
+| order(FK) | references | foreign_key: true |
 
 ### Association
 
 - belongs_to :user
 - belongs_to :item
-- has_one :order
+- belongs_to :order
