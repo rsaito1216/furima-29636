@@ -75,7 +75,7 @@ Things you may want to cover:
 
 ### Association
 
-- has_one :item_transaction
+- belongs_to :item_transaction
 
 ## item_transactions テーブル
 
