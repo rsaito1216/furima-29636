@@ -88,4 +88,4 @@ Things you may want to cover:
 
 - belongs_to :user
 - belongs_to :item
-- belongs_to :order
+- has_one :order
