@@ -1,0 +1,2 @@
+class DeliveryBurden < ApplicationRecord
+end
