@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :items
+  
   validates :nickname, presence: true
   validates :email, format: { with: /[@]/, message: "@が入力されていません。"}
   validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z{6,}/i, message: "は半角、英数字を混ぜて入力してください。"}
