@@ -1,5 +1,5 @@
 class Item < ApplicationRecord
-  belongs_to :user, optional: true
+  belongs_to :user
   has_one_attached :image
   
   extend ActiveHash::Associations::ActiveRecordExtensions
@@ -18,7 +18,7 @@ class Item < ApplicationRecord
     validates :delivery_burden_id
     validates :shipping_address_id
     validates :shipping_day_id
-    validates :price, format: {with: /\A[0-9]+\z/, message: "is invalid. Input half-width characters."}
+    validates :price
   end
 
   with_options numericality: { other_than: 0 } do
@@ -29,5 +29,5 @@ class Item < ApplicationRecord
     validates :shipping_day_id
   end
 
-  validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "is out of setting range"}
+  validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "Full-width input is not possible and please be within the range"}
 end
