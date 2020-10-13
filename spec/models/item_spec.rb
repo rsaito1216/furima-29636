@@ -86,9 +86,7 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
       it 'priceが全角数字だと登録できない' do
-        @item.price = １０００
-        binding.pry
-
+        @item.price = "１０００"
         @item.valid?
         expect(@item.errors.full_messages).to include("Price Full-width input is not possible and please be within the range")
       end
