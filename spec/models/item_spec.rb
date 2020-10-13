@@ -10,7 +10,7 @@ RSpec.describe Item, type: :model do
         expect(@item).to be_valid
       end
       it "priceが半角数字であれば登録できること" do
-        @item.price = "3000"
+        @item.price = 3000
         expect(@item).to be_valid
       end
     end
@@ -86,19 +86,19 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
       it 'priceが全角数字だと登録できない' do
-        @item.price = "１０００"
+        @item.price = １０００
         binding.pry
-        
+
         @item.valid?
         expect(@item.errors.full_messages).to include("Price Full-width input is not possible and please be within the range")
       end
       it 'priceが300円未満では登録できない' do
-        @item.price = "299"
+        @item.price = 299
         @item.valid?
         expect(@item.errors.full_messages).to include("Price Full-width input is not possible and please be within the range")
       end
       it 'priceが10,000,000円以上だと登録できない' do
-        @item.price = "10000000"
+        @item.price = 10000000
         @item.valid?
         expect(@item.errors.full_messages).to include("Price Full-width input is not possible and please be within the range")
       end
