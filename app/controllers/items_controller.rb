@@ -30,14 +30,11 @@ class ItemsController < ApplicationController
 
   def update
     @item = Item.find(params[:id])
-    @item.update(item_params)
-    if @item.valid?
-      @item.save
+    if @item.update(item_params)
       redirect_to item_path(@item)
     else
       render action: :edit
     end
-    
   end
 
   private
