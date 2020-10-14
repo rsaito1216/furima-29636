@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :login_check, only: [:new]
-  
+  before_action :set_item, only: [:edit, :show, :update]
+
   def index
     @items = Item.all
   end
@@ -20,7 +21,7 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
+    
   end
 
   def edit
@@ -50,5 +51,9 @@ class ItemsController < ApplicationController
       flash[:alert] = "出品するにはログインか新規登録をしてください"
       redirect_to new_user_session_path
     end
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
   end
 end
