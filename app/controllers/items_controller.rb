@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :login_check, only: [:new]
   
   def index
+    @items = Item.all
   end
   
   def new
