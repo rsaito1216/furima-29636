@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :login_check, only: [:new]
-  before_action :set_item, only: [:edit, :show, :update]
+  before_action :set_item, only: [:edit, :show, :update, :destroy]
 
   def index
     @items = Item.all
@@ -20,20 +20,20 @@ class ItemsController < ApplicationController
     end
   end
 
-  def show
-    
-  end
-
-  def edit
-    @item = Item.find(params[:id])
-  end
-
   def update
-    @item = Item.find(params[:id])
     if @item.update(item_params)
       redirect_to item_path(@item)
     else
       render action: :edit
+    end
+  end
+
+  def destroy
+    if @item.user_id == current_user.id
+      @item.destroy
+      redirect_to action: :index
+    else
+      render action: :show
     end
   end
 
