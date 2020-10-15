@@ -21,7 +21,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-    
   end
 
   def edit
@@ -35,6 +34,12 @@ class ItemsController < ApplicationController
     else
       render action: :edit
     end
+  end
+
+  def destroy
+    item = Item.find(params[:id])
+    item.destroy
+    redirect_to action: :index
   end
 
   private
