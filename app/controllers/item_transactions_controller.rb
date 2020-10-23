@@ -2,14 +2,14 @@ class ItemTransactionsController < ApplicationController
   before_action :move_login, only: [:index]
   before_action :seller_user, only: [:index]
   before_action :sold_out, only: [:index]
+  before_action :item_read, only: [:index, :create]
+
 
   def index
-    @item = Item.find(params[:item_id])
     @item_transaction_order = ItemTransactionOrder.new
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @item_transaction_order = ItemTransactionOrder.new(item_transaction_params)
     if @item_transaction_order.valid?
       pay_item
@@ -56,5 +56,9 @@ class ItemTransactionsController < ApplicationController
     if @item.item_transaction.present?
       redirect_to root_path
     end
+  end
+
+  def item_read
+    @item = Item.find(params[:item_id])
   end
 end
