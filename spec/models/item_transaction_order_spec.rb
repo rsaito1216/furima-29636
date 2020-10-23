@@ -7,7 +7,6 @@ RSpec.describe ItemTransactionOrder, type: :model do
   describe '商品購入' do
     context '商品購入がうまくいくとき' do
       it 'すべての値が正しく入力されていれば保存できること' do
-        binding.pry
         expect(@item_transaction_order).to be_valid
       end
       it 'building_nameは空でも保存できること' do
@@ -53,7 +52,7 @@ RSpec.describe ItemTransactionOrder, type: :model do
         expect(@item_transaction_order.errors.full_messages).to include("Phone number Hyphen, please do not put")
       end
       it 'phone_numberが12桁以上だと保存できないこと' do
-        @item_transaction_order.phone_number = 000000000000
+        @item_transaction_order.phone_number = '001000000000'
         @item_transaction_order.valid?
         expect(@item_transaction_order.errors.full_messages).to include("Phone number Hyphen, please do not put")
       end
