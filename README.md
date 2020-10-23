@@ -81,6 +81,7 @@ Things you may want to cover:
 ## item_transactions テーブル
 
 | Column    | Type       | Option            |
+| --------- | ---------- | ----------------- |
 | user(FK)  | references | foreign_key: true |
 | item(FK)  | references | foreign_key: true |
 
