@@ -8,7 +8,7 @@ class ItemTransactionOrder
     
     validates :city
     validates :house_number
-    validates :phone_number, format: {with: /\A[0-9０-９]+\z/, message: "Hyphen, please do not put"}
+    validates :phone_number, format: {with: /\A[0-9０-９]{9,11}\z/, message: "Hyphen, please do not put"}
     validates :token
   end
 
