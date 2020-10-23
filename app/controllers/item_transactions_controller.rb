@@ -1,6 +1,6 @@
 class ItemTransactionsController < ApplicationController
   before_action :move_login, only: [:index]
-  before_action :Seller_user, only: [:index]
+  before_action :seller_user, only: [:index]
   before_action :sold_out, only: [:index]
 
   def index
@@ -44,7 +44,7 @@ class ItemTransactionsController < ApplicationController
     end
   end
 
-  def Seller_user
+  def seller_user
     @item = Item.find(params[:item_id])
     if current_user.id == @item.user_id
       redirect_to root_path
