@@ -1,7 +1,6 @@
 class ItemTransactionsController < ApplicationController
   before_action :move_login, only: [:index]
-  before_action :seller_user, only: [:index]
-  before_action :sold_out, only: [:index]
+  before_action :sold_out_to_seller_user, only: [:index]
   before_action :item_read, only: [:index, :create]
 
 
@@ -44,16 +43,9 @@ class ItemTransactionsController < ApplicationController
     end
   end
 
-  def seller_user
+  def sold_out_to_seller_user
     @item = Item.find(params[:item_id])
-    if current_user.id == @item.user_id
-      redirect_to root_path
-    end
-  end
-
-  def sold_out
-    @item = Item.find(params[:item_id])
-    if @item.item_transaction.present?
+    if @item.item_transaction.present? || current_user.id == @item.user_id
       redirect_to root_path
     end
   end
