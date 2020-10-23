@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :items
+  has_many :item_transactions
   
   validates :nickname, presence: true
   validates :email, format: { with: /[@]/, message: "@が入力されていません。"}

@@ -1,6 +1,4 @@
 class UsersController < ApplicationController
-  def index
-  end
 
   def new
     @user = User.new
@@ -8,13 +6,12 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-     if @user.valid?
-       @user.save
-       redirect_to action: :index
-     else
-       render action: :new
-     end
-    
+      if @user.valid?
+        @user.save
+        redirect_to action: :index
+      else
+        render action: :new
+      end
   end
 
   private
