@@ -1,5 +1,5 @@
 class ItemTransactionsController < ApplicationController
-  before_action :move_login, only: [:index]
+  before_action :authenticate_user!, only: [:index]
   before_action :item_read, only: [:index, :create]
   before_action :sold_out_to_seller_user, only: [:index]
 
@@ -33,13 +33,6 @@ class ItemTransactionsController < ApplicationController
       card: item_transaction_params[:token],
       currency:'jpy'
     )
-  end
-
-
-  def move_login
-    unless user_signed_in?
-      redirect_to new_user_session_path
-    end
   end
 
   def sold_out_to_seller_user
