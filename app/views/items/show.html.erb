@@ -80,7 +80,7 @@
   <div class="comment-box">
     <% if current_user %>
       <%= form_with model: [@item, @comment] do |f| %>
-        <%= f.text_area :text, class:"comment-text", placeholder:"出品者への質問コメント（ 100文字まで)", maxlength:"100" %>
+        <%= f.text_area :text, class:"comment-text", placeholder:"商品へのコメントを入力（ 100文字まで)", maxlength:"100" %>
         <p class="comment-warn">
           相手のことを考え丁寧なコメントを心がけましょう。
           <br>
@@ -95,12 +95,15 @@
     <div class="comments">
       <p class="comment-title">＜コメント一覧＞</p>
       <% if @comments %>
-        <% @comments.each do |comment| %>
+        <div id='comments'>
+        <% @comments.reverse_each do |comment| %>
           <p>
-            <strong><%= link_to comment.user.nickname, "/users/#{comment.user_id}" %>：</strong>
+            <%= link_to comment.user.nickname, "/users/#{comment.user_id}" %><font size="1"> さん</font>：
             <%= comment.text %>
+            <font size="1" color="red"">. <%= Date.today %></font>
           </p>
         <% end %>
+        </div>
       <% end %>
     </div>
   </div>

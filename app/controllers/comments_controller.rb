@@ -1,6 +1,9 @@
 class CommentsController < ApplicationController
   def create
     comment = Comment.create(comment_params)
+    if comment.save
+      ActionCable.server.broadcast 'comment_channel', content: comment
+    end
   end
 
   private
