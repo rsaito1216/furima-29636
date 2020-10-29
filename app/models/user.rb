@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :items
   has_many :item_transactions
+  has_many :comments
   
   validates :nickname, presence: true
   validates :email, format: { with: /[@]/, message: "に@が入力されていません"}
