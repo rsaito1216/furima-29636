@@ -22,7 +22,7 @@ class Item < ApplicationRecord
     validates :price
   end
 
-  with_options numericality: { other_than: 0 } do
+  with_options numericality: { other_than: 0 , message: "を選択入力してください"} do
     validates :category_id
     validates :condition_id
     validates :delivery_burden_id
@@ -30,5 +30,5 @@ class Item < ApplicationRecord
     validates :shipping_day_id
   end
 
-  validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "Full-width input is not possible and please be within the range"}
+  validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "は半角数字で、価格範囲内で入力してください"}
 end
