@@ -28,3 +28,7 @@ ja:
         house_number: 番地
         phone_number: 電話番号
         token: クレジットカードの必要な情報
+
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M:%S"

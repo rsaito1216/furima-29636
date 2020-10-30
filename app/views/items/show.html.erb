@@ -100,7 +100,7 @@
           <p>
             <%= link_to comment.user.nickname, "/users/#{comment.user_id}" %><font size="1"> さん</font>：
             <%= comment.text %>
-            <font size="1" color="red"">. <%= Date.today %></font>
+            <font size="1" color="red"">. <%= l comment.created_at %></font>
           </p>
         <% end %>
         </div>
