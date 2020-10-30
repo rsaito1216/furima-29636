@@ -16,7 +16,7 @@
     </div>
     <div class="item-price-box">
       <span class="item-price">
-        ¥ <%= @item.price %>
+        ¥ <%= @item.price.to_s(:delimited) %>
       </span>
       <span class="item-postage">
         (税込) 送料込み
