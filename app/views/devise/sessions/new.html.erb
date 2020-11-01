@@ -1,5 +1,7 @@
 <%= render "devise/shared/second-header"%>
 
+
+
 <%= form_with model: @user, url: user_session_path,class: 'registration-main', local: true do |f| %>
 <div class='form-wrap'>
   <div class='form-header'>
@@ -11,6 +13,9 @@
     <%= flash[:notice] %>
     <%= flash[:alert] %>
   </div>
+
+  <%= link_to 'Facebookでログイン', user_facebook_omniauth_authorize_path, method: :post%>
+  
   <div class="form-group">
     <div class='form-text-wrap'>
       <label class="form-text">メールアドレス</label>
