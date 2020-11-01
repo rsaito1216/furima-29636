@@ -84,3 +84,5 @@ gem 'rails-i18n'
 
 gem 'omniauth-facebook'
 gem "omniauth-rails_csrf_protection"
+
+gem 'ancestry'
