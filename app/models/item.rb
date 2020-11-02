@@ -3,6 +3,15 @@ class Item < ApplicationRecord
   has_one_attached :image
   has_one :item_transaction
   has_many :comments, dependent: :destroy
+
+  def self.search(search)
+    if search != ""
+      Item.where('product_name LIKE(?)', "%#{search}%")
+      Item.where('description LIKE(?)', "%#{search}%")
+    else
+      Item.all
+    end
+  end
   
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :category

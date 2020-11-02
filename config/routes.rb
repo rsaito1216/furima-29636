@@ -5,8 +5,12 @@ Rails.application.routes.draw do
   }
   root to: "items#index"
   resources :users, only: [:new, :create, :edit, :update]
+  
   resources :items do
     resources :item_transactions, only:[:index, :create]
     resources :comments, only: :create
+    member do
+      get 'search'
+    end
   end
 end
