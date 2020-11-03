@@ -4,7 +4,7 @@
     <%= link_to image_tag("furima-logo-color.png", class:"furima-icon"), "/" %>
     
     <%= form_with(url: search_item_path(:id), local: true, method: :get, class: "search-form") do |form| %>
-    <%= form.text_field :keyword, placeholder: "キーワードから探す", class: "input-box" %>
+    <%= form.text_field :keyword, placeholder: "商品名・商品説明で一致するキーワードで探す", class: "input-box" %>
     <%= form.submit "検索", class: "search-btn" %>
     <% end %>
   
@@ -17,7 +17,7 @@
     <ul class='lists-right'>
       <% if user_signed_in? %>
         <li><font size="5" color="blue"><%= current_user.nickname %></font></li>
-        <li><%= link_to '○マイページ', "#", class: "logout" %></li>
+        <li><%= link_to '○マイページ', "/users/#{current_user.id}", class: "logout" %></li>
         <li><%= link_to '○ログアウト', destroy_user_session_path, method: :delete, class: "logout" %></li>
         <li><%= link_to '○ユーザー情報編集', edit_user_registration_path, method: :get, class: "logout" %></li>
       <% else %>

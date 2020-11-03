@@ -1,0 +1,38 @@
+<%= render "devise/shared/header" %>
+
+<div class='item-contents'>
+
+  <% if user_signed_in? && (current_user.id == @user.id) %>
+    <h2 class='title'>ログインしている人がユーザー本人の場合これが表示されている。クレジットカード情報など。</br>他ユーザーの場合、出品商品一覧のみ表示</h2>
+  <% end %>
+
+  <font size="6" color="red"><%= @nickname %>さんの出品商品一覧</font>
+  <ul class='item-lists'>
+    <% @items.each do |item| %>
+      <li class='list'>
+        <%= link_to item_path(item.id) do %>
+          <div class='item-img-content'>
+            <%= image_tag item.image, class: "item-img" %>
+              <% if item.item_transaction.present? %>
+              <div class='sold-out'>
+                <span>Sold Out!!</span>
+              </div>
+              <% end %>
+            <% end %>
+          </div>
+          <div class='item-info'>
+            <h3 class='item-name'>
+              <%= item.product_name %>
+            </h3>
+            <div class='item-price'>
+              <span><%= item.price.to_s(:delimited) %>円<br>(税込み)</span>
+              <div class='star-btn'>
+                <%= image_tag "star.png", class:"star-icon" %>
+                <span class='star-count'>0</span>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </li>
+  </ul>
+</div>

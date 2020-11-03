@@ -40,7 +40,7 @@
       <tbody>
         <tr>
           <th class="detail-item">出品者</th>
-          <td class="detail-value"><%= @item.user.nickname %></td>
+          <td class="detail-value"><%= link_to @item.user.nickname, "/users/#{@item.user_id}" %></td>
         </tr>
         <tr>
           <th class="detail-item">カテゴリー</th>
@@ -98,10 +98,11 @@
         <div id='comments'>
         <% @comments.reverse_each do |comment| %>
           <p>
-            <%= link_to comment.user.nickname, "/users/#{comment.user_id}" %><font size="1"> さん</font>：
+            <%= comment.user.nickname %><font size="1"> さん</font>：
             <%= comment.text %>
             <font size="1" color="red">. <%= l comment.created_at %></font>
           </p>
+          
         <% end %>
         </div>
       <% end %>
