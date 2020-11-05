@@ -3,7 +3,7 @@
 <div class='item-contents'>
 
   <% if user_signed_in? && (current_user.id == @user.id) %>
-    <h2 class='title'>ログインしている人がユーザー本人の場合これが表示されている。クレジットカード情報など。</br>他ユーザーの場合、出品商品一覧のみ表示</h2>
+    <h2 class='title'>ログインしている人がユーザー本人の場合この文字が表示されている。クレジットカード情報などが載る。</br>他ユーザーの場合、出品商品一覧のみ表示</h2>
   <% end %>
 
   <font size="6" color="red"><%= @nickname %>さんの出品商品一覧</font>

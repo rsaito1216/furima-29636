@@ -26,7 +26,7 @@
     <% if user_signed_in? && current_user.id == @item.user.id %>
     <%= link_to '商品の編集', edit_item_path(@item.id), method: :get, class: "item-red-btn" %>
     <p class='or-text'>or</p>
-    <%= link_to '削除', item_path(@item.id), method: :delete, class:'item-destroy' %>
+    <%= link_to '削除', item_path(@item.id), method: :delete, class:'item-destroy' , data: { confirm: "【確認】出品商品を削除してもよろしいですか？" }%>
     <% end %>
 
     <% if (user_signed_in? && (!(@item.user.id == current_user.id))) && !@item.item_transaction.present?%>
@@ -87,13 +87,14 @@
           不快な言葉遣いなどは利用制限や退会処分となることがあります。
         </p>
         <%= f.submit "コメントする",class:"comment-btn"%>
-         <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"30",height:"35"%>
+        <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"30",height:"35"%>
       <% end %>
     <% else %>
         <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p></strong>
     <% end %>
     <div class="comments">
-      <p class="comment-title">＜コメント一覧＞</p>
+
+      <p class="comment-destroy">＜コメント一覧＞  ※コメント投稿者だけが自分の投稿したコメントを削除出来ます</p>
       <% if @comments %>
         <div id='comments'>
         <% @comments.reverse_each do |comment| %>
@@ -101,6 +102,9 @@
             <%= comment.user.nickname %><font size="1"> さん</font>：
             <%= comment.text %>
             <font size="1" color="red">. <%= l comment.created_at %></font>
+            <% if user_signed_in? && current_user.id == comment.user.id %>
+            <%= link_to '削除', item_comment_path(comment.item.id, comment.id),method: :delete ,class:"comment-destroy", data: { confirm: "【確認】コメントを削除してもよろしいですか？" } %>
+            <% end %>
           </p>
           
         <% end %>
