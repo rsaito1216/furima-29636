@@ -1,0 +1,12 @@
+
+      <% if user_signed_in? & current_user.favorites.find_by(item_id: item.id) %>
+                  <div class='star-btn'>
+  <%= image_tag "star.png", class:"star-icon" %>
+  <span class='star-count'><%= item.favorites.count %></span>
+                <%= button_to 'お気に入り解除', item_favorites_path(item,item.favorites), method: :delete, remote: true, class: "btn-gradient-unradius" %>
+      <% else %>
+                <div class='star-btn'>
+  <%= image_tag "star.png", class:"star-icon" %>
+  <span class='star-count'><%= item.favorites.count %></span>
+                <%= button_to 'お気に入り登録', item_favorites_path(item,item.favorites) , method: :post, remote: true , class: "btn-gradient-radius" %>
+      <% end %>

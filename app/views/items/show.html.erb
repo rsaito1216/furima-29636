@@ -69,13 +69,9 @@
         <%= image_tag "star.png" ,class:"favorite-star-icon" ,width:"20",height:"20"%>
         <span>お気に入り <%= @item.favorites.count %></span>
       </div>
-      <div>
-      <% if user_signed_in? & current_user.favorites.find_by(item_id: @item.id) %>
-                  <%= button_to 'お気に入り解除', item_favorites_path(@item.id), {method: :delete,class: "btn-gradient-unradius"} %>
-                <% else %>
-                  <%= button_to 'お気に入り登録', item_favorites_path(@item.id) ,  {method: :post, class: "btn-gradient-radius"} %>
-                <% end %>
-                </div>
+      
+      
+      
                 <div>
               <h2>お気に入りしたユーザー</h2>
             <% @item.favorites.each do |item| %>

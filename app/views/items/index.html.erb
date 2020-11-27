@@ -143,11 +143,14 @@
             </h3>
             <div class='item-price'>
               <span><%= item.price.to_s(:delimited) %>円<br>(税込み)</span>
-              <div class='star-btn'>
-                <%= image_tag "star.png", class:"star-icon" %>
-                <span class='star-count'><%= item.favorites.count %></span>
-              </div>
+              
+                <div id="favorite-<%= item.id %>">
+            <%= render 'favorites/favorite',  item: item %>
             </div>
+              </div>
+              
+    
+    </div>
           </div>
         <% end %>
       </li>

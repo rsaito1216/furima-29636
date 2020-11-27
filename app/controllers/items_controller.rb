@@ -4,7 +4,6 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all
-    @favorites = Favorite.all
   end
   
   def new
