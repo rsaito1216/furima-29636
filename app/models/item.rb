@@ -3,6 +3,8 @@ class Item < ApplicationRecord
   has_one_attached :image
   has_one :item_transaction
   has_many :comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :favorite_users, through: :favorites, source: :user
 
   def self.search(search)
     if search != ""

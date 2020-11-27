@@ -130,7 +130,7 @@
   border-radius: 40px;
   width: 15vw;
   min-width: 200px;
-
+  margin-left: 10px;
   padding: 1vh 0;
   color: black;
   border: 2px solid #2d2d2d;
@@ -229,4 +229,14 @@
   background:rgba(255,0,0,0.5);
   text-align:center;
   padding:7px 0;
+}
+
+.comment-all{
+  padding-left: 15px; /* ラベル内左側の余白を指定する */
+  padding-right: 15px; /* ラベル内右側の余白を指定する */
+  cursor: pointer; /* マウスカーソルの形（リンクカーソル）を指定する */
+  background-color: white; /* フォントの色を指定 */
+  border: 2px solid #006DD9;/* ラベルの境界線を実線で指定する */
+  border-radius: 10px; /* 角丸を指定する */
+  margin-top: 10px;
 }

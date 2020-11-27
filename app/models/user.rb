@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :item_transactions
   has_many :comments, dependent: :destroy
   has_many :sns_credentials
+  has_many :favorites, dependent: :destroy
+  has_many :favorite_items, through: :favorites, source: :item
   
   validates :nickname, presence: true
   validates :email, format: { with: /[@]/, message: "に@が入力されていません"}

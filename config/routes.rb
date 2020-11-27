@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'favorites/create'
+  get 'favorites/destroy'
   devise_for :users, controllers: {
     omniauth_callbacks: 'users/omniauth_callbacks',
     registrations: 'users/registrations'
@@ -9,6 +11,7 @@ Rails.application.routes.draw do
   resources :items do
     resources :item_transactions, only:[:index, :create]
     resources :comments, only: [:create, :destroy]
+    resource :favorites, only: [:create, :destroy]
     member do
       get 'search'
     end
