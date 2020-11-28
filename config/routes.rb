@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :items do
     resources :item_transactions, only:[:index, :create]
     resources :comments, only: [:create, :destroy]
-    resource :favorites, only: [:create, :destroy]
+    resource :favorites, only: [:create, :destroy, :show]
     member do
       get 'search'
     end

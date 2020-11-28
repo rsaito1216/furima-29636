@@ -1,0 +1,5 @@
+
+              <h2>お気に入りしたユーザー</h2>
+            <% @item.favorites.each do |item| %>
+              <li><%= item.user.nickname %></li>
+            <% end %>
