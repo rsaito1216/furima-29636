@@ -4,7 +4,7 @@
                   
                 <%= button_to 'お気に入り解除', item_favorites_path(item,item.favorites), method: :delete, remote: true, class: "btn-gradient-unradius" %>
                 <%= link_to item_favorites_path(item.id) do %>
-                <%= image_tag "star.png", class:"star-icon" %>
+                <%= image_tag "wstar.png", class:"star-icon" %>
                 <span class='star-count'><%= item.favorites.count %></span>
                 
                 <% end %>
