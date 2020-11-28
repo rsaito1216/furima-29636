@@ -108,6 +108,7 @@
   display: flex;
   justify-content: space-between;
   position: relative;
+  align-items: center;
 }
 
 .favorite-btn {
@@ -130,7 +131,7 @@
   border-radius: 40px;
   width: 15vw;
   min-width: 200px;
-  margin-left: 10px;
+  margin-left: 20px;
   padding: 1vh 0;
   color: black;
   border: 2px solid #2d2d2d;
