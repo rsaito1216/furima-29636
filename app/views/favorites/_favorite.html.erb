@@ -1,4 +1,4 @@
-<% if user_signed_in? %>
+<% if user_signed_in? && !(current_user.id == item.user.id) %>
       <% if current_user.favorites.find_by(item_id: item.id) %>
                   <div class='star-btn'>
                   
