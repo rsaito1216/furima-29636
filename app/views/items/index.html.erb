@@ -143,18 +143,17 @@
             </h3>
             <div class='item-price'>
               <span><%= item.price.to_s(:delimited) %>円<br>(税込み)</span>
-              
+                 
                 <div id="favorite-<%= item.id %>">
-            <%= render 'favorites/favorite',  item: item %>
+                  <%= render 'favorites/favorite',  item: item %>
+                </div>
+            
             </div>
-              </div>
-              
-    
-    </div>
           </div>
+        
         <% end %>
       </li>
-
+  </div>
       <% if @items.empty? %>
       <li class='list'>
         <%= link_to '#' do %>
