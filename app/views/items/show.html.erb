@@ -65,11 +65,10 @@
       </tbody>
     </table>
     <div class="option">
-      <div class="favorite-btn">
-        <%= image_tag "star.png" ,class:"favorite-star-icon" ,width:"20",height:"20"%>
-        <span>お気に入り <%= @item.favorites.count %></span>
-      </div>
       
+      <div id="favorite-<%= @item.id %>">
+                  <%= render 'favorites/favorite',  item: @item %>
+                </div>
       
       
                 

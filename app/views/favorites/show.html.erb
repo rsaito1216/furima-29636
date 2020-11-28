@@ -3,3 +3,4 @@
             <% @item.favorites.each do |item| %>
               <li><%= item.user.nickname %></li>
             <% end %>
+            <%= link_to 'トップページに戻る' ,root_path%>
