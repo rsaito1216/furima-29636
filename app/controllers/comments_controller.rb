@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
       comment = Comment.create(comment_params)
     if comment.valid?
       comment.save
-      ActionCable.server.broadcast 'comment_channel', content: comment, user: comment.user
+      ActionCable.server.broadcast 'comment_channel', content: comment, user: comment.user, time: comment.created_at.strftime("%Y/%m/%d %H:%M:%S")
     else
       render action: :show
     end

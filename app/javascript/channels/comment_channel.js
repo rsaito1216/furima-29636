@@ -11,7 +11,7 @@ consumer.subscriptions.create("CommentChannel", {
   
   received(data) {
     const text = `<p>${data.content.text}</p>`;
-    const createdAt = `<p>${data.content.created_at}</p>`;
+    const createdAt = `<p>${data.time}</p>`;
     const nickName = `<p>${data.user.nickname}</p>`;
     const HTML = `
     <div class="comment-all">

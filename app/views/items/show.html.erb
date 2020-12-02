@@ -100,11 +100,11 @@
       <p class="comment-description">＜コメント一覧＞  ※コメント投稿者だけが自分の投稿したコメントを削除出来ます</p>
       <% if @comments %>
         <div id='comments'>
-        <% @comments.reverse_each do |comment| %>
-          <ul id=comment_lists>
-            <%= render comment %>
-          </ul>
-        <% end %>
+          <% @comments.reverse_each do |comment| %>
+            <ul id=comment_lists>
+              <%= render comment %>
+            </ul>
+          <% end %>
         </div>
       <% end %>
     </div>
