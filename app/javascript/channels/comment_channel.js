@@ -10,33 +10,30 @@ consumer.subscriptions.create("CommentChannel", {
   },
   
   received(data) {
-    
     const text = `<p>${data.content.text}</p>`;
     const createdAt = `<p>${data.content.created_at}</p>`;
     const nickName = `<p>${data.user.nickname}</p>`;
     const HTML = `
     <div class="comment-all">
-      <div class="message-name">
-      <p>${nickName}</p>
-      <p class="word">さん</p>
+      <div class="upper-comment">
+        <div class="comment-name">
+          <p>${nickName}</p>
+        </div>
+
+        <p class="word">さん</p>
       
         <div class="created-at">
-        <p>${createdAt}</p>
+          <p>${createdAt}</p>
         </div>
+      </div>
+        <div class="comment-textzone">
+          <p>${text}</p>
         </div>
-      <div class="lower-message">
-        <div class="text">
-        <p>${text}</p>
-        </div>
-      </div> 
      </div>
     `
-    
     const comments = document.getElementById('comment_list');
     comments.insertAdjacentHTML('afterbegin', HTML);
-    
     const newComment = document.getElementById('comment_text');
     newComment.value='';
-    
   }
 });

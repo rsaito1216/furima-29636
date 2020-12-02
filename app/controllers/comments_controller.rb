@@ -1,8 +1,11 @@
 class CommentsController < ApplicationController
   def create
-    comment = Comment.create(comment_params)
-    if comment.save
+      comment = Comment.create(comment_params)
+    if comment.valid?
+      comment.save
       ActionCable.server.broadcast 'comment_channel', content: comment, user: comment.user
+    else
+      render action: :show
     end
   end
 

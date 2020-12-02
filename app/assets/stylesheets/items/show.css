@@ -148,7 +148,7 @@
 /* /商品の概要 */
 
 .comment-box {
-  width: 60vw;
+  width: 70vw;
   background-color: #fff;
   margin: 5vh 0;
   text-align: center;
@@ -234,34 +234,28 @@
 .comment-destroy {
   border: 1px solid #4275a8;/* ラベルの境界線を実線で指定する */
   background-color: rgba(179, 157, 157, 0.5);
-  
+  cursor: pointer; /* マウスカーソルの形（リンクカーソル）を指定する */
   border-radius: 15px; /* 角丸を指定する */
-  padding:0px 2px;
+  padding:0px 3px;
   margin: 0 0 0 auto;
 }
 
 .comment-all{
   padding: 10px 10px;
-  cursor: pointer; /* マウスカーソルの形（リンクカーソル）を指定する */
   background-color: white; /* フォントの色を指定 */
   border: 2px solid #006DD9;/* ラベルの境界線を実線で指定する */
-  
   margin-top: 10px;
+  border-radius: 10px;
 }
 
-.message-name{
-  display: flex;
-  align-items: center;
-}
-
-.word{
-  font-size: 1.5px;
+.comment-name{
+  color: #3CCACE;
 }
 
 .created-at{
-  margin-left: 10px;
+  margin-left: 20px;
   color: red;
-  font-size: 2px;
+  font-size: medium;
 }
 
 .comment-textzone{
@@ -270,4 +264,9 @@
   padding: 3px 7px;
   border: solid 2px #dedede;
   resize: none;
+}
+
+.upper-comment{
+  display: flex;
+  align-items: center;
 }
