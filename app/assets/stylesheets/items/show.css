@@ -226,18 +226,48 @@
   font-size: 23px;
 }
 
-.comment-destroy {
+.comment-description {
   background:rgba(255,0,0,0.5);
   text-align:center;
-  padding:7px 0;
+  padding:5px 0;
+}
+.comment-destroy {
+  border: 1px solid #4275a8;/* ラベルの境界線を実線で指定する */
+  background-color: rgba(179, 157, 157, 0.5);
+  
+  border-radius: 15px; /* 角丸を指定する */
+  padding:0px 2px;
+  margin: 0 0 0 auto;
 }
 
 .comment-all{
-  padding-left: 15px; /* ラベル内左側の余白を指定する */
-  padding-right: 15px; /* ラベル内右側の余白を指定する */
+  padding: 10px 10px;
   cursor: pointer; /* マウスカーソルの形（リンクカーソル）を指定する */
   background-color: white; /* フォントの色を指定 */
   border: 2px solid #006DD9;/* ラベルの境界線を実線で指定する */
-  border-radius: 10px; /* 角丸を指定する */
+  
   margin-top: 10px;
+}
+
+.message-name{
+  display: flex;
+  align-items: center;
+}
+
+.word{
+  font-size: 1.5px;
+}
+
+.created-at{
+  margin-left: 10px;
+  color: red;
+  font-size: 2px;
+}
+
+.comment-textzone{
+  color: #ffb340;
+  width: 100%;
+  padding: 3px 7px;
+  border: solid 2px #dedede;
+  resize: none;
 }

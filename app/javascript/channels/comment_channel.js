@@ -8,12 +8,35 @@ consumer.subscriptions.create("CommentChannel", {
   disconnected() {
     // Called when the subscription has been terminated by the server
   },
-
+  
   received(data) {
-    const html = `<p>${data.content.text}</p>`;
-    const comments = document.getElementById('comments');
+    
+    const text = `<p>${data.content.text}</p>`;
+    const createdAt = `<p>${data.content.created_at}</p>`;
+    const nickName = `<p>${data.user.nickname}</p>`;
+    const HTML = `
+    <div class="comment-all">
+      <div class="message-name">
+      <p>${nickName}</p>
+      <p class="word">さん</p>
+      
+        <div class="created-at">
+        <p>${createdAt}</p>
+        </div>
+        </div>
+      <div class="lower-message">
+        <div class="text">
+        <p>${text}</p>
+        </div>
+      </div> 
+     </div>
+    `
+    
+    const comments = document.getElementById('comment_list');
+    comments.insertAdjacentHTML('afterbegin', HTML);
+    
     const newComment = document.getElementById('comment_text');
-    comments.insertAdjacentHTML('afterbegin', html);
     newComment.value='';
+    
   }
 });

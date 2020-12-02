@@ -97,19 +97,13 @@
     <% end %>
     <div class="comments">
 
-      <p class="comment-destroy">＜コメント一覧＞  ※コメント投稿者だけが自分の投稿したコメントを削除出来ます</p>
+      <p class="comment-description">＜コメント一覧＞  ※コメント投稿者だけが自分の投稿したコメントを削除出来ます</p>
       <% if @comments %>
         <div id='comments'>
         <% @comments.reverse_each do |comment| %>
-          <p class="comment-all">
-            <%= comment.user.nickname %><font size="1"> さん</font>：
-            <%= comment.text %>
-            <font size="1" color="red">. <%= l comment.created_at %></font>
-            <% if user_signed_in? && current_user.id == comment.user.id %>
-            <%= link_to '削除', item_comment_path(comment.item.id, comment.id),method: :delete ,class:"comment-destroy", data: { confirm: "【確認】コメントを削除してもよろしいですか？" } %>
-            <% end %>
-          </p>
-          
+          <ul id=comment_lists>
+            <%= render comment %>
+          </ul>
         <% end %>
         </div>
       <% end %>
