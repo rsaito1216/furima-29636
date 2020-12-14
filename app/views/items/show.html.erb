@@ -98,15 +98,9 @@
     <div class="comments">
 
       <p class="comment-description">＜コメント一覧＞  ※コメント投稿者だけが自分の投稿したコメントを削除出来ます</p>
-      <% if @comments %>
-        <div id='comments'>
-          <% @comments.reverse_each do |comment| %>
-            <ul id=comment_lists>
-              <%= render comment %>
-            </ul>
-          <% end %>
-        </div>
-      <% end %>
+          <div id=comment_list>
+            <%= render partial: 'comments/comment', collection: @comments %>
+          </div>
     </div>
   </div>
   <div class="links">

@@ -1,22 +1,14 @@
-
-<li  id="comment_list">
-  <div class="comment-all">
-    <div class="upper-comment">
-      <div class="comment-name">
+<div class="comment-all">
+  <div class="upper-comment">
+    <div class="comment-name">
       <span><%= comment.user.nickname %> さん</span>
-      </div>
-      
-      
+    </div>
       <span class="created-at"><%= l comment.created_at %></span>
-        
-          <% if user_signed_in? && current_user.id == comment.user.id %>
-            <%= link_to '削除', item_comment_path(comment.item.id, comment.id),method: :delete ,class:"comment-destroy", data: { confirm: "【確認】コメントを削除してもよろしいですか？" } %>
-          <% end %>
-      
-    </div> 
-      <div class="comment-textzone">
-        <%=simple_format(h comment.text )%>
-      </div>
-    
+        <% if user_signed_in? && current_user.id == comment.user.id %>
+          <%= link_to '削除', item_comment_path(comment.item.id, comment.id),method: :delete ,class:"comment-destroy", data: { confirm: "【確認】コメントを削除してもよろしいですか？" } %>
+        <% end %>
+  </div> 
+  <div class="comment-textzone">
+    <%=simple_format(h comment.text )%>
   </div>
-</li>
+</div>
