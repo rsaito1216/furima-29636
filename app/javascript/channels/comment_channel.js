@@ -1,6 +1,9 @@
 import consumer from "./consumer"
 
 consumer.subscriptions.create("CommentChannel", {
+    // Channel: "CommentChannel",
+    // item_id: location.pathname.match(/\d+/)[0],
+  
   connected() {
     // Called when the subscription is ready for use on the server
   },
@@ -14,10 +17,10 @@ consumer.subscriptions.create("CommentChannel", {
     const createdAt = `<p>${data.time}</p>`;
     const nickName = `<p>${data.user.nickname}</p>`;
     
-    const path = window.location.pathname ;
+    const path = window.location.pathname
     const idName = "commnet-" 
     const pathId = idName + path
-
+    
     const HTML = `
     <div class="comment-all">
       <div class="upper-comment">
