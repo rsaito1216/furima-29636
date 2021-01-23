@@ -13,6 +13,11 @@ consumer.subscriptions.create("CommentChannel", {
     const text = `<p>${data.content.text}</p>`;
     const createdAt = `<p>${data.time}</p>`;
     const nickName = `<p>${data.user.nickname}</p>`;
+    
+    const path = window.location.pathname ;
+    const idName = "commnet-" 
+    const pathId = idName + path
+
     const HTML = `
     <div class="comment-all">
       <div class="upper-comment">
@@ -31,9 +36,10 @@ consumer.subscriptions.create("CommentChannel", {
         </div>
      </div>
     `
-    const comments = document.getElementById('comment_list');
+    const comments = document.getElementById(pathId);
     comments.insertAdjacentHTML('afterbegin', HTML);
     const newComment = document.getElementById('comment_text');
     newComment.value='';
+    
   }
 });
