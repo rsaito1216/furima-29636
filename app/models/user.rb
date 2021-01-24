@@ -4,8 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:facebook]
 
-  has_many :items, dependent: :destroy
-  has_many :item_transactions, dependent: :destroy
+  has_many :items
+  has_many :item_transactions
   has_many :comments, dependent: :destroy
   has_many :sns_credentials
   has_many :favorites, dependent: :destroy
