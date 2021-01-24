@@ -2,7 +2,7 @@ import consumer from "./consumer"
 
 consumer.subscriptions.create({
   channel: "CommentChannel",
-  item_id: location.pathname.match(/\d+/)[0]
+  item_id: window.location.pathname.match(/\d+/)[0]
 
 },{
   connected() {
