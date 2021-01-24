@@ -1,11 +1,10 @@
 class CommentsController < ApplicationController
   def create
-    # @item = Item.find(params[:item_id])
+    @item = Item.find(params[:item_id])
       @comment = Comment.create(comment_params)
     if @comment.valid?
       @comment.save
-      # ActionCable.server.broadcast 'comment_channel', content: comment, user: comment.user, time: comment.created_at.strftime("%Y/%m/%d %H:%M:%S")
-      CommentChannel.broadcast_to "#{@item_id}", {content: @comment, user: @comment.user, time: @comment.created_at.strftime("%Y/%m/%d %H:%M:%S")}
+      CommentChannel.broadcast_to @item, {content: @comment, user: @comment.user, time: @comment.created_at.strftime("%Y/%m/%d %H:%M:%S")}
     else
       render action: :show
     end
