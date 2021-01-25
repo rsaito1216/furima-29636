@@ -1,19 +1,100 @@
 <%= render "devise/shared/header" %>
 
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.3/css/swiper.min.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.3/js/swiper.min.js"></script>
+
+
+
+
+
+
 <%# 商品の概要 %>
+<!-- Swiper START -->
+<div class="swiper-container">
+	<!-- メイン表示部分 -->
+	<div class="swiper-wrapper">
+		<!-- 各スライド -->
+    <% @item.images.each do |image| %>
+        <div class="swiper-slide">
+        <%= link_to image, "data-lightbox" => image do %>
+          <%= image_tag image, class: 'item-box-img' %>
+          <% if @item.item_transaction.present? %> %>
+            <div class='sold-out'>
+              <span>Sold Out!!</span>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+	
+  </div>
+	<div class="swiper-button-prev"></div>
+	<div class="swiper-button-next"></div>
+	<div class="swiper-pagination"></div>
+</div>
+<!-- Swiper END -->
+
+
+
+<script>
+document.addEventListener("turbolinks:load", function() {
+
+var mySwiper = new Swiper('.swiper-container', {
+  centeredSlides: true,
+  effect: 'coverflow',
+	slidesPerView: 6,
+	// autoplay: {
+	// 	delay: 3000,
+	// 	stopOnLastSlide: false,
+	// 	disableOnInteraction: false,
+	// 	reverseDirection: false
+	// },
+	navigation: {
+		nextEl: '.swiper-button-next',
+		prevEl: '.swiper-button-prev'
+	},
+	pagination: {
+		el: '.swiper-pagination',
+		type: 'bullets',
+		clickable: true
+	}
+});
+});
+
+
+
+
+var mySwiper1 = new Swiper('.swiper1', {
+	spaceBetween: 10,
+	navigation: {
+		nextEl: '.next1',
+		prevEl: '.prev1'
+	}
+});
+
+var mySwiper2 = new Swiper('.swiper2', {
+	slideToClickedSlide: true,
+	controller: {
+		control: mySwiper1,
+		inverse: false,
+		by: 'slide'
+	},
+	spaceBetween: 10,
+	slidesPerView: 5,
+	slideToClickedSlide: true
+});
+mySwiper1.controller.control = mySwiper2;
+</script>
+
+
 <div class="item-show">
   <div class="item-box">
     <h2 class="name">
       <%= @item.product_name %>
     </h2>
-    <div class='item-img-content'>
-      <%= image_tag @item.image, class:"item-box-img" %>
-      <% if @item.item_transaction.present? %>
-        <div class='sold-out'>
-          <span>Sold Out!!</span>
-        </div>
-      <% end %>
-    </div>
+    
     <div class="item-price-box">
       <span class="item-price">
         ¥ <%= @item.price.to_s(:delimited) %>

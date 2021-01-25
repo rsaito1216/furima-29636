@@ -1,6 +1,6 @@
 class Item < ApplicationRecord
   belongs_to :user
-  has_one_attached :image
+  has_many_attached :images
   has_one :item_transaction
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
@@ -24,7 +24,7 @@ class Item < ApplicationRecord
   belongs_to_active_hash :shipping_day
 
   with_options presence: true do
-    validates :image
+    validates :images
     validates :product_name
     validates :description
     validates :category_id

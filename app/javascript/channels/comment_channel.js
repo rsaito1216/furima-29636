@@ -1,5 +1,7 @@
 import consumer from "./consumer"
 
+document.addEventListener("turbolinks:load", function() {
+
 consumer.subscriptions.create({
   channel: "CommentChannel",
   item_id: window.location.pathname.match(/\d+/)[0]
@@ -42,4 +44,5 @@ consumer.subscriptions.create({
     newComment.value='';
     
   }
+});
 });
