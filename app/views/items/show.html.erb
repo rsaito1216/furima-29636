@@ -20,7 +20,7 @@
       <div class="swiper-wrapper">
         <!-- 各スライド -->
         <% @item.images.each_with_index do |image, i| %>
-          <div class="swiper-slide main-slide">
+          <div class="swiper-slide">
             <%= link_to image, "data-lightbox" => image do %>
               <%= image_tag image , class: "slide-upper-img"%>
               <% if @item.item_transaction.present? %> 
@@ -50,7 +50,7 @@
       <div class="swiper-wrapper">
         <!-- 各スライド -->
         <% @item.images.each do |image| %>
-          <div class="swiper-slide thumbnail-slide">
+          <div class="swiper-slide">
           
             <%= image_tag image , class: "slide-low-img"%>
             <% if @item.item_transaction.present? %>
@@ -89,7 +89,11 @@ var mySwiper2 = new Swiper('.swiper2', {
 	slidesPerView: 4,
 	slideToClickedSlide: true
 });
-mySwiper1.controller.control = mySwiper2;
+var mySwiper1 = new Swiper('.swiper1', {
+   controller: {
+       control: mySwiper2
+   }
+});
 
 </script>
   

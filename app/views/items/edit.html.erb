@@ -18,12 +18,22 @@ app/assets/stylesheets/items/new.css %>
         <span class="indispensable">必須</span>
       </div>
       <div class="click-upload">
+
+
+      <div class="edit-image-lineup">
+      <% @item.images.each_with_index do |image, i| %>
+          <div class="swiper-slide main-slide">
+              <%= image_tag image , class: "item-edit-image"%>
+          </div>
+<% end %>
+</div>
         <p>
           画像を変えたい場合は<br>クリックしてファイルをアップロード
         </p>
           <%= f.file_field :images, name: 'item[images][]', multiple: true,  id: 'item_image',class: 'hidden' ,accept: '.jpeg, .jpg, .gif, .png'%>
 
           <div id="image-list"></div>
+
       </div>
     </div>
     <%# /出品画像 %>

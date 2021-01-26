@@ -236,3 +236,17 @@
 .inc {
   font-size: 13px;
 }
+
+
+.item-edit-image{
+  height: 90px;
+  width: 90px;
+  border: 2px solid darkblue;
+  margin: 5px 0px ;
+  /*object-fit: contain;*/
+}
+.edit-image-lineup{
+  display: flex;
+  flex-wrap: wrap;
+
+}

@@ -14,16 +14,59 @@
       <li><%= link_to 'カテゴリー', "#", class: "category-list" %></li>
       <li><%= link_to 'ブランド', "#", class: "brand-list" %></li>
     </ul>
-    <ul class='lists-right'>
+    <div class='lists-right'>
       <% if user_signed_in? %>
-        <li><font size="5" color="blue"><%= current_user.nickname %></font></li>
-        <li><%= link_to '○マイページ', "/users/#{current_user.id}", class: "logout" %></li>
-        <li><%= link_to '○ログアウト', destroy_user_session_path, method: :delete, class: "logout" %></li>
-        <li><%= link_to '○ユーザー情報編集', edit_user_registration_path, method: :get, class: "logout" %></li>
-      <% else %>
-        <li><%= link_to 'ログイン', new_user_session_path, class: "login" %></li>
-        <li><%= link_to '新規登録', new_user_registration_path, class: "sign-up" %></li>
-      <% end %>
-    </ul>
+          
+            <div class="user_nav" id="lists"><span class="user-nickname"><%= current_user.nickname %></span> さん <%= image_tag "arrow_top.png" ,class:"comment-flag-icon" ,width:"17",height:"17"%></span>
+            <ul class="user-lists hidden", id="pull-down">
+              <li><%= link_to 'マイページ', "/users/#{current_user.id}", {class: "pull-down-list"} %></li>
+              <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete , class: "pull-down-list" %></li>
+              <li><%= link_to 'ユーザー情報編集', edit_user_registration_path, method: :get, class: "pull-down-list" %></li>
+              
+            </ul>
+          
+        
+
+        <% else %>
+          <div class="no-login">
+            <%= link_to "ログイン", new_user_session_path, class: "post" %>
+            <%= link_to "ユーザー登録", new_user_registration_path, class: "post" %>
+          </div>
+        <% end %>
+     </div>
+    
   </div>
+  <script>
+  function pullDown() {
+
+  const pullDownButton = document.getElementById("lists")
+  const pullDownParents = document.getElementById("pull-down")
+  const pullDownChild = document.querySelectorAll(".pull-down-list")
+
+  pullDownButton.addEventListener('mouseover', function(){
+    this.setAttribute("style", "background-color:#FFBEDA;")
+  })
+
+  pullDownButton.addEventListener('mouseout', function(){
+    this.removeAttribute("style", "background-color:#FFBEDA;")
+  })
+
+  pullDownButton.addEventListener('click', function() {
+    if (pullDownParents.getAttribute("style") == "display:block;") {
+      pullDownParents.removeAttribute("style", "display:block;")
+    } else {
+      pullDownParents.setAttribute("style", "display:block;")
+    }
+  })
+
+  pullDownChild.forEach(function(list) {
+    list.addEventListener('click', function() {
+      value = list.innerHTML
+      currentList.innerHTML = value
+    })
+  })
+}
+
+window.addEventListener('load', pullDown)
+</script>
 </header>
