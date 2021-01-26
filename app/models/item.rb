@@ -15,6 +15,14 @@ class Item < ApplicationRecord
       Item.all
     end
   end
+
+  def previous
+    Item.where("id < ?", self.id).order("id DESC").first
+  end
+
+  def next
+    Item.where("id > ?", self.id).order("id ASC").first
+  end
   
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :category
@@ -44,4 +52,5 @@ class Item < ApplicationRecord
   end
 
   validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "は半角数字で、価格範囲内で入力してください"}
+
 end
