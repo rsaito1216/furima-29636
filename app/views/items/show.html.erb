@@ -5,66 +5,70 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.3/js/swiper.min.js"></script>
 
+<div class="item-show">
+<div class="item-box">
+    <h2 class="name">
+      <%= @item.product_name %>
+    </h2>
 
+<div class="img-fream">
+<!-- 1個目のSwiper START -->
+	<!-- Swiper START -->
+  <div class="upper-img">
+    <div class="swiper-container swiper1">
+      <!-- メイン表示部分 -->
+      <div class="swiper-wrapper">
+        <!-- 各スライド -->
+        <% @item.images.each_with_index do |image, i| %>
+          <div class="swiper-slide main-slide">
+            <%= link_to image, "data-lightbox" => image do %>
+              <%= image_tag image , class: "slide-upper-img"%>
+              <% if @item.item_transaction.present? %> 
+                <div class='sold-out'>
+                  <span>Sold Out!!</span>
+                </div>
+              <% end %>
+          <div class="img-num"><%= i + 1 %> / <%= @item.images.count %></div> 
 
+            <% end %>
 
-
-
-<%# 商品の概要 %>
-<!-- Swiper START -->
-<div class="swiper-container">
-	<!-- メイン表示部分 -->
-	<div class="swiper-wrapper">
-		<!-- 各スライド -->
-    <% @item.images.each do |image| %>
-        <div class="swiper-slide">
-        <%= link_to image, "data-lightbox" => image do %>
-          <%= image_tag image, class: 'item-box-img' %>
-          <% if @item.item_transaction.present? %> %>
-            <div class='sold-out'>
-              <span>Sold Out!!</span>
-            </div>
-          <% end %>
+          </div>
         <% end %>
       </div>
-    <% end %>
-	
+    
+  
+		<div class="swiper-button-prev prev1"></div>
+		<div class="swiper-button-next next1"></div>
+    </div>
+    </div>
+<!-- 1個目のSwiper END -->
+
+  <!-- 2個目のSwiper START -->
+  <div class="low-img">
+    <div class="swiper-container swiper2">
+      <!-- メイン表示部分 -->
+      <div class="swiper-wrapper">
+        <!-- 各スライド -->
+        <% @item.images.each do |image| %>
+          <div class="swiper-slide thumbnail-slide">
+          
+            <%= image_tag image , class: "slide-low-img"%>
+            <% if @item.item_transaction.present? %>
+              <div class='sold-out'>
+                <span>Sold Out!!</span>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
-	<div class="swiper-button-prev"></div>
-	<div class="swiper-button-next"></div>
-	<div class="swiper-pagination"></div>
+<!-- 2個目のSwiper END -->
 </div>
-<!-- Swiper END -->
 
 
 
 <script>
-document.addEventListener("turbolinks:load", function() {
-
-var mySwiper = new Swiper('.swiper-container', {
-  centeredSlides: true,
-  effect: 'coverflow',
-	slidesPerView: 6,
-	// autoplay: {
-	// 	delay: 3000,
-	// 	stopOnLastSlide: false,
-	// 	disableOnInteraction: false,
-	// 	reverseDirection: false
-	// },
-	navigation: {
-		nextEl: '.swiper-button-next',
-		prevEl: '.swiper-button-prev'
-	},
-	pagination: {
-		el: '.swiper-pagination',
-		type: 'bullets',
-		clickable: true
-	}
-});
-});
-
-
-
 
 var mySwiper1 = new Swiper('.swiper1', {
 	spaceBetween: 10,
@@ -82,18 +86,13 @@ var mySwiper2 = new Swiper('.swiper2', {
 		by: 'slide'
 	},
 	spaceBetween: 10,
-	slidesPerView: 5,
+	slidesPerView: 4,
 	slideToClickedSlide: true
 });
 mySwiper1.controller.control = mySwiper2;
+
 </script>
-
-
-<div class="item-show">
-  <div class="item-box">
-    <h2 class="name">
-      <%= @item.product_name %>
-    </h2>
+  
     
     <div class="item-price-box">
       <span class="item-price">

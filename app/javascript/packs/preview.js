@@ -9,7 +9,7 @@
 
 if (document.URL.match("/new") || document.URL.match("items")|| document.URL.match("/edit")) {
 
-  document.addEventListener('turbolinks:load', function(){
+  document.addEventListener('DOMContentLoaded', function(){
     const ImageList = document.getElementById('image-list');
     
     const createImageHTML = (blob) => {

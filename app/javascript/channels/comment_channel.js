@@ -1,6 +1,6 @@
 import consumer from "./consumer"
 
-document.addEventListener("turbolinks:load", function() {
+// document.addEventListener("turbolinks:load", function() {
 
 consumer.subscriptions.create({
   channel: "CommentChannel",
@@ -45,4 +45,4 @@ consumer.subscriptions.create({
     
   }
 });
-});
+// });

@@ -132,7 +132,7 @@ a {
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  padding: 5vh 15vw;
+  padding: 5vh 15vw 5vh 7vw;
   color: #fff;
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.9);
 }
@@ -143,7 +143,7 @@ a {
 }
 
 .ad-explain {
-  font-size: 2.5vh;
+  font-size: 2.3vh;
   line-height: 30px;
 }
 
@@ -154,11 +154,11 @@ a {
 
 .apple-btn {
   margin-right: 1vw;
-  height: 9vh;
+  height: 7vh;
 }
 
 .google-btn {
-  height: 9vh;
+  height: 7vh;
 }
 
 /* //画面中央の「会員数日本一位」帯部分 */
@@ -341,3 +341,4 @@ a {
 
 
 /* //商品一覧 */
+
