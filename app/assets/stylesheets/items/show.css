@@ -312,3 +312,9 @@
   font-size: 20px;
   font-weight: bold;
 }
+.image-element{
+  justify-content: space-between;
+}
+.ssss{
+  display: block;
+}

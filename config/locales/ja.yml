@@ -10,7 +10,7 @@ ja:
         birth_date: 生年月日
       item:
         product_name: 商品名
-        image: 出品画像
+        images: 出品画像
         description: 商品の説明
         price: 販売価格
         category_id: カテゴリー

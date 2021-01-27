@@ -23,7 +23,7 @@
           <div class="swiper-slide">
             <%= link_to image, "data-lightbox" => image do %>
             
-              <%= image_tag image , class: "slide-upper-img"%>
+              <%= image_tag image , class: "slide-upper-img", alt:"商品画像" %>
               <% if @item.item_transaction.present? %> 
                 <div class='sold-out'>
                   <span>Sold Out!!</span>

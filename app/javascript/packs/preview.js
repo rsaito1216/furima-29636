@@ -29,20 +29,22 @@ if (document.URL.match("/new") || document.URL.match("items")|| document.URL.mat
       inputHTML.setAttribute('name', 'item[images][]')
       inputHTML.setAttribute('type', 'file')
       
+      
       // 生成したHTMLの要素をブラウザに表示させる
       imageElement.appendChild(blobImage)
       imageElement.appendChild(inputHTML)
       ImageList.appendChild(imageElement)
 
       inputHTML.addEventListener('change', (e) => {
-        file = e.target.files[0];
+          file = e.target.files[0];
         blob = window.URL.createObjectURL(file);
-
+         
         createImageHTML(blob)
       });
     }
       
     document.getElementById('item_image').addEventListener('change', function(e){
+      
       let file = e.target.files[0];
       let blob = window.URL.createObjectURL(file);
 

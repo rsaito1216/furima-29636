@@ -6,7 +6,7 @@ app/assets/stylesheets/items/new.css %>
     <%= link_to image_tag('furima-logo-color.png' , size: '185x50'), "/" %>
   </header>
   <div class="items-sell-main">
-    <h2 class="items-sell-title">商品の情報を入力</h2>
+    <h2 class="items-sell-title">商品の情報を編集</h2>
     <%= form_with model: @item, local: true do |f| %>
 
     <%= render 'devise/shared/error_messages', model:@item %>
@@ -19,27 +19,29 @@ app/assets/stylesheets/items/new.css %>
       </div>
       <div class="click-upload">
       <p>
-          削除したい画像がある時はチェックを入れて下の「変更する」をクリック
-          <br>(左が１番目、その右隣が２番目、、、と表示され、
-          <br>枠に収まらなければ下段に表示されます)
+          削除したい画像がある場合はチェックを入れて、下の「変更する」をクリック。
+          <br>(画像は一番左(上)が１枚目、その右隣が２枚目、、、と表示されています)
         </p>
 
-      <div class="edit-image-lineup">
-      <% @item.images.each do |image| %>
-      <div class="edit-image-space">
+        <div class="edit-image-lineup">
+        <% @item.images.each do |image| %>
+          <div class="edit-image-space">
               <%= image_tag image , class: "item-edit-image"%>
-            <%= f.check_box :image_ids, {multiple: true}, image.id, false %>
+              <%= f.check_box :image_ids, {multiple: true}, image.id, false %>
+          </div>
+        <% end %>
+        </div>
       </div>
-      <% end %>
-      </div>
+      <div class="click-upload">
         <p>
-          画像を変えたい場合は<br>クリックしてファイルをアップロード
+          画像を追加したい、変えたい場合はクリックしてファイルをアップロード。
+          <br>追加、変えたい場合は最初から画像を全部選んで下さい。
+          <br><font color="red">⬇️ここでクリックして画像を選ぶ場合は上のチェックは入れないで下さい</font>
         </p>
         
           <%= f.file_field :images, name: 'item[images][]', multiple: true,  id: 'item_image' ,accept: '.jpeg, .jpg, .gif, .png'%>
 
-          <div id="image-list"></div>
-
+          <div id="image-list" class="ssss"></div>
       </div>
     </div>
     <%# /出品画像 %>
