@@ -104,14 +104,14 @@
     align-items: center;
 }
 .pull-down-list{
-    margin: 10px;
-    width: 230px;
+    margin: 5px;
+    width: 200px;
     display: flex;
     position: relative;
     background: #d1dfec;
     box-shadow: 0px 0px 0px 5px #dfefff;
     border: solid 2px white;
-    padding: 0.2em 1.1em;
+    padding: 0.2em 0.9em;
     color: #454545;
     align-items: center;
 }
