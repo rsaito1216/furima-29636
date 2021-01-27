@@ -18,19 +18,25 @@ app/assets/stylesheets/items/new.css %>
         <span class="indispensable">必須</span>
       </div>
       <div class="click-upload">
-
+      <p>
+          削除したい画像がある時はチェックを入れて下の「変更する」をクリック
+          <br>(左が１番目、その右隣が２番目、、、と表示され、
+          <br>枠に収まらなければ下段に表示されます)
+        </p>
 
       <div class="edit-image-lineup">
-      <% @item.images.each_with_index do |image, i| %>
-          <div class="swiper-slide main-slide">
+      <% @item.images.each do |image| %>
+      <div class="edit-image-space">
               <%= image_tag image , class: "item-edit-image"%>
-          </div>
-<% end %>
-</div>
+            <%= f.check_box :image_ids, {multiple: true}, image.id, false %>
+      </div>
+      <% end %>
+      </div>
         <p>
           画像を変えたい場合は<br>クリックしてファイルをアップロード
         </p>
-          <%= f.file_field :images, name: 'item[images][]', multiple: true,  id: 'item_image',class: 'hidden' ,accept: '.jpeg, .jpg, .gif, .png'%>
+        
+          <%= f.file_field :images, name: 'item[images][]', multiple: true,  id: 'item_image' ,accept: '.jpeg, .jpg, .gif, .png'%>
 
           <div id="image-list"></div>
 

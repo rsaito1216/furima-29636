@@ -19,7 +19,7 @@
         <p>
           クリックしてファイルをアップロード
         </p>
-          <%= f.file_field :images, name: 'item[images][]', multiple: true,  id: 'item_image',class: 'hidden' ,accept: '.jpeg, .jpg, .gif, .png'%>
+          <%= f.file_field :images, name: 'item[images][]', multiple: true,  id: 'item_image_${imageElementNum}' ,accept: '.jpeg, .jpg, .gif, .png'%>
 
           <div id="image-list"></div>
       </div>

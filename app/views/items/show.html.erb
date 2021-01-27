@@ -22,12 +22,14 @@
         <% @item.images.each_with_index do |image, i| %>
           <div class="swiper-slide">
             <%= link_to image, "data-lightbox" => image do %>
+            
               <%= image_tag image , class: "slide-upper-img"%>
               <% if @item.item_transaction.present? %> 
                 <div class='sold-out'>
                   <span>Sold Out!!</span>
                 </div>
               <% end %>
+            
           <div class="img-num"><%= i + 1 %> / <%= @item.images.count %></div> 
 
             <% end %>
@@ -95,6 +97,7 @@ var mySwiper1 = new Swiper('.swiper1', {
        control: mySwiper2
    }
 });
+
 
 </script>
   

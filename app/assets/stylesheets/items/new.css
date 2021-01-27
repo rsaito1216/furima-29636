@@ -20,7 +20,7 @@
   background-color: #FFF;
   width: 70vw;
   min-width: 450px;
-  padding: 10vh 15vw;
+  padding: 35px 90px;
 }
 
 .items-sell-title {
@@ -86,7 +86,7 @@
 }
 
 .click-upload>p {
-  margin-bottom: 15px;
+  margin: 10px 0;
 }
 
 .preview-image {
@@ -239,14 +239,17 @@
 
 
 .item-edit-image{
-  height: 90px;
-  width: 90px;
+  height: 80px;
+  width: 80px;
   border: 2px solid darkblue;
-  margin: 5px 0px ;
   /*object-fit: contain;*/
+  
 }
 .edit-image-lineup{
   display: flex;
   flex-wrap: wrap;
+}
 
+.edit-image-space{
+  margin: 0 20px 10px 0;
 }
