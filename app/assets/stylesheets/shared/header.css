@@ -94,7 +94,7 @@
 }
 
 .user_nav{
-  background-color: rgb(193, 163, 204);
+  background-color: rgb(217, 203, 221);
   padding: 7px 13px;
   font-size: 20px;
 }
@@ -104,7 +104,7 @@
     align-items: center;
 }
 .pull-down-list{
-    margin: 5px;
+    margin: 13px 0;
     width: 200px;
     display: flex;
     position: relative;

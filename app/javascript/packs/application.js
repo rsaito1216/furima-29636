@@ -10,6 +10,7 @@ require("channels")
 require('./calculation')
 require("../card")
 require('./preview.js')
+require('./pulldown.js')
 require('jquery')
 
 // Uncomment to copy all static images under ../images to the output folder and reference
