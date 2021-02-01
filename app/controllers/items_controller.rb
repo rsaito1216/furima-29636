@@ -8,6 +8,7 @@ class ItemsController < ApplicationController
   
   def new
     @item = Item.new
+
   end
 
   def create
@@ -21,8 +22,11 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @comment = Comment.new
-    @comments = @item.comments.includes(:user)
+    # @comment = Comment.new
+    # @comments = @item.comments.includes(:user)
+    @comments = @item.comments
+    @comment = @item.comments.build #投稿全体へのコメント投稿用の変数
+    @comment_reply = @item.comments.build
   end
 
   def update

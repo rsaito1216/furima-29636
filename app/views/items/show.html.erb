@@ -6,29 +6,29 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.3/js/swiper.min.js"></script>
 
 <div class="item-show">
-<div class="item-box">
+  <div class="item-box">
     <h2 class="name">
       <%= @item.product_name %>
     </h2>
 
-<div class="img-fream">
-<!-- 1個目のSwiper START -->
-	<!-- Swiper START -->
-  <div class="upper-img">
-    <div class="swiper-container swiper1">
-      <!-- メイン表示部分 -->
-      <div class="swiper-wrapper">
-        <!-- 各スライド -->
-        <% @item.images.each_with_index do |image, i| %>
-          <div class="swiper-slide">
-            <%= link_to image, "data-lightbox" => image do %>
-            
-              <%= image_tag image , class: "slide-upper-img", alt:"商品画像" %>
-              <% if @item.item_transaction.present? %> 
-                <div class='sold-out'>
-                  <span>Sold Out!!</span>
-                </div>
-              <% end %>
+    <div class="img-fream">
+    <!-- 1個目のSwiper START -->
+      <!-- Swiper START -->
+      <div class="upper-img">
+        <div class="swiper-container swiper1">
+          <!-- メイン表示部分 -->
+          <div class="swiper-wrapper">
+            <!-- 各スライド -->
+            <% @item.images.each_with_index do |image, i| %>
+              <div class="swiper-slide">
+                <%= link_to image, "data-lightbox" => image do %>
+                
+                  <%= image_tag image , class: "slide-upper-img", alt:"商品画像" %>
+                  <% if @item.item_transaction.present? %> 
+                    <div class='sold-out'>
+                      <span>Sold Out!!</span>
+                    </div>
+                  <% end %>
             
           <div class="img-num"><%= i + 1 %> / <%= @item.images.count %></div> 
 
@@ -43,7 +43,7 @@
 		<div class="swiper-button-next next1"></div>
     </div>
     </div>
-<!-- 1個目のSwiper END -->
+   <!-- 1個目のSwiper END -->
 
   <!-- 2個目のSwiper START -->
   <div class="low-img">
@@ -65,41 +65,41 @@
       </div>
     </div>
   </div>
-<!-- 2個目のSwiper END -->
-</div>
+  <!-- 2個目のSwiper END -->
+  </div>
 
 
 
-<script>
+        <script>
 
-var mySwiper1 = new Swiper('.swiper1', {
-	spaceBetween: 0,
-	navigation: {
-		nextEl: '.next1',
-		prevEl: '.prev1'
-	}
-});
+        var mySwiper1 = new Swiper('.swiper1', {
+          spaceBetween: 0,
+          navigation: {
+            nextEl: '.next1',
+            prevEl: '.prev1'
+          }
+        });
 
-var mySwiper2 = new Swiper('.swiper2', {
-	slideToClickedSlide: true,
-	controller: {
-		control: mySwiper1,
-		inverse: false,
-		by: 'slide'
-	},
-	spaceBetween: 10,
-  slidesPerView: 3.5,
-  centeredSlides : true,
-	slideToClickedSlide: true
-});
-var mySwiper1 = new Swiper('.swiper1', {
-   controller: {
-       control: mySwiper2
-   }
-});
+        var mySwiper2 = new Swiper('.swiper2', {
+          slideToClickedSlide: true,
+          controller: {
+            control: mySwiper1,
+            inverse: false,
+            by: 'slide'
+          },
+          spaceBetween: 10,
+          slidesPerView: 3.5,
+          centeredSlides : true,
+          slideToClickedSlide: true
+        });
+        var mySwiper1 = new Swiper('.swiper1', {
+           controller: {
+               control: mySwiper2
+           }
+        });
 
 
-</script>
+        </script>
   
       
     
@@ -157,7 +157,7 @@ var mySwiper1 = new Swiper('.swiper1', {
       
       <div id="favorite-<%= @item.id %>">
                   <%= render 'favorites/favorite',  item: @item %>
-                </div>
+      </div>
       
       
                 
@@ -169,9 +169,10 @@ var mySwiper1 = new Swiper('.swiper1', {
   </div>
   <%# /商品の概要 %>
 
-  <div class="comment-box">
+<div class="comment-box">
+
     <% if current_user %>
-      <%= form_with model: [@item, @comment] do |f| %>
+      <%= form_with model: [@item, @comment],local:true do |f| %>
         <%= f.text_area :text, class:"comment-text", placeholder:"商品へのコメントを入力（ 100文字まで)", maxlength:"100" %>
         <p class="comment-warn">
           相手のことを考え丁寧なコメントを心がけましょう。
@@ -184,14 +185,78 @@ var mySwiper1 = new Swiper('.swiper1', {
     <% else %>
         <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p></strong>
     <% end %>
+    
     <div class="comments">
 
-      <p class="comment-description">＜コメント一覧＞  ※コメント投稿者だけが自分の投稿したコメントを削除出来ます</p>
-          <div id="comment-list">
-            <%= render partial: 'comments/comment', collection: @comments %>
+         <p class="comment-description">＜コメント一覧＞  ※コメント投稿者だけが自分の投稿したコメントを削除出来ます</p>
+
+      <% @comments.each do |comment| %>
+          <% if comment.parent_id.present? || comment.id.blank? %>
+            <% next %>
+          <% end %>
+      <div id="comment-list-<%= comment.id %>">
+            <div class="comment-all">
+              <div class="upper-comment">
+                <div class="comment-name">
+                  <span> <%= comment.user.nickname %> さん</span>
+                </div>
+                  <span class="created-at"><%= comment.created_at.strftime("%Y-%m-%d %H:%M") %></span>
+                  <% if user_signed_in? && current_user.id == comment.user.id %>
+                    <%= link_to '削除', item_comment_path(comment.item.id, comment.id),method: :delete ,class:"comment-destroy", data: { confirm: "【確認】コメントを削除してもよろしいですか？" } %>
+                  <% end %>
+              </div> 
+              <div class="comment-textzone">
+                <%= simple_format(h comment.text) %>
+              </div>
+          
+               
+              
+
+        <div id="reply-zone-<%= comment.id %>">
+          <% if comment.replies.present? %>
+            <div class="reply-description">このコメントへ投稿された返信</div>
+          <% end %>
+            <% comment.replies.order(:created_at).each do |reply| %>
+              <div class="comment-children">
+                  <div class="upper-comment">
+                    <div class="comment-name">
+                      <span> <%= reply.user.nickname %> さん</span>
+                    </div>
+                  <span class="created-at"><%= reply.created_at.strftime("%Y-%m-%d %H:%M") %></span>
+                  <% if user_signed_in? && current_user.id == comment.user.id %>
+                    <%= link_to '削除', item_comment_path(comment.item.id, reply.id),method: :delete ,class:"comment-destroy", data: { confirm: "【確認】コメントを削除してもよろしいですか？" } %>
+                  <% end %>
+                </div> 
+                <div class="reply-textzone">
+                  <%= simple_format(h reply.text) %>
+                </div>
+              </div>
+            <% end %>
           </div>
+        
+        <% if current_user %>
+                <%= form_with(model:[@item,@comment_reply],local:true) do |form| %>
+                    <div class="row">
+                      <div class="reply-area">
+                            <%= form.text_area :text, class:"comment-text", placeholder:"このコメントへの返信を入力（ 100文字まで)", maxlength:"100" %>
+                            <div class="reply-submit">
+                      <%= image_tag "返信矢印1.png" ,class:"comment-flag-icon" ,width:"20",height:"25" %>
+                      <%= form.submit "返信投稿" %>
+                      </div>
+                    </div>
+                      
+                    </div>
+                      <%= form.hidden_field :parent_id, value: comment.id%>
+                    
+                <% end %>
+              <% end  %>
+      </div>
     </div>
-  </div>
+      
+  <% end %>
+</div>
+    
+  
   <div class="links">
     <% if @item.previous.present? %>
       <%= link_to "＜ 前の商品", item_path(@item.previous), class: "change-item-btn" %>
