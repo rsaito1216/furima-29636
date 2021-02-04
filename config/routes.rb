@@ -15,7 +15,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :comments, only: [:create, :destroy] do
-    resources :comment_childrens, only: [:create, :destroy]
-  end
+  resources :categorytests, only: [:index, :show]
+
 end

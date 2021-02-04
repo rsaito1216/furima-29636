@@ -7,6 +7,7 @@
   padding: 2vh 15vw;
   display: flex;
   flex-direction: column;
+
 }
 
 .search-bar-contents {
@@ -123,7 +124,7 @@
 .lists-right {
   list-style: none;
   align-items: flex-end;
-  text-align: right;
+  text-align: center;
 }
 .user-nickname {
   text-decoration: none;
@@ -134,9 +135,27 @@
 
 .no-login{
   display: flex;
-  width: 200px;
+  width: 240px;
   justify-content: space-between;
 }
 .list-status{
   width: 230px;
+}
+
+.post{
+  margin: 5px 10px ;
+  display: inline-block;
+  padding: 4px 0;
+  background: #5cc3c7;
+  border-radius: 4px;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  line-heigt: 1.2em;
+  -webkit-box-shadow: 0px 6px 3px -3px rgba(0,0,0,0.4);
+  box-shadow: 0px 6px 3px -3px rgba(0,0,0,0.4);
+  -webkit-transition: .12s;
+  transition: .12s;
+  width: 100px;
 }

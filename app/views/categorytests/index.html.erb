@@ -1,0 +1,68 @@
+<%= render "devise/shared/header" %>
+
+<div class="category-main">
+  <div class="category-wrap">
+    <div class="category-title-menu">
+      カテゴリー 一覧
+    </div>
+    <div class="parent-zone">
+      <% @parents.each do |parent| %>
+        <div class="parent-title">
+          <%= link_to "#page_link#{parent.id}" do %>
+            <%= parent.name %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+
+
+
+
+
+  <div class="category-wrap">
+    <div class="parent-zone">
+        
+    <% @parents.each do |parent| %>
+      <div class="category-title">
+          <div id="page_link<%= parent.id %>"></div>  
+              <%= parent.name %>
+      </div>
+        <div class="category-zone">
+
+              <div class="grand-children-title">
+            <%= link_to "すべて" , categorytest_path(parent.id) %>
+              </div>
+
+          <%  parent.children.each do |child| %>
+          <div class="children-title">
+          <%= child.name %>
+          </div>
+            
+            <div class="grand-children-zone">
+                   <div class="grand-children-title">
+                        <%= link_to "すべて" , categorytest_path(child.id) %>
+                   </div>
+            <% child.children.each do |grandchild| %>
+            
+              <ul class="grand-children-title">
+          <%= link_to categorytest_path(grandchild.id) do %>
+
+              <%= grandchild.name %>
+              <% end %>
+              </ul>
+            
+            <% end %>
+            </div>
+          <% end %>
+        </div>
+    <% end %>
+          
+ 
+    </div>
+  </div>
+
+</div>
+
+<%= render "devise/shared/second-footer"%>
