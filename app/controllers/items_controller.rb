@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :login_check, only: [:new]
   before_action :set_item, only: [:edit, :show, :update, :destroy]
-  before_action :set_parents, only: [:new, :create]
+  before_action :set_parents, only: [:new, :create ,:edit, :update]
 
   def index
     @items = Item.all
