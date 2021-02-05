@@ -259,7 +259,7 @@
       
   <% end %>
 </div>
-    
+    </div>
   
   <div class="links">
     <% if @item.previous.present? %>
@@ -271,6 +271,6 @@
     <% end %>
   </div>
   <%= link_to "#{@category_grandchild.name} をもっと見る", "/categories/#{@category_grandchild.id}/grandchild" ,class:'another-item'%>
-</div>
+
 
 <%= render "devise/shared/footer" %>
