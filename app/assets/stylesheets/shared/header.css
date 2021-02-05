@@ -7,7 +7,9 @@
   padding: 2vh 15vw;
   display: flex;
   flex-direction: column;
-
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+  position: relative;
+  z-index: 3;
 }
 
 .search-bar-contents {

@@ -32,7 +32,7 @@
         <div class="category-zone">
 
               <div class="grand-children-title">
-            <%= link_to "すべて" , parent_category_path(parent.id) %>
+            <%= link_to "#{ parent.name } の全商品" , parent_category_path(parent.id) %>
               </div>
 
           <%  parent.children.each do |child| %>
@@ -41,13 +41,15 @@
           </div>
             
             <div class="grand-children-zone">
+            <% if child.children[1].present? %>
                    <div class="grand-children-title">
                         <%= link_to "すべて" , child_category_path(child.id) %>
                    </div>
+                   <% end %>
             <% child.children.each do |grandchild| %>
             
               <ul class="grand-children-title">
-          <%= link_to grandchild_category_path(grandchild.id) do %>
+              <%= link_to grandchild_category_path(grandchild.id) do %>
 
               <%= grandchild.name %>
               <% end %>
@@ -62,6 +64,7 @@
  
     </div>
   </div>
+      <a href="#" class="scroll-btn">TOP</a>
 
 </div>
 

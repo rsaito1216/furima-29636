@@ -30,9 +30,9 @@ class ItemsController < ApplicationController
     @comment = @item.comments.build #投稿全体へのコメント投稿用の変数
     @comment_reply = @item.comments.build
     @category_id = @item.category_id
-@category_parent = Category.find(@category_id).parent.parent
-@category_child = Category.find(@category_id).parent
-@category_grandchild = Category.find(@category_id)
+    @category_parent = Category.find(@category_id).parent.parent
+    @category_child = Category.find(@category_id).parent
+    @category_grandchild = Category.find(@category_id)
 
     @category = Category.find(params[:id])
   

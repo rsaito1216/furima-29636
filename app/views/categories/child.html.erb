@@ -1,9 +1,63 @@
 <%= render "devise/shared/header" %>
 
-  <font size="6" color="red"><%= @category.name %> の商品一覧</font>
-<% @items.each do |item| %>
-  <% category = Category.find(item.category_id) %>
-  <%= category.name %> 
-  <%= item.product_name %>
-  <%= item.price %>
-<% end %>
+
+<div class='item-category-contents'>
+    <div class="item-category-header">
+    <h2 class="title"><%= @category.name %> の商品一覧</h2>
+
+    <% breadcrumb :child_category %>
+  <%= breadcrumbs separator: " &rsaquo; " %>   
+</div>
+    <ul class='item-lists'>
+      <% @items.each do |item| %>
+      <li class='list'>
+        <%= link_to item_path(item.id) do %>
+          <div class='item-img-content'>
+            <%= image_tag url_for(item.images[0]) , class: "item-img" %>
+              <% if item.item_transaction.present? %>
+              <div class='sold-out'>
+                <span>Sold Out!!</span>
+              </div>
+              <% end %>
+            <% end %>
+          </div> 
+          <div class='item-info'>
+            <h3 class='item-name'>
+              <%= item.product_name %>
+            </h3>
+            <div class='item-price'>
+              <span><%= item.price.to_s(:delimited) %>円<br>(税込み)</span>
+                 
+                <div id="favorite-<%= item.id %>">
+                  <%= render 'favorites/favorite',  item: item %>
+                </div>
+            
+            </div>
+          </div>
+        
+        <% end %>
+      </li>
+    </ul>
+      <% if @items.empty? %>
+      <li class='list'>
+        <%= link_to '#' do %>
+        <%= image_tag "furima-footer.png", class: "item-img" %>
+        <div class='item-info'>
+          <h3 class='item-name'>
+            商品を出品してね！
+          </h3>
+          <div class='item-price'>
+            <span>99999999円<br>(税込み)</span>
+            <div class='star-btn'>
+              <%= image_tag "star.png", class:"star-icon" %>
+              <span class='star-count'>0</span>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      </li>
+      <% end %>
+    
+</div>
+
+<%= render "devise/shared/footer" %>
