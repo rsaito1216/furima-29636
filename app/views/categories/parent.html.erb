@@ -1,0 +1,9 @@
+<%= render "devise/shared/header" %>
+
+  <font size="6" color="red"><%= @category.name %> の商品一覧</font>
+<% @items.each do |item| %>
+  <% category = Category.find(item.category_id) %>
+  <%= category.name %> 
+  <%= item.product_name %>
+  <%= item.price %>
+<% end %>

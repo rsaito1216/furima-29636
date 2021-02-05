@@ -30,16 +30,16 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("商品の説明を入力してください")
       end
-      it "category_idが空では登録できない" do
-        @item.category_id = ""
-        @item.valid?
-        expect(@item.errors.full_messages).to include("カテゴリーを入力してください")
-      end
-      it 'category_idを選択していないと登録できない' do
-        @item.category_id = 0
-        @item.valid?
-        expect(@item.errors.full_messages).to include("カテゴリーを選択入力してください")
-      end
+      # it "category_idが空では登録できない" do
+      #   @item.category_id = ""
+      #   @item.valid?
+      #   expect(@item.errors.full_messages).to include("カテゴリーを入力してください")
+      # end
+      # it 'category_idを選択していないと登録できない' do
+      #   @item.category_id = 0
+      #   @item.valid?
+      #   expect(@item.errors.full_messages).to include("カテゴリーを選択入力してください")
+      # end
       it "condition_idが空では登録できない" do
         @item.condition_id = ""
         @item.valid?

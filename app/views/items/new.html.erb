@@ -51,7 +51,10 @@
           カテゴリー
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"select-box", id:"item-category"}) %>
+                
+        <%= f.collection_select(:category_id, @parents, :id, :name, { include_blank: "---", selected:"" }, {class:"select-box", id:"category_form"}) %>
+                <div id="category_field"></div>
+
         <div class="weight-bold-text">
           商品の状態
           <span class="indispensable">必須</span>

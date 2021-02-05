@@ -13,6 +13,7 @@ function pullDown() {
   })
 
   pullDownButton.addEventListener('click', function() {
+    console.log(123);
     if (pullDownParents.getAttribute("style") == "display:block;") {
       pullDownParents.removeAttribute("style", "display:block;")
     } else {

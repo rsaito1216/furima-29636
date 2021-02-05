@@ -5,7 +5,7 @@ class Item < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :favorite_users, through: :favorites, source: :user , dependent: :destroy
-  belongs_to :categorytest
+  belongs_to :category
   
   
   def self.search(search)

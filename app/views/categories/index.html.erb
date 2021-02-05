@@ -32,7 +32,7 @@
         <div class="category-zone">
 
               <div class="grand-children-title">
-            <%= link_to "すべて" , categorytest_path(parent.id) %>
+            <%= link_to "すべて" , parent_category_path(parent.id) %>
               </div>
 
           <%  parent.children.each do |child| %>
@@ -42,12 +42,12 @@
             
             <div class="grand-children-zone">
                    <div class="grand-children-title">
-                        <%= link_to "すべて" , categorytest_path(child.id) %>
+                        <%= link_to "すべて" , child_category_path(child.id) %>
                    </div>
             <% child.children.each do |grandchild| %>
             
               <ul class="grand-children-title">
-          <%= link_to categorytest_path(grandchild.id) do %>
+          <%= link_to grandchild_category_path(grandchild.id) do %>
 
               <%= grandchild.name %>
               <% end %>

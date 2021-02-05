@@ -133,7 +133,11 @@
         </tr>
         <tr>
           <th class="detail-item">カテゴリー</th>
-          <td class="detail-value"><%= @item.category.name %></td>
+            <td class="detail-value">
+            <%= link_to @category_parent.name, "/categories/#{@category_parent.id}/parent" %><br>
+            <%= link_to @category_child.name, "/categories/#{@category_child.id}/child" %><br>
+            <%= link_to @category_grandchild.name, "/categories/#{@category_grandchild.id}/grandchild" %>
+            </td>
         </tr>
         <tr>
           <th class="detail-item">商品の状態</th>
@@ -266,7 +270,7 @@
       <%= link_to "後ろの商品 ＞", item_path(@item.next), class: "change-item-btn" %>
     <% end %>
   </div>
-  <a href="" class='another-item'><%= @item.category.name %>をもっと見る</a>
+  <%= link_to "#{@category_grandchild.name} をもっと見る", "/categories/#{@category_grandchild.id}/grandchild" ,class:'another-item'%>
 </div>
 
 <%= render "devise/shared/footer" %>

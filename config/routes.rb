@@ -10,11 +10,21 @@ Rails.application.routes.draw do
     resources :item_transactions, only:[:index, :create]
     resources :comments, only: [:create, :destroy]
     resource :favorites, only: [:create, :destroy, :show]
+    collection do
+      get 'get_category_children', defaults: { fomat: 'json'}
+      get 'get_category_grandchildren', defaults: { fomat: 'json'}
+    end
     member do
       get 'search'
     end
   end
 
-  resources :categorytests, only: [:index, :show]
+  resources :categories, only: [:index] do
+    member do
+      get 'parent'
+      get 'child'
+      get 'grandchild'
+    end
+  end
 
 end
