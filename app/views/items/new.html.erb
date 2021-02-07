@@ -50,12 +50,14 @@
         <div class="weight-bold-text">
           カテゴリー
           <span class="indispensable">必須</span>
+          上、中、下の３段を選択
         </div>
                 
-        <%= f.collection_select(:category_id, @parents, :id, :name, { include_blank: "---", selected:"" }, {class:"select-box", id:"category_form"}) %>
+        <%= f.collection_select(:category_id, @parents, :id, :name, { include_blank: "---", selected:"" }, {class:"select-box1", id:"category_form"}) %>
                 <div id="category_field"></div>
 
         <div class="weight-bold-text">
+          <hr>
           商品の状態
           <span class="indispensable">必須</span>
         </div>

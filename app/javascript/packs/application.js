@@ -12,6 +12,7 @@ require("../card")
 require('./preview.js')
 require('jquery')
 require('./category.js')
+require('./category_edit.js')
 require("channels")
 
 

@@ -6,18 +6,21 @@ $(function(){
   }
   function appendChildrenBox(insertHTML){
     var childSelectHtml = "";
-    childSelectHtml = `<div class="category__child" id="children_wrapper">
-                        <select id="child__category" name="item[category_id]" class="select-box1">
-                          <option value="">---</option>
-                          ${insertHTML}
+    childSelectHtml = ` <div class="category__child" id="children_wrapper">
+                        <select id="child__category"  name="item[category_id]" class="select-box1">
+                        <option value="">---</option>
+
+                        
+                        ${insertHTML}
                         </select>
                       </div>`;
     $('#category_field').append(childSelectHtml);
   }
+
   function appendGrandchildrenBox(insertHTML){
     var grandchildSelectHtml = "";
-    grandchildSelectHtml = `<div class="category__child" id="grandchildren_wrapper">
-                              <select id="grandchild__category" name="item[category_id]" class="select-box1">
+    grandchildSelectHtml = ` <div class="category__child" id="grandchildren_wrapper">
+                              <select id="grandchild__category" name="item[category_id]" class="select-box2">
                                 <option value="">---</option>
                                 ${insertHTML}
                                 </select>
@@ -25,10 +28,13 @@ $(function(){
     $('#category_field').append(grandchildSelectHtml);
   }
 
-  $('#category_form').on('change',function(){
-    var parentId = document.getElementById('category_form').value;
 
-    if (parentId != ""){
+
+    $('#edit-parent-form').on('change',function(){
+      var parentId = document.getElementById('edit-parent-form').value;
+
+      if (parentId != ""){
+
       $.ajax({
         url: '/items/get_category_children/',
         type: 'GET',
@@ -38,7 +44,8 @@ $(function(){
       .done(function(children){
         $('#children_wrapper').remove();
         $('#grandchildren_wrapper').remove();
-        var insertHTML = '';
+        $('#category_field_cyu').css('display', 'none');
+        var insertHTML = 'parentId';
         children.forEach(function(child){
           insertHTML += appendOption(child);
         });
@@ -50,10 +57,13 @@ $(function(){
     }else{
       $('#children_wrapper').remove();
       $('#grandchildren_wrapper').remove();
-    }
-  });
-  $('#category_field').on('change','#child__category',function(){
-    var childId = document.getElementById('child__category').value;
+    
+  }
+});
+
+
+  $('#category_field').on('change','#edit-child__category',function(){
+      var childId = document.getElementById('edit-child__category').value;
     if(childId != ""){
       $.ajax({
         url: '/items/get_category_grandchildren',
@@ -62,7 +72,10 @@ $(function(){
         dataType: 'json'
       })
       .done(function(grandchildren){
+        $('#children_wrapper').remove();
         $('#grandchildren_wrapper').remove();
+        $('#category_field_ge').css('display', 'none');
+
         var insertHTML = '';
         grandchildren.forEach(function(grandchild){
           insertHTML += appendOption(grandchild);
