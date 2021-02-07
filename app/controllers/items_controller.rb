@@ -38,7 +38,7 @@ class ItemsController < ApplicationController
     @category = Category.find(params[:id])
 end
 
-  def edit
+def edit
      #カテゴリーデータ取得
   @grandchild_category = @item.category
   @child_category = @grandchild_category.parent 
@@ -52,7 +52,7 @@ end
   @category_grandchildren = @item.category.parent.children
 end
 
-  def update
+def update
     #カテゴリーデータ取得
   @grandchild_category = @item.category
   @child_category = @grandchild_category.parent 
@@ -81,7 +81,7 @@ end
     else
       render action: :edit
     end
-  end
+end
 
   def destroy
     if @item.user_id == current_user.id
@@ -123,8 +123,6 @@ end
 
   def set_parents
     @parents =  Category.where(ancestry: nil)
-  end
-
   end
   
 end
