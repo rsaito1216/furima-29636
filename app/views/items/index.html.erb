@@ -124,8 +124,60 @@
 <div class='item-contents'>
     <h2 class='title'>ピックアップカテゴリー</h2>
     <%= link_to '新規投稿商品', new_item_path, class: "subtitle" %>
+    
+
+    <table border="2" class="sort-table">
+   <thead>
+     <tr>
+                    <% if !(@param == "direction=asc&sort=price") %>
+                       <th class="sort-title-price" scope="col"><%= sort_order "price", "値段が安い物から並べる" %></th>
+                    <% else %>
+                    <th class="sort-title-price"></td>
+                    <% end %>
+                    
+                    <% if !(@param == "direction=desc&sort=price") %>
+                           <th class="sort-title-price" scope="col"><%= sort_order "price", "値段が高い物から並べる" %></th>
+                    
+
+                       <% else %>
+                    <th class="sort-title-price"></td>
+                    <% end %>
+      
+</tr>
+ </thead>
+<thead>
+<tr>
+<% if !(@param == "direction=desc&sort=created_at") %>
+                <th class="sort-title-created" scope="col"><%= sort_order "created_at", "出品日が最近の物から並べる" %></th>
+<% else %>
+                    <th class="sort-title-created"></td>
+                    <% end %>
+                   
+ 
+
+               
+                
+
+        <% if !(@param == "direction=asc&sort=created_at") %>
+           <th class="sort-title-created" scope="col"><%= sort_order "created_at", "出品日が前の物から並べる" %></th>
+        <% else %>
+                    <th class="sort-title-created"></td>
+                    <% end %>
+
+     </tr>
+   </thead>
+   
+                      
+
+   
+   
+   
+    </table>
+    
+
+
     <ul class='item-lists'>
-      <% @items.each do |item| %>
+      <% @items_sort.each do |item| %>
       <li class='list'>
         <%= link_to item_path(item.id) do %>
           <div class='item-img-content'>

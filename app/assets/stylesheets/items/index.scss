@@ -475,3 +475,36 @@ a {
 .list{
   list-style: none;
 }
+
+.sort_header{
+  color: #2b379e;
+}
+
+.sort-title-price{
+  width: 280px;
+    background-color: rgb(243, 239, 24);
+    border: 2px solid #302b2b;
+    font-size: 18px;
+    text-align: center;
+    height: 35px;
+}
+.sort-title-price:hover{
+  background-color: #ff8b5f;
+}
+
+.sort-title-created{
+  width: 280px;
+    background-color: rgb(201, 197, 125);
+    border: 2px solid #302b2b;
+    font-size: 18px;
+    text-align: center;
+    height: 35px;
+}
+.sort-title-created:hover{
+  background-color: #ff8b5f;
+}
+
+.sort-table{
+  margin: 20px 0;
+}
+

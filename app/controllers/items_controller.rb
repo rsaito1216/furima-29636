@@ -3,10 +3,23 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:edit, :show, :update, :destroy]
   before_action :set_parents, only: [:new, :create ,:edit, :update]
 
+  helper_method :sort_column, :sort_direction
+
   def index
     @items = Item.all
-
+    @items_sort = Item.order("#{sort_column} #{sort_direction}")
+    @param = request.query_string
   end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
+   end
+   
+   def sort_column
+    Item.column_names.include?(params[:sort]) ? params[:sort] : 'created_at'
+   end
+
+   
   
   def new
     @item = Item.new
