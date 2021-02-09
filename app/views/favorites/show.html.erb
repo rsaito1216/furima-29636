@@ -1,6 +1,11 @@
-
-              <h2>お気に入りしたユーザー</h2>
-            <% @item.favorites.each do |item| %>
-              <li><%= item.user.nickname %></li>
-            <% end %>
-            <%= link_to 'トップページに戻る' ,root_path%>
+<div class="title-contents">
+      <div class="items-sell-title"> お気に入りしたユーザー
+      <% @item.favorites.each do |item| %>
+        <li><%= link_to "#{item.user.nickname}さん", "/users/#{item.user_id}" %></li>
+      <% end %>
+      </div>
+    <div class='items-sell-titler'>
+                <%= link_to '戻る' ,:back %>
+    </div>
+  </div>
+           

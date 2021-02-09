@@ -31,7 +31,9 @@ class UsersController < ApplicationController
     user = User.find(params[:id])
     @user = User.find(params[:id])
     @nickname = user.nickname
-    @items = user.items
+    @user_items = user.items
+    @user_favorites = current_user.favorite_items
+  
   end
 
   private
