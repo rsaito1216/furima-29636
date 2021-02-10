@@ -2,6 +2,8 @@ class ItemsController < ApplicationController
   before_action :login_check, only: [:new]
   before_action :set_item, only: [:edit, :show, :update, :destroy]
   before_action :set_parents, only: [:new, :create ,:edit, :update]
+  before_action :search_item, only: [:index, :search]
+  
 
   helper_method :sort_column, :sort_direction
 
@@ -107,6 +109,9 @@ end
 
   def search
     @items = Item.search(params[:keyword])
+    @results = @p.result.includes(:category)  # 検索条件にマッチした商品の情報を取得
+    set_item_column
+    set_category_column
   end
 
   def get_category_children
@@ -136,6 +141,19 @@ end
 
   def set_parents
     @parents =  Category.where(ancestry: nil)
+  end
+
+  def search_item
+    @p = Item.ransack(params[:q])  # 検索オブジェクトを生成
+  end
+
+  def set_item_column
+    @item_condition = Item.select("condition_id").distinct
+
+  end
+
+  def set_category_column
+    @category_name = Category.select("name").distinct
   end
   
 end

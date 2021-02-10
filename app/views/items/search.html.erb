@@ -1,7 +1,94 @@
 <%= render "devise/shared/header" %>
 <div class='main'>
+<h1>
+  商品検索
+</h1>
+<%= search_form_for @p, url: search_item_path do |f| %>
+   <%=  f.select( :sorts, { '並び替え': 'id desc', '価格の安い順': 'price asc', '価格の高い順': 'price desc', '出品の古い順': 'updated_at asc', '出品の新しい順': 'updated_at desc' } , { onchange: 'this.form.submit()'} ) %>
+   <br>
+  <%= f.submit '完了' %>
+  <% end %>
+  <br>
+
+<%= search_form_for @p, url: search_item_path do |f| %>
+  
+  <%= f.label :condition_id_eq, '商品の状態' %>
+  <%= f.collection_select :condition_id_eq, Condition.all.where.not(id: 0), :id, :name, include_blank: '指定なし' %>
+  <br>
+  <%= f.label :delivery_burden_id_eq, '配送料の負担' %>
+  <%= f.collection_select :delivery_burden_id_eq, DeliveryBurden.all.where.not(id: 0), :id, :name, include_blank: '指定なし' %>
+  <br>
+  <%= f.label :shipping_day_id_eq, '発送までの日数' %>
+  <%= f.collection_select :shipping_day_id_eq, ShippingDay.all.where.not(id: 0), :id, :name, include_blank: '指定なし' %>
+  <br>
+  <%= f.label :category_name_eq, 'カテゴリー：' %>
+  <%= f.collection_select :category_name_eq, @category_name, :name, :name, include_blank: '指定なし' %>
+  <br>
+  <%= f.label :price, '価格：' %>
+  <%= f.radio_button :price_lteq, '' %>
+  指定なし
+  <%= f.radio_button :price_lteq, '1000' %>
+  1,000円以下
+  <%= f.radio_button :price_lteq, '5000' %>
+  5,000円以下
+  <%= f.radio_button :price_lteq, '10000' %>
+  10,000円以下
+  <%= f.radio_button :price_lteq, '50000' %>
+  50,000円以下
+  <%= f.radio_button :price_lteq, '100000' %>
+  100,000円以下
+  
+  <br>
+  <%= f.submit '検索' %>
 
 
+
+
+
+  <%# 商品一覧 %>
+  <div class='item-contents'>
+    <h2 class='title'>検索結果商品一覧</h2>
+  <% if @results.length !=0 %>
+    <ul class='item-lists'>  
+    <% @results.each do |result| %>
+      <li class='list'>
+        <%= link_to item_path(result.id) do %>
+          <div class='item-img-content'>
+            <%= image_tag url_for(result.images[0]) , class: "item-img" %>
+              <% if result.item_transaction.present? %>
+              <div class='sold-out'>
+                <span>Sold Out!!</span>
+              </div>
+              <% end %>
+            <% end %>
+          </div>
+          <div class='item-info'>
+            <h3 class='item-name'>
+              <%= result.product_name %>
+            </h3>
+            <div class='item-price'>
+              <span><%= result.price.to_s(:delimited) %>円<br>(税込み)</span>
+                  <div class='star-btn'>
+                  <%= link_to item_favorites_path(result.id) do %>
+                  <%= image_tag "star.png", class:"star-icon"  %>
+                  <span class='star-count'><%= result.favorites.count %></span>
+                  <% end %>
+                  </div>
+            </div>
+          </div>
+        <% end %>
+      </li>
+      </ul>
+      
+    
+  <% else %>
+    該当する商品はありません
+  <% end %>
+      
+      
+    
+<% end %>
+  <%# /商品一覧 %>
   <%# 商品一覧 %>
   <div class='item-contents'>
     <h2 class='title'>検索結果商品一覧</h2>
@@ -57,6 +144,7 @@
   </div>
   <%# /商品一覧 %>
 </div>
+
 <div class='purchase-btn'>
   <span class='purchase-btn-text'>出品する</span>
     <%= link_to new_item_path do %>

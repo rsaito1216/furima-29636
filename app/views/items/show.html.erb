@@ -202,7 +202,7 @@
             <div class="comment-all">
               <div class="upper-comment">
                 <div class="comment-name">
-                  <span> <%= comment.user.nickname %> さん</span>
+                  <span><%= link_to comment.user.nickname, "/users/#{comment.user_id}" %>  さん</span>
                 </div>
                   <span class="created-at"><%= comment.created_at.strftime("%Y-%m-%d %H:%M") %></span>
                   <% if user_signed_in? && current_user.id == comment.user.id %>
@@ -224,7 +224,7 @@
               <div class="comment-children">
                   <div class="upper-comment">
                     <div class="comment-name">
-                      <span> <%= reply.user.nickname %> さん</span>
+                  <span><%= link_to reply.user.nickname, "/users/#{reply.user_id}" %>  さん</span>
                     </div>
                   <span class="created-at"><%= reply.created_at.strftime("%Y-%m-%d %H:%M") %></span>
                   <% if user_signed_in? && current_user.id == comment.user.id %>

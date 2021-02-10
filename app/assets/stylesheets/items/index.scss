@@ -232,7 +232,7 @@ a {
 }
 
 .item-contents {
-  background-color: #FFF;
+  background-color: rgb(250, 250, 250);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -264,6 +264,10 @@ a {
   width: 37vh;
   padding: 1vw;
   background-color: #FFF;
+  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+    position: relative;
+    z-index: 3;
+    margin: 12px
 }
 
 
