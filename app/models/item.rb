@@ -53,4 +53,6 @@ class Item < ApplicationRecord
 
   validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "は半角数字で、価格範囲内で入力してください"}
 
+  default_scope -> { order(created_at: :desc) }
+
 end
