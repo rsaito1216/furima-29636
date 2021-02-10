@@ -24,7 +24,7 @@
 }
 
 .search-form {
-  width: 470px;
+  width: 180px;
   height: 35px;
   display: flex;
   margin-bottom: 5px;
@@ -37,12 +37,12 @@
 }
 
 .search-button {
-  width: 50px;
+  width: 35px;
   border: 0;
   cursor: pointer;
   background-color: #3ccace;
   padding: 5px;
-  margin-right: 15px;
+  margin-left: 5px;
 }
 
 .search-icon {
@@ -138,7 +138,7 @@
 
 .no-login{
   display: flex;
-  width: 240px;
+  width: 270px;
   justify-content: space-between;
 }
 .list-status{
@@ -148,17 +148,17 @@
 .post{
   margin: 5px 10px ;
   display: inline-block;
-  padding: 4px 0;
+  padding: 4px 10px;
   background: #5cc7a7;
   border-radius: 4px;
   color: #ffffff;
   text-decoration: none;
   font-size: 14px;
   font-weight: bold;
-  line-height: 1.2em;
+  line-height: 1.5em;
   -webkit-box-shadow: 0px 6px 3px -3px rgba(0,0,0,0.4);
   box-shadow: 0px 6px 3px -3px rgba(0,0,0,0.4);
   -webkit-transition: .12s;
   transition: .12s;
-  width: 100px;
+  width: 120px;
 }

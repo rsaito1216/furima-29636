@@ -109,9 +109,27 @@ end
 
   def search
     @items = Item.search(params[:keyword])
+    if params[:q] != nil
+      params[:q]['product_name_cont_any'] = params[:q]['product_name_cont_any'].split(/[\p{blank}\s]+/)
+      params[:q]['description_cont_any'] = params[:q]['description_cont_any'].split(/[\p{blank}\s]+/)
+      search_params
+      @p = Item.ransack(params[:q])  # 検索オブジェクトを生成
+
+      @results = @p.result.includes(:category)  # 検索条件にマッチした商品の情報を取得
+
+        else
+          # 検索フォーム以外からアクセスした時の処理
+            params[:q] = { sorts: 'id desc' }
+            @search = Item.ransack()
+            @item_all = Item.all
+          end
+      @keyword = Item.ransack(params[:q]) #:q(query)は検索窓に入力された値をパラメータで取得
+      @keywords = @keyword.result
+
     @results = @p.result.includes(:category)  # 検索条件にマッチした商品の情報を取得
     set_item_column
     set_category_column
+    @parents =  Category.where(ancestry: nil)
   end
 
   def get_category_children
@@ -121,6 +139,9 @@ end
   def get_category_grandchildren
     @category_grandchildren = Category.find("#{params[:child_id]}").children
   end
+
+
+
 
   private
 
@@ -145,6 +166,7 @@ end
 
   def search_item
     @p = Item.ransack(params[:q])  # 検索オブジェクトを生成
+    
   end
 
   def set_item_column
@@ -156,4 +178,8 @@ end
     @category_name = Category.select("name").distinct
   end
   
+  def search_params
+    params.require(:q).permit(:sorts)
+    # 他のパラメーターもここに入れる
+  end
 end
