@@ -32,7 +32,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @nickname = user.nickname
     @user_items = user.items
-    @user_favorites = current_user.favorite_items
+    @user_favorites = @user.favorite_items
   
   end
 
