@@ -130,6 +130,9 @@ end
     set_item_column
     set_category_column
     @parents =  Category.where(ancestry: nil)
+    favorites = Item.includes(:favorite_users).sort {|a,b| b.favorite_users.size <=> a.favorite_users.size}
+
+  
   end
 
   def get_category_children

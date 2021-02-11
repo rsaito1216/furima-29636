@@ -23,7 +23,12 @@ class Item < ApplicationRecord
   def next
     Item.where("id > ?", self.id).order("id ASC").first
   end
-  
+
+  ransacker :favorites_count do
+    query = '(SELECT COUNT(favorites.item_id) FROM favorites where favorites.item_id = items.id GROUP BY favorites.item_id)'
+    Arel.sql(query)
+  end
+
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :category
   belongs_to_active_hash :condition

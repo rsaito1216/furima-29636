@@ -7,23 +7,36 @@
 <div>
 
 <%= search_form_for @p, url: search_item_path do |f| %>
-<%= f.label :product_name_cont_any , '商品名で一致するキーワード：' %>
+<%= f.label :product_name_cont_any , '商品名で一致するキーワード(スペースを空けると複数のキーワードを同時に検索出来ます)：' %>
   <%= f.search_field :product_name_cont_any, class: "form-control" %>
   <br>
-  <%= f.label :description_cont_any , '商品説明で一致するキーワード：' %>
+  <%= f.label :description_cont_any , '商品説明で一致するキーワード(スペースを空けると複数のキーワードを同時に検索出来ます)：' %>
   <%= f.search_field :description_cont_any, class: "form-control" %>
   <br>
   <%= f.label :condition_id_eq, '商品の状態：' %>
-  <%= f.collection_select :condition_id_eq, Condition.all.where.not(id: 0), :id, :name, include_blank: '指定なし' %>
+    <label><input type="checkbox" id="all-condition" /> すべて選択・解除</li>
+    <div id="conditionArea">
+
+  <%= f.collection_check_boxes :condition_id_eq_any, Condition.all.where.not(id: 0), :id, :name, include_blank: '指定なし' %>
+  </div>
   <br>
   <%= f.label :delivery_burden_id_eq, '配送料の負担：' %>
-  <%= f.collection_select :delivery_burden_id_eq, DeliveryBurden.all.where.not(id: 0), :id, :name, include_blank: '指定なし' %>
+      <label><input type="checkbox" id="all-delivery" /> すべて選択・解除</li>
+
+      <div id="deliveryArea">
+
+  <%= f.collection_check_boxes :delivery_burden_id_eq_any, DeliveryBurden.all.where.not(id: 0), :id, :name, include_blank: '指定なし' %>
+  </div>
   <br>
   <%= f.label :shipping_day_id_eq, '発送までの日数：' %>
-  <%= f.collection_select :shipping_day_id_eq, ShippingDay.all.where.not(id: 0), :id, :name, include_blank: '指定なし' %>
+  <label><input type="checkbox" id="all-shipping" /> すべて選択・解除</li>
+    
+    <div id="shippingArea">
+
+  <%= f.collection_check_boxes :shipping_day_id_eq_any, ShippingDay.all.where.not(id: 0), :id, :name, include_blank: '指定なし' %>
+  </div>
   <br>
   <%= f.label :category_name_eq, 'カテゴリー：' %>
-          <%# <%= f.collection_select(:category_id, @parents, :id, :name, { include_blank: "---", selected:"" }, {class:"select-box1", id:"category_form"}) %> %>
 
   <%= f.collection_select :category_name_eq, @category_name, :name, :name, include_blank: '指定なし', class:"select-box1" %>
                   <div id="category_field"></div>
@@ -38,13 +51,31 @@
   
 </div>
 
+<script>
+$('#all-condition').on('change', function() {
+// idがupdateAreaの子要素のcheckboxにのみチェック状態を反映
+$('input[type=checkbox]', '#conditionArea').prop('checked', this.checked);
+});
+
+$('#all-delivery').on('change', function() {
+// idがupdateAreaの子要素のcheckboxにのみチェック状態を反映
+$('input[type=checkbox]', '#deliveryArea').prop('checked', this.checked);
+});
+
+//全選択・全解除をクリックしたとき
+$('#all-shipping').on('change', function() {
+//チェックしたチェックボックスの状態を他のチェックボックスに反映
+$('input[type=checkbox]', '#shippingArea').prop('checked', this.checked);
+});
+</script>
+
 <div>
 検索結果
   <%= @results.count %>件
 
   <br>
      検索結果の並び替え：
-     <%=  f.select( :sorts, { '出品(編集)の新しい順': 'updated_at desc', '出品(編集)の古い順': 'updated_at asc', '価格の安い順': 'price asc', '価格の高い順': 'price desc' } , { selected: params[:q][:sorts] } , { onchange: 'this.form.submit()'} ) %>
+     <%=  f.select( :sorts, { '出品(編集)の新しい順': 'updated_at desc', '出品(編集)の古い順': 'updated_at asc', '価格の安い順': 'price asc', '価格の高い順': 'price desc','お気に入りの多い順': 'favorites_count desc' } , { selected: params[:q][:sorts] } , { onchange: 'this.form.submit()'} ) %>
 
 </div>
   <%# 商品一覧 %>
@@ -84,7 +115,9 @@
       
     
   <% else %>
+  <div class="no-search-title">
     該当する商品はありません
+  </div>
   <% end %>
       
       
