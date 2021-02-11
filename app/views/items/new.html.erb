@@ -17,10 +17,10 @@
       </div>
       <div class="click-upload">
         <p>
-          クリックしてファイルをアップロード
+          クリックしてファイルをアップロード<br>
+          複数投稿可
         </p>
           <%= f.file_field :images, name: 'item[images][]', multiple: true,  id: 'item_image' ,accept: '.jpeg, .jpg, .gif, .png', alt:"商品画像" %>
-
           <div id="image-list"></div>
       </div>
     </div>

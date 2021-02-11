@@ -4,12 +4,12 @@
 
 .top-page-header {
   width: 100vw;
-  padding: 2vh 15vw;
+  padding: 2vh 12vw;
   display: flex;
   flex-direction: column;
   box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
   position: relative;
-  z-index: 3;
+  z-index: 2;
 }
 
 .search-bar-contents {
@@ -40,9 +40,8 @@
   width: 35px;
   border: 0;
   cursor: pointer;
-  background-color: #3ccace;
+  background-color: rgb(227, 213, 221);
   padding: 5px;
-  margin-left: 5px;
 }
 
 .search-icon {
@@ -55,19 +54,27 @@
   justify-content: space-between;
   flex-wrap: wrap;
   width: 100%;
-  padding: 1vh 0;
+  padding: 10px 0;
+  align-items: center;
 }
 
 .lists-left {
+  list-style: none;
   display: flex;
-  min-width: 200px;
+  justify-content: space-between;
+
+    text-align: center;
+    width: 200px;
 
 }
 
 .category-list {
-  text-decoration: none;
+  /* text-decoration: none;
   margin-right: 3vw;
-  color: #333333;
+  color: #333333; */
+    padding: 7px 10px;
+    font-size: 18px;
+    width: 130px;
 }
 
 .brand-list {
@@ -104,11 +111,11 @@
 }
 .user-lists{
     display: flex;
-    position: relative;
+    position: absolute;
     align-items: center;
 }
 .pull-down-list{
-    margin: 13px 0;
+    margin: 20px 0;
     width: 200px;
     display: flex;
     position: relative;

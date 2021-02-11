@@ -11,7 +11,6 @@ if (document.URL.match("/new") || document.URL.match("items")|| document.URL.mat
 
   document.addEventListener('DOMContentLoaded', function(){
     const ImageList = document.getElementById('image-list');
-    
     const createImageHTML = (blob) => {
       const imageElement = document.createElement('div')
 
@@ -38,13 +37,27 @@ if (document.URL.match("/new") || document.URL.match("items")|| document.URL.mat
       inputHTML.addEventListener('change', (e) => {
           file = e.target.files[0];
         blob = window.URL.createObjectURL(file);
-         
         createImageHTML(blob)
+               
+                type = file.type,
+                errors = ''
+         
+            //拡張子は .jpg .gif .png . pdf のみ許可
+            if (type != 'image/jpeg' && type != 'image/gif' && type != 'image/png' && type != 'image/jpg') {
+              errors += '.jpg .gif .png .pdfのいずれかのファイルのみ許可されています\n'
+            }
+         
+            if (errors) {
+              //errorsが存在する場合は内容をalert
+              alert(errors)
+              //valueを空にしてリセットする
+              event.currentTarget.value = ''
+            }
+      
       });
     }
       
     document.getElementById('item_image').addEventListener('change', function(e){
-      
       let file = e.target.files[0];
       let blob = window.URL.createObjectURL(file);
 
@@ -53,3 +66,4 @@ if (document.URL.match("/new") || document.URL.match("items")|| document.URL.mat
     });
   });
 }
+

@@ -3,6 +3,18 @@
   <div class='search-bar-contents'>
     <%= link_to image_tag("furima-logo-color.png", class:"furima-icon"), "/" %>
     
+    
+  
+  </div>
+  <div class='nav'>
+    <ul class='lists-left'>
+      <li><%= link_to  categories_path, class: "category-list" do %>
+          カテゴリー<br> から探す
+       <% end %></li>
+      <li><%= link_to  "#", class: "brand-list" do %>
+      ブランド<br> から探す
+      <% end %></li>
+    </ul>
     <%= form_with(url: search_item_path(:id), local: true, method: :get, class: "search-form") do |form| %>
     
     <%= form.submit "詳細検索ページへ", class: "search-btn" %>
@@ -10,14 +22,9 @@
         <%= image_tag "search.png", class:"search-icon" %>
       </button>
       <% end %>
+    
   
-  </div>
-  <div class='nav'>
-    <ul class='lists-left'>
-      <li><%= link_to 'カテゴリー', categories_path, class: "category-list" %></li>
-      <li><%= link_to 'ブランド', "#", class: "brand-list" %></li>
-    </ul>
-    <div class='lists-right'>
+  <div class='lists-right'>
       <% if user_signed_in? %>
             <div class="user_nav" id="lists"><span class="user-nickname"><%= current_user.nickname %></span> さん <%= image_tag "arrow_top.png" ,class:"comment-flag-icon" ,width:"17",height:"17"%></span>
             <ul class="user-lists hidden", id="pull-down">
@@ -32,5 +39,6 @@
           </div>
         <% end %>
      </div>
-  </div>
+</div>
+     
 </header>

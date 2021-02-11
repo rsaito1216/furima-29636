@@ -3,11 +3,16 @@
 <h1>
   商品検索
 </h1>
+<%= form_with(url: search_item_path(:id), local: true, method: :get, class: "search-form") do |form| %>
+    
+    <%= form.submit "検索条件を全て解除して検索し直す", class: "search-btn" %>
+    
+      <% end %>
 
 <div>
 
 <%= search_form_for @p, url: search_item_path do |f| %>
-<%= f.label :product_name_cont_any , '商品名で一致するキーワード(スペースを空けると複数のキーワードを同時に検索出来ます)：' %>
+  <%= f.label :product_name_cont_any , '商品名で一致するキーワード(スペースを空けると複数のキーワードを同時に検索出来ます)：' %>
   <%= f.search_field :product_name_cont_any, class: "form-control" %>
   <br>
   <%= f.label :description_cont_any , '商品説明で一致するキーワード(スペースを空けると複数のキーワードを同時に検索出来ます)：' %>
@@ -36,10 +41,14 @@
   <%= f.collection_check_boxes :shipping_day_id_eq_any, ShippingDay.all.where.not(id: 0), :id, :name, include_blank: '指定なし' %>
   </div>
   <br>
-  <%= f.label :category_name_eq, 'カテゴリー：' %>
 
-  <%= f.collection_select :category_name_eq, @category_name, :name, :name, include_blank: '指定なし', class:"select-box1" %>
-                  <div id="category_field"></div>
+
+
+  <%= f.label :category_name_eq, 'カテゴリー：' %>
+  <%= f.collection_select :category_name_eq_any, @category_name, :name, :name, include_blank: '指定なし', class:"select-box1" %>
+
+  <%#= f.collection_check_boxes :category_name_eq_any, @category_name, :name, :name, include_blank: '指定なし', class:"select-box1" %>
+                  <%# <div id="ccategory_field"></div> %>
 <br>
   
   <%= f.label :price, "価格：" %>
@@ -48,6 +57,9 @@
   <%= f.number_field :price_lteq ,placeholder:"片方だけの入力でもOK" %>
   <br>
   <%= f.submit '検索' %>
+  <button class="search-button">
+        <%= image_tag "search.png", class:"search-icon" %>
+      </button>
   
 </div>
 
@@ -70,17 +82,20 @@ $('input[type=checkbox]', '#shippingArea').prop('checked', this.checked);
 </script>
 
 <div>
-検索結果
-  <%= @results.count %>件
 
   <br>
      検索結果の並び替え：
-     <%=  f.select( :sorts, { '出品(編集)の新しい順': 'updated_at desc', '出品(編集)の古い順': 'updated_at asc', '価格の安い順': 'price asc', '価格の高い順': 'price desc','お気に入りの多い順': 'favorites_count desc' } , { selected: params[:q][:sorts] } , { onchange: 'this.form.submit()'} ) %>
+     <%=  f.select( :sorts, { '出品(編集)の新しい順': 'updated_at desc', '出品(編集)の古い順': 'updated_at asc', '価格の安い順': 'price asc', '価格の高い順': 'price desc','お気に入りの多い順': 'favorites_count desc' } , { selected: params[:sorts] } , { onchange: 'this.form.submit()'} ) %>
 
 </div>
+
+
+
   <%# 商品一覧 %>
   <div class='item-contents'>
     <h2 class='title'>検索商品一覧</h2>
+    検索結果 計<%= @results_all.count %>件のうち、<%= @results.count %>件を表示中
+
   <% if @results.length !=0 %>
     <ul class='item-lists'>  
     <% @results.each do |result| %>
@@ -109,10 +124,12 @@ $('input[type=checkbox]', '#shippingArea').prop('checked', this.checked);
                   </div>
             </div>
           </div>
-        <% end %>
-      </li>
+           </li>
+    <% end %>
+     
       </ul>
-      
+        
+
     
   <% else %>
   <div class="no-search-title">
@@ -120,8 +137,7 @@ $('input[type=checkbox]', '#shippingArea').prop('checked', this.checked);
   </div>
   <% end %>
       
-      
-    
+    <%= paginate @results     %>
 <% end %>
   <%# /商品一覧 %>
   

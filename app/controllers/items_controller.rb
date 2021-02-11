@@ -6,9 +6,12 @@ class ItemsController < ApplicationController
   
 
   helper_method :sort_column, :sort_direction
+  PER = 20
 
   def index
-    @items = Item.all
+    @items = Item.all.page(params[:page]).per(PER)
+
+
     @items_sort = Item.order("#{sort_column} #{sort_direction}")
     @param = request.query_string
   end
@@ -79,6 +82,8 @@ def update
   @category_children = @item.category.parent.parent.children
   # 紐づく孫カテゴリーの一覧を配列で取得
   @category_grandchildren = @item.category.parent.children
+  
+  
   if params[:item][:image_ids]
     params[:item][:image_ids].each do |image_id|
       image = @item.images.find(image_id)
@@ -108,30 +113,46 @@ end
   end
 
   def search
-    @items = Item.search(params[:keyword])
-    if params[:q] != nil
+    # @items = Item.search(params[:keyword])
+    if params[:q].present?
       params[:q]['product_name_cont_any'] = params[:q]['product_name_cont_any'].split(/[\p{blank}\s]+/)
       params[:q]['description_cont_any'] = params[:q]['description_cont_any'].split(/[\p{blank}\s]+/)
       search_params
       @p = Item.ransack(params[:q])  # 検索オブジェクトを生成
 
-      @results = @p.result.includes(:category)  # 検索条件にマッチした商品の情報を取得
-
-        else
-          # 検索フォーム以外からアクセスした時の処理
-            params[:q] = { sorts: 'id desc' }
-            @search = Item.ransack()
-            @item_all = Item.all
-          end
+      @results = @p.result.includes(:category).page(params[:page]).per(PER)  # 検索条件にマッチした商品の情報を取得
       @keyword = Item.ransack(params[:q]) #:q(query)は検索窓に入力された値をパラメータで取得
       @keywords = @keyword.result
+    else
+          # 検索フォーム以外からアクセスした時の処理
+            # params[:q] = { sorts: 'id desc' }
+            # @search = Item.ransack()
+            # @item_all = Item.all
+            # params[:q]['product_name_cont_any'] = params[:q]['product_name_cont_any'].split(/[\p{blank}\s]+/)
+      # params[:q]['description_cont_any'] = params[:q]['description_cont_any'].split(/[\p{blank}\s]+/)
+      search_params
+      @p = Item.ransack(params[:q])  # 検索オブジェクトを生成
+      @results = @p.result.includes(:category).page(params[:page]).per(PER)  # 検索条件にマッチした商品の情報を取得
+      @keyword = Item.ransack(params[:q]) #:q(query)は検索窓に入力された値をパラメータで取得
+      @keywords = @keyword.result
+    end
+      
 
-    @results = @p.result.includes(:category)  # 検索条件にマッチした商品の情報を取得
+    @results = @p.result.includes(:category).page(params[:page]).per(PER)   # 検索条件にマッチした商品の情報を取得
+    # 検索条件にマッチした商品の情報を取得
+    @results_all = @p.result.includes(:category)  # 検索条件にマッチした商品の情報を取得
+
     set_item_column
     set_category_column
     @parents =  Category.where(ancestry: nil)
-    favorites = Item.includes(:favorite_users).sort {|a,b| b.favorite_users.size <=> a.favorite_users.size}
 
+    # favorites = Item.includes(:favorite_users).sort {|a,b| b.favorite_users.size <=> a.favorite_users.size}
+
+
+  
+  
+
+  
   
   end
 
@@ -182,7 +203,7 @@ end
   end
   
   def search_params
-    params.require(:q).permit(:sorts)
+    params.permit(:sorts)
     # 他のパラメーターもここに入れる
   end
 end

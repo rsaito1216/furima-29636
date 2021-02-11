@@ -13,6 +13,7 @@ require('./preview.js')
 require('jquery')
 require('./category.js')
 require('./category_edit.js')
+require('./category_search.js')
 require("channels")
 
 
