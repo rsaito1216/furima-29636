@@ -155,7 +155,7 @@
 	width: 40px;
 	height: 40px;
 	cursor: pointer;
-	background-color: aqua;
+  background-color: aqua;
 }
 .ham_line {
 	position: absolute;
@@ -163,7 +163,7 @@
 	width: 20px;
 	height: 1px;
   background-color: #333333;
-  transition: all 0.3s;
+  transition: all 0.5s;
 }
 .ham_line1 {
 	top: 10px;
@@ -176,14 +176,14 @@
 }
 
 .clicked .ham_line1 {
-	transform: rotate(45deg);
+	transform: rotate(405deg);
 	top: 20px;
 }
 .clicked .ham_line2 {
 	width: 0px;
 }
 .clicked .ham_line3 {
-	transform: rotate(-45deg);
+	transform: rotate(-405deg);
 	top: 20px;
 }
 
