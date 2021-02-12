@@ -104,28 +104,7 @@
   color: #333333;
 }
 
-.user_nav{
-  background-color: rgb(217, 203, 221);
-  padding: 7px 13px;
-  font-size: 20px;
-}
-.user-lists{
-    display: flex;
-    position: absolute;
-    align-items: center;
-}
-.pull-down-list{
-    margin: 20px 0;
-    width: 200px;
-    display: flex;
-    position: relative;
-    background: #d1dfec;
-    box-shadow: 0px 0px 0px 5px #dfefff;
-    border: solid 2px white;
-    padding: 0.2em 0.9em;
-    color: #454545;
-    align-items: center;
-}
+
 
 .hidden{
   display: none;
@@ -135,6 +114,7 @@
   list-style: none;
   align-items: flex-end;
   text-align: center;
+  display: flex;
 }
 .user-nickname {
   text-decoration: none;
@@ -168,4 +148,78 @@
   -webkit-transition: .12s;
   transition: .12s;
   width: 120px;
+}
+
+.ham {
+	position: relative;
+	width: 40px;
+	height: 40px;
+	cursor: pointer;
+	background-color: aqua;
+}
+.ham_line {
+	position: absolute;
+	left: 10px;
+	width: 20px;
+	height: 1px;
+  background-color: #333333;
+  transition: all 0.3s;
+}
+.ham_line1 {
+	top: 10px;
+}
+.ham_line2 {
+	top: 18px;
+}
+.ham_line3 {
+	top: 26px;
+}
+
+.clicked .ham_line1 {
+	transform: rotate(45deg);
+	top: 20px;
+}
+.clicked .ham_line2 {
+	width: 0px;
+}
+.clicked .ham_line3 {
+	transform: rotate(-45deg);
+	top: 20px;
+}
+
+.user_nav{
+  padding: 2px 13px;
+  font-size: 20px;
+}
+.user-lists{
+  margin: 40px 0 0 -150px;
+  display: flex;
+    position: absolute;
+    align-items: center;
+}
+.pull-down-list{
+    margin: 10px 0;
+    width: 180px;
+    display: flex;
+    /* position: relative; */
+    background: #d1dfec;
+    box-shadow: 0px 0px 0px 5px #dfefff;
+    border: solid 2px white;
+    padding: 0.2em 0.9em;
+    color: #454545;
+    align-items: center;
+}
+
+.menu {
+  position: relative;
+	width: 0px;
+	height: 0px;
+	
+	background-color: aquamarine;
+  transition: all 0.4s;
+  top: -250px;
+}
+.clicked .menu {
+  top: 40px;
+  right: 0px;
 }

@@ -3,9 +3,8 @@
   <div class='search-bar-contents'>
     <%= link_to image_tag("furima-logo-color.png", class:"furima-icon"), "/" %>
     
-    
-  
   </div>
+
   <div class='nav'>
     <ul class='lists-left'>
       <li><%= link_to  categories_path, class: "category-list" do %>
@@ -26,19 +25,41 @@
   
   <div class='lists-right'>
       <% if user_signed_in? %>
-            <div class="user_nav" id="lists"><span class="user-nickname"><%= current_user.nickname %></span> さん <%= image_tag "arrow_top.png" ,class:"comment-flag-icon" ,width:"17",height:"17"%></span>
-            <ul class="user-lists hidden", id="pull-down">
-              <li><%= link_to 'マイページ', "/users/#{current_user.id}", {class: "pull-down-list"} %></li>
-              <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete , class: "pull-down-list" %></li>
-              <li><%= link_to 'ユーザー情報編集', edit_user_registration_path, method: :get, class: "pull-down-list" %></li>
-            </ul>
+          <div class="ham" id="ham">
+            <span class="ham_line ham_line1"></span>
+            <span class="ham_line ham_line2"></span>
+            <span class="ham_line ham_line3"></span>
+
+            <div class="menu_wrapper" id="menu_wrapper">
+	            <div class="menu">
+                  <ul>  
+                    <li><%= link_to 'マイページ', "/users/#{current_user.id}", {class: "pull-down-list"} %></li>
+                    <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete , class: "pull-down-list" %></li>
+                    <li><%= link_to 'ユーザー情報編集', edit_user_registration_path, method: :get, class: "pull-down-list" %></li>
+                  </ul>
+              </div>
+          </div>
+
+
         <% else %>
           <div class="no-login">
             <%= link_to "ログイン", new_user_session_path, class: "post" %>
             <%= link_to "ユーザー登録", new_user_registration_path, class: "post" %>
           </div>
         <% end %>
-     </div>
+    </div>
+  <div class="user_nav" ><span class="user-nickname"><%= current_user.nickname %></span> さん </div>
+
+  </div>
 </div>
      
 </header>
+
+<script>
+  const ham = document.getElementById('ham');
+const menu_wrapper = document.getElementById('menu_wrapper');
+ham.addEventListener('click', function() {
+	ham.classList.toggle('clicked');
+	menu_wrapper.classList.toggle('clicked');
+});
+</script>
