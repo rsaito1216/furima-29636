@@ -119,28 +119,17 @@ end
       params[:q]['description_cont_any'] = params[:q]['description_cont_any'].split(/[\p{blank}\s]+/)
       search_params
       @p = Item.ransack(params[:q])  # 検索オブジェクトを生成
-
-      @results = @p.result.includes(:category).page(params[:page]).per(PER)  # 検索条件にマッチした商品の情報を取得
-      @keyword = Item.ransack(params[:q]) #:q(query)は検索窓に入力された値をパラメータで取得
-      @keywords = @keyword.result
+      @results = @p.result.includes(:category).page(params[:page]).per(params[:display_number])  # 検索条件にマッチした商品の情報を取得
     else
           # 検索フォーム以外からアクセスした時の処理
-            # params[:q] = { sorts: 'id desc' }
-            # @search = Item.ransack()
-            # @item_all = Item.all
-            # params[:q]['product_name_cont_any'] = params[:q]['product_name_cont_any'].split(/[\p{blank}\s]+/)
-      # params[:q]['description_cont_any'] = params[:q]['description_cont_any'].split(/[\p{blank}\s]+/)
       search_params
       @p = Item.ransack(params[:q])  # 検索オブジェクトを生成
-      @results = @p.result.includes(:category).page(params[:page]).per(PER)  # 検索条件にマッチした商品の情報を取得
-      @keyword = Item.ransack(params[:q]) #:q(query)は検索窓に入力された値をパラメータで取得
-      @keywords = @keyword.result
+      @results = @p.result.includes(:category).page(params[:page]).per(params[:display_number])  # 検索条件にマッチした商品の情報を取得
     end
       
 
-    @results = @p.result.includes(:category).page(params[:page]).per(PER)   # 検索条件にマッチした商品の情報を取得
-    # 検索条件にマッチした商品の情報を取得
-    @results_all = @p.result.includes(:category)  # 検索条件にマッチした商品の情報を取得
+    @results = @p.result.includes(:category).page(params[:page]).per(params[:display_number])   # 検索条件にマッチした商品の情報を取得
+    @results_all = @p.result.includes(:category)
 
     set_item_column
     set_category_column

@@ -12,6 +12,9 @@
 <div>
 
 <%= search_form_for @p, url: search_item_path do |f| %>
+  <%= hidden_field_tag :display_number, params[:display_number] %>
+
+
   <%= f.label :product_name_cont_any , '商品名で一致するキーワード(スペースを空けると複数のキーワードを同時に検索出来ます)：' %>
   <%= f.search_field :product_name_cont_any, class: "form-control" %>
   <br>
@@ -88,7 +91,9 @@ $('input[type=checkbox]', '#shippingArea').prop('checked', this.checked);
      <%=  f.select( :sorts, { '出品(編集)の新しい順': 'updated_at desc', '出品(編集)の古い順': 'updated_at asc', '価格の安い順': 'price asc', '価格の高い順': 'price desc','お気に入りの多い順': 'favorites_count desc' } , { selected: params[:sorts] } , { onchange: 'this.form.submit()'} ) %>
 
 </div>
-
+<span> 表示件数
+    <%= select_tag :display_number, options_for_select([10, 20, 50, 100], params[:display_number]), :class => "form-control input-sm" , onchange: 'this.form.submit()' %>
+    </span> 件
 
 
   <%# 商品一覧 %>
