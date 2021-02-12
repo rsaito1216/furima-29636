@@ -174,9 +174,14 @@
         <% end %>
       </li>
       <% end %>
-    <%= paginate @items %> 
+  <div class="page-zone">
+<%= page_entries_info @items %>
+    <%= paginate @items %>
+    </div>
+
 </div>
   <%# /商品一覧 %>
+      <a href="#" class="scroll-btn">TOP</a>
 
 <div class='purchase-btn'>
   <span class='purchase-btn-text'>出品する</span>

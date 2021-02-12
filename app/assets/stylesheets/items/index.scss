@@ -454,8 +454,9 @@ a {
   height: 60px;
   width: 60px;
   cursor:pointer;
-  bottom: 50px;
+  bottom: 170px;
   right: 35px;
+  z-index: 3;
 }
 
 .scroll-btn::before {
@@ -510,4 +511,8 @@ a {
 
 .sort-table{
   margin: 20px 0;
+}
+
+.page-zone{
+  margin-top: 15px;
 }

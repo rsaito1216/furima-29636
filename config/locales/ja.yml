@@ -41,3 +41,13 @@ ja:
       previous: "&lsaquo; 前"
       next: "次 &rsaquo;"
       truncate: "..."
+
+  helpers:
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: "%検索商品が存在しません"
+          one: "<b>1</b> 件の %{entry_name} を表示"
+          other: "%{count} 件を表示"
+      more_pages:
+        display_entries: "%{total} 件中 %{first}&nbsp;-&nbsp;%{last} 件 を表示"

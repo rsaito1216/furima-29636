@@ -94,7 +94,7 @@ $('input[type=checkbox]', '#shippingArea').prop('checked', this.checked);
   <%# 商品一覧 %>
   <div class='item-contents'>
     <h2 class='title'>検索商品一覧</h2>
-    検索結果 計<%= @results_all.count %>件のうち、<%= @results.count %>件を表示中
+    検索商品 計<%= @results_all.count %>件
 
   <% if @results.length !=0 %>
     <ul class='item-lists'>  
@@ -136,12 +136,17 @@ $('input[type=checkbox]', '#shippingArea').prop('checked', this.checked);
     該当する商品はありません
   </div>
   <% end %>
-      
-    <%= paginate @results     %>
+
+  <div class="page-zone">
+      <%= page_entries_info @results %>
+    <%= paginate @results %>
+    </div>
+
 <% end %>
   <%# /商品一覧 %>
   
 </div>
+      <a href="#" class="scroll-btn">TOP</a>
 
 <div class='purchase-btn'>
   <span class='purchase-btn-text'>出品する</span>
