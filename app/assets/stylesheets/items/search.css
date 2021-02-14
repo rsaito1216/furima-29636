@@ -91,13 +91,13 @@
 
 .btn-like-label {
   display: inline-block; /* テキストに応じて幅を可変させるため */
-  margin: 0.9em 0.1em 0.9em 0; /* 前後の隙間 */
+  margin: 0.9em 0.3em 0.9em 0; /* 前後の隙間 */
   padding: 0.3em 0.5em; /* 塗りの余白 */
   font-size: 1em; /* フォントサイズ */
   background-color: #9966FF; /* 背景色 */
   color: #FFF; /* テキストカラー */
   cursor: pointer; /* カーソルを指マークに */
-  border-radius: 3px; /* 角の丸み */
+  border-radius: 10px; /* 角の丸み */
   border: 0; /* 枠線を消す */
   transition: 0.3s; /* ホバーの変化を滑らかに */
   font-weight: bold;
@@ -254,12 +254,18 @@ input[type=number] {
   transform: scale(1.1);
   padding: 0 0 0 8px;
   margin-left: 17px;
+  background: -webkit-linear-gradient(top, #fff 0%,#efebe1 100%);
+  border: 1px solid #999;
+
 }
 
 select {
   transform: scale(1.1);
   padding: 5px 5px 5px 5px;
   margin-left: 10px;
+  border: 1px solid #999;
+	background: -webkit-linear-gradient(top, #fff 0%,#efebe1 100%);
+	/* background: linear-gradient(to bottom, #fff 0%,#efebe1 100%); */
 }
 
 .search-btn{
