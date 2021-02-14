@@ -84,7 +84,7 @@
   <%= f.number_field :price_lteq ,placeholder:"片方だけの入力でもOK" %>　円 (半角数字で入力)
   <br>
    <div class="search-form">
-  <%= f.submit '検索' , class: 'search-submit' %>
+  <%= f.submit '検索する' , class: 'search-submit' %>
    <button class="search-button">
         <%= image_tag "search.png", class:"search-icon" %>
       </button>
@@ -133,7 +133,7 @@ $('input[type=checkbox]', '#shippingArea').prop('checked', this.checked);
   <%# 商品一覧 %>
   <div class='item-contents'>
     <h2 class='title'>検索商品一覧</h2>
-    検索商品 計<%= @results_all.count %>件
+    <font size="5" color="blue">検索商品 計<%= @results_all.count %>件</font>
 
   <% if @results.length !=0 %>
     <ul class='item-lists'>  
