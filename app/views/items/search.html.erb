@@ -1,68 +1,94 @@
 <%= render "devise/shared/header" %>
 <div class='main'>
-<h1>
-  商品検索
-</h1>
-<%= form_with(url: search_item_path(:id), local: true, method: :get, class: "search-form") do |form| %>
+<div class="search-area">
+  
     
-    <%= form.submit "検索条件を全て解除して検索し直す", class: "search-btn" %>
-    
+    <div class="kakomi-box12"><span class="title-box12">商品詳細検索</span>
+      
+      <div class="clear">
+      <%= form_with(url: search_item_path(:id), local: true, method: :get) do |form| %>
+      <%= form.submit "検索条件を全て解除して検索し直す", class: "search-btn" %>
       <% end %>
-
-<div>
+      </div>
+    <div>
 
 <%= search_form_for @p, url: search_item_path do |f| %>
   <%= hidden_field_tag :display_number, params[:display_number] %>
 
+  <div class="btn-like-label">
+  <%= f.label :product_name_cont_any  , '商品名で一致するキーワード' %>
+  </div>
+  <%= f.search_field :product_name_cont_any, class: "form-control" ,placeholder:" スペースを空けると複数のキーワードを同時に検索出来ます" %>
+  
+  
+  <div class="btn-like-label">
+  <%= f.label :description_cont_any , '商品説明で一致するキーワード' %>
+  </div>
+  <%= f.search_field :description_cont_any, class: "form-control" ,placeholder:" スペースを空けると複数のキーワードを同時に検索出来ます" %>
+  
 
-  <%= f.label :product_name_cont_any , '商品名で一致するキーワード(スペースを空けると複数のキーワードを同時に検索出来ます)：' %>
-  <%= f.search_field :product_name_cont_any, class: "form-control" %>
-  <br>
-  <%= f.label :description_cont_any , '商品説明で一致するキーワード(スペースを空けると複数のキーワードを同時に検索出来ます)：' %>
-  <%= f.search_field :description_cont_any, class: "form-control" %>
-  <br>
-  <%= f.label :condition_id_eq, '商品の状態：' %>
+  <div class="select-zone">
+  <div class="select-zone-space">
+  <div class="btn-like-label">
+  <%= f.label :condition_id_eq, '商品の状態' %>
+  </div>複数選択可
+  <div class="all-select">
     <label><input type="checkbox" id="all-condition" /> すべて選択・解除</li>
+    </div>
     <div id="conditionArea">
 
   <%= f.collection_check_boxes :condition_id_eq_any, Condition.all.where.not(id: 0), :id, :name, include_blank: '指定なし' %>
   </div>
-  <br>
-  <%= f.label :delivery_burden_id_eq, '配送料の負担：' %>
-      <label><input type="checkbox" id="all-delivery" /> すべて選択・解除</li>
+  </div>
 
+  <div class="select-zone-space">
+  <div class="btn-like-label">
+  <%= f.label :delivery_burden_id_eq, '配送料の負担' %>
+  </div>複数選択可
+  <div class="all-select">
+      <label><input type="checkbox" id="all-delivery" /> すべて選択・解除</li>
+</div>
       <div id="deliveryArea">
 
   <%= f.collection_check_boxes :delivery_burden_id_eq_any, DeliveryBurden.all.where.not(id: 0), :id, :name, include_blank: '指定なし' %>
   </div>
-  <br>
-  <%= f.label :shipping_day_id_eq, '発送までの日数：' %>
-  <label><input type="checkbox" id="all-shipping" /> すべて選択・解除</li>
-    
+  </div>
+
+  <div class="select-zone-space">
+  <div class="btn-like-label">
+    <%= f.label :shipping_day_id_eq, '発送までの日数' %>
+  </div>複数選択可
+  <div class="all-select">
+  <label class="all-select"><input type="checkbox"  id="all-shipping" /> すべて選択・解除</li>
+   </div> 
     <div id="shippingArea">
 
   <%= f.collection_check_boxes :shipping_day_id_eq_any, ShippingDay.all.where.not(id: 0), :id, :name, include_blank: '指定なし' %>
   </div>
-  <br>
+  </div>
+</div>
 
-
-
-  <%= f.label :category_name_eq, 'カテゴリー：' %>
-  <%= f.collection_select :category_name_eq_any, @category_name, :name, :name, include_blank: '指定なし', class:"select-box1" %>
+<div class="btn-like-label">
+  <%= f.label :category_name_eq, 'カテゴリー' %>
+  </div>
+  <%= f.collection_select :category_name_eq_any, @category_name, :name, :name, include_blank: '指定なし' , :class => "form-control" %>
 
   <%#= f.collection_check_boxes :category_name_eq_any, @category_name, :name, :name, include_blank: '指定なし', class:"select-box1" %>
                   <%# <div id="ccategory_field"></div> %>
 <br>
-  
-  <%= f.label :price, "価格：" %>
-  <%= f.number_field :price_gteq ,placeholder:"片方だけの入力でもOK" %>
-  <%= f.label :price, " 〜 " %>
-  <%= f.number_field :price_lteq ,placeholder:"片方だけの入力でもOK" %>
+  <div class="btn-like-label">
+  <%= f.label :price, "価格 範囲" %>
+  </div>
+  <%= f.number_field :price_gteq ,placeholder:"片方だけの入力でもOK" %>　円
+  <%= f.label :price, " 　〜 " %>
+  <%= f.number_field :price_lteq ,placeholder:"片方だけの入力でもOK" %>　円 (半角数字で入力)
   <br>
-  <%= f.submit '検索' %>
-  <button class="search-button">
+   <div class="search-form">
+  <%= f.submit '検索' , class: 'search-submit' %>
+   <button class="search-button">
         <%= image_tag "search.png", class:"search-icon" %>
       </button>
+  </div>
   
 </div>
 
@@ -84,16 +110,24 @@ $('input[type=checkbox]', '#shippingArea').prop('checked', this.checked);
 });
 </script>
 
-<div>
+</div>
 
-  <br>
+  <div class="change-zone">
+    <div>
+    <div class="btn-change-label">
      検索結果の並び替え：
-     <%=  f.select( :sorts, { '出品(編集)の新しい順': 'updated_at desc', '出品(編集)の古い順': 'updated_at asc', '価格の安い順': 'price asc', '価格の高い順': 'price desc','お気に入りの多い順': 'favorites_count desc' } , { selected: params[:sorts] } , { onchange: 'this.form.submit()'} ) %>
+     </div>
+     <%=  f.select( :sorts, { '出品(編集)の新しい順': 'updated_at desc', '出品(編集)の古い順': 'updated_at asc', '価格の安い順': 'price asc', '価格の高い順': 'price desc','お気に入りの多い順': 'favorites_count desc' } , { selected: params[:sorts] } , { onchange: 'this.form.submit()'}  ) %>
+    </div>
+    <div>
+    <span class="btn-change-label"> 表示件数 :</span>
+    <%= select_tag :display_number, options_for_select([10, 20, 50, 100], params[:display_number]), :class => "form-con" , onchange: 'this.form.submit()' %>
+     件
+     </div>
+  </div>  
+  
 
 </div>
-<span> 表示件数
-    <%= select_tag :display_number, options_for_select([10, 20, 50, 100], params[:display_number]), :class => "form-control input-sm" , onchange: 'this.form.submit()' %>
-    </span> 件
 
 
   <%# 商品一覧 %>

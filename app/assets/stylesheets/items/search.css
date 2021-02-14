@@ -69,3 +69,199 @@
   padding: 8px 0;
   font-size: 18px;
 }
+
+.search-area{
+  
+}
+
+
+.search-area>.title {
+  height: 40px;
+  background-color: #FF8856;
+  font-size: 20px;
+  color: black;
+  font-weight: bold;
+  padding: 5px 0 5px 10px;
+  /* width: 200px; */
+}
+
+.clear {
+  margin: 5px 0 0 300px;
+}
+
+.btn-like-label {
+  display: inline-block; /* テキストに応じて幅を可変させるため */
+  margin: 0.9em 0.1em 0.9em 0; /* 前後の隙間 */
+  padding: 0.3em 0.5em; /* 塗りの余白 */
+  font-size: 1em; /* フォントサイズ */
+  background-color: #9966FF; /* 背景色 */
+  color: #FFF; /* テキストカラー */
+  cursor: pointer; /* カーソルを指マークに */
+  border-radius: 3px; /* 角の丸み */
+  border: 0; /* 枠線を消す */
+  transition: 0.3s; /* ホバーの変化を滑らかに */
+  font-weight: bold;
+}
+.btn-change-label {
+  display: inline-block; /* テキストに応じて幅を可変させるため */
+  margin: 0.6em 0; /* 前後の隙間 */
+  padding: 0.3em 0.5em; /* 塗りの余白 */
+  font-size: 1em; /* フォントサイズ */
+  background-color: #99FF33; /* 背景色 */
+  color: #FFF; /* テキストカラー */
+  cursor: pointer; /* カーソルを指マークに */
+  border-radius: 3px; /* 角の丸み */
+  border: 0; /* 枠線を消す */
+  transition: 0.3s; /* ホバーの変化を滑らかに */
+  font-weight: bold;
+}
+
+.search-submit {
+  display: inline-block;
+  padding: 8px 0;
+  background: #5cc3c7;
+  border-radius: 4px;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 30px;
+  -webkit-box-shadow: 0px 6px 3px -3px rgba(0,0,0,0.4);
+  box-shadow: 0px 6px 3px -3px rgba(0,0,0,0.4); */
+  -webkit-transition: .12s;
+  transition: .12s;
+  width: 350px;
+  cursor: pointer;
+}
+
+.search-form {
+  width: 430px;
+  height: 35px;
+  display: flex;
+  margin-bottom: 5px;
+  margin: 20px auto;
+  padding: 0 0 0 45px;
+}
+
+.form-control {
+	width: 100%;
+	padding: 5px;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	border: 1px solid #999;
+	background: #eee;
+	background: url(arrow01.png) right 50% no-repeat, -webkit-linear-gradient(top, #fff 0%,#efebe1 100%);
+	background: url(arrow01.png) right 50% no-repeat, linear-gradient(to bottom, #fff 0%,#efebe1 100%);
+	background-size: 20px, 100%;
+}
+
+/* タイトル付　枠（影）1　*/
+.kakomi-box12 {
+  position: relative;
+  margin: 2.5em auto 1.2em auto;
+  padding: 1.6em;
+  width: 92%;
+  min-width: 830px;
+  color: #555555; /* 文字色 */
+  background-color: #fff;
+  border: 3px solid #8FBC8F; /* 枠線の太さ・色 */
+  box-shadow: 3px 3px 2px #ccc;/* 影の色 */
+ }
+ .title-box12 {
+  position: absolute;
+  padding: 0 .5em;
+  left: 45px;
+  top: -20px;
+  font-weight: bold;
+  font-size: 26px;
+  background-color: #fff; /* タイトル背景色 */
+  color: #8FBC8F; /* タイトル文字色 */
+ }
+
+ .change-zone{
+   width: 830px;
+   padding: 0 0 0 160px;
+   justify-content: space-between;
+   display: flex;
+ }
+
+ .select-zone{
+  width: 100%;
+  justify-content: space-around;
+  display: flex;
+}
+
+.select-zone-space{
+  width:255px;
+  background-color: #FFEEFF;
+  margin:20px 0 10px 0;
+  padding: 0 20px 10px 20px;
+  border-radius: 10px;
+}
+
+input[type=checkbox] {
+  transform: scale(1.4);
+  margin: 0 6px 10px 6px;
+}
+
+#conditionArea label {
+  width: 180px;
+  margin-left: 10px;
+  display: inline-block;
+}
+#deliveryArea label {
+  width: 180px;
+  margin-left: 10px;
+  display: inline-block;
+}
+
+#shippingArea label {
+  width: 180px;
+  margin-left: 10px;
+  display: inline-block;
+}
+
+input[type=submit] {
+  transform: scale(1.3);
+  padding: 0 10px 0 10px;
+}
+
+
+
+/* .search-form>.input-box {
+  width: 100%;
+  height: 35px;
+  padding-left: 10px;
+} */
+
+.search-button {
+  width: 45px;
+  border: 1;
+  cursor: pointer;
+  background-color: rgb(227, 213, 221);
+  padding: 5px;
+  border-radius: 6px;
+  margin: -5px 0 0 46px ;
+  height: 45px;
+}
+
+.search-icon {
+  width: 100%;
+}
+
+.all-select{
+  margin-bottom: 10px;
+}
+
+input[type=number] {
+  transform: scale(1.1);
+  padding: 0 0 0 8px;
+  margin-left: 17px;
+}
+
+select {
+  transform: scale(1.1);
+  padding: 5px 5px 5px 5px;
+  margin-left: 10px;
+}

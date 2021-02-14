@@ -115,9 +115,10 @@
 
 .click-upload {
   padding: 10px 0 20px 0;
-  width: 500px;
+  width: 505px;
   border-bottom: solid 1px red;
 }
+
 
 .click-upload>p {
   margin: 10px 0;
@@ -219,24 +220,28 @@
 .sell-btn-contents {
   width: 100%;
   text-align: center;
+  display: block;
 }
 
 .sell-btn {
   background: #ea352d;
   border: 1px solid #ea352d;
   color: #fff;
-  width: 100%;
-  height: 50px;
+  width: 70%;
+  height: 40px;
   font-size: 14px;
-  margin-bottom: 4vh;
+  margin: 0 70px 30px 70px ;
+  border-radius: 30px;
+
 }
 
 .back-btn {
   background: #aaa;
   border: 1px solid #aaa;
   color: #fff;
-  padding: 15px 35%;
+  padding: 15px 90px;
   text-decoration: none;
+  margin: 0 auto ;
 }
 
 /* /下部ボタン */
@@ -251,14 +256,14 @@
 }
 
 
-.items-sell-footer>.menu {
+.items-sell-footer>.kiyaku-menu {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   margin: 3vh 0;
 }
 
-.menu>li>a {
+.kiyaku-menu>li>a {
   color: black;
   font-size: 12px;
   margin: 2vw;

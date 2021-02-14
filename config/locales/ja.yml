@@ -46,7 +46,7 @@ ja:
     page_entries_info:
       one_page:
         display_entries:
-          zero: "%検索商品が存在しません"
+          zero: "検索商品が存在しません"
           one: "<b>1</b> 件の %{entry_name} を表示"
           other: "%{count} 件を表示"
       more_pages:

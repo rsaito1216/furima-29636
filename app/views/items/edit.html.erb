@@ -17,6 +17,8 @@ app/assets/stylesheets/items/new.css %>
         出品画像
         <span class="indispensable">必須</span>
       </div>
+
+      <div>
       <div class="click-upload">
       <p>
           削除したい画像がある場合はチェックを入れて、下の「変更する」をクリック。
@@ -42,6 +44,7 @@ app/assets/stylesheets/items/new.css %>
           <%= f.file_field :images, name: 'item[images][]', multiple: true,  id: 'item_image' ,accept: '.jpeg, .jpg, .gif, .png'%>
 
           <div id="image-list" class="ssss"></div>
+      </div>
       </div>
     </div>
     <%# /出品画像 %>
@@ -182,7 +185,7 @@ app/assets/stylesheets/items/new.css %>
   <% end %>
 
   <footer class="items-sell-footer">
-    <ul class="menu">
+    <ul class="kiyaku-menu">
       <li><a href="#">プライバシーポリシー</a></li>
       <li><a href="#">フリマ利用規約</a></li>
       <li><a href="#">特定商取引に関する表記</a></li>
