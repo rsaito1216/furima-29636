@@ -67,15 +67,12 @@
   </div>
   </div>
 </div>
-<%#= f.collection_select(:category_parent_id, @parents, :id, :name, { include_blank: "---", selected:"" }, {class:"select-box1", id:"category_form"}) %>
-                <%# <div id="category_field"></div> %>
+
 <div class="btn-like-label">
   <%= f.label :category_parent_id_eq_any, 'カテゴリー' %>
   </div>
-  <%=f.collection_select :category_parent_id_eq_any, @parents, :id, :name, include_blank: '指定なし' , :class => "form-control" %>
-  <div id="category_field"></div>
-  <%#= f.collection_check_boxes :category_name_eq_any, @category_name, :name, :name, include_blank: '指定なし', class:"select-box1" %>
-                  <div id="ccategory_field"></div>
+  <%=f.collection_select :category_parent_id_eq_any, @parents, :id, :name, include_blank: '指定なし' , :class => "form-control" %>　←この段で選択したもので検索したければ「検索する」を押す
+      <div id="search_category_field"></div>
 <br>
   <div class="btn-like-label">
   <%= f.label :price, "価格 範囲" %>

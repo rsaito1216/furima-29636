@@ -123,7 +123,7 @@
     <% end %>
 
     <div class="item-explain-box">
-      <span class=item-word><%= @item.description %></span>
+      <span class=item-word><%= simple_format(h @item.description) %></span>
     </div>
     <table class="detail-table">
       <tbody>

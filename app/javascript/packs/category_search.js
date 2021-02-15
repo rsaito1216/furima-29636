@@ -7,22 +7,22 @@ $(function(){
   function appendChildrenBox(insertHTML){
     var childSelectHtml = "";
     childSelectHtml = `<div class="category__child" id="children_wrapper">
-                        <select id="q_category_child_id_eq_any" name="q[category_child_id_eq_any]" class="select-box1">
+                        <select id="q_category_child_id_eq_any" name="q[category_child_id_eq_any]" class="select-box-search">
                           <option value="">---</option>
                           ${insertHTML}
                         </select>
                       </div>`;
-    $('#ccategory_field').append(childSelectHtml);
+    $('#search_category_field').append(childSelectHtml);
   }
   function appendGrandchildrenBox(insertHTML){
     var grandchildSelectHtml = "";
     grandchildSelectHtml = `<div class="category__child" id="grandchildren_wrapper">
-    <select id="q_category_id_eq_any" name="q[category_id_eq_any]" class="select-box1">
+    <select id="q_category_id_eq_any" name="q[category_id_eq_any]" class="select-box-search">
       <option value="">---</option>
       ${insertHTML}
       </select>
   </div>`;
-    $('#ccategory_field').append(grandchildSelectHtml);
+    $('#search_category_field').append(grandchildSelectHtml);
   }
 
   $('#q_category_parent_id_eq_any').on('change',function(){
@@ -52,7 +52,7 @@ $(function(){
       $('#grandchildren_wrapper').remove();
     }
   });
-  $('#ccategory_field').on('change','#q_category_child_id_eq_any',function(){
+  $('#search_category_field').on('change','#q_category_child_id_eq_any',function(){
     var childId = document.getElementById('q_category_child_id_eq_any').value;
     if(childId != ""){
       $.ajax({

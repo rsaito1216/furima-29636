@@ -80,8 +80,8 @@ app/assets/stylesheets/items/new.css %>
 
        
      <div id="category_field_cyu">
-<b>中断から</b>変更するならこの欄を選択
-<%= f.collection_select(:category_id, @category_children , :id, :name,{selected:@child_category.id}, {class:"select-box2", id:"edit-child__category"}) %>
+<b>中段から</b>変更するならこの欄を選択
+<%= f.collection_select(:category_id, @category_children , :id, :name,{selected:@child_category.id}, {class:"select-box-2", id:"edit-child__category"}) %>
          <div id="category_field_ge">
 <b>下段だけ</b>変更するならこの欄を選択
 <%= f.collection_select(:category_id, @category_grandchildren, :id, :name, { }, {class:"select-box3", id:"edit-grandchild_form"}) %>
