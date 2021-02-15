@@ -69,7 +69,7 @@
 </div>
 
 <div class="btn-like-label">
-  <%= f.label :category_name_eq, 'カテゴリー' %>
+  <%= f.label :category_name_eq_any, 'カテゴリー' %>
   </div>
   <%= f.collection_select :category_name_eq_any, @category_name, :name, :name, include_blank: '指定なし' , :class => "form-control" %>
 

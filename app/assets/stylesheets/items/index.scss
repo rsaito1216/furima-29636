@@ -301,11 +301,12 @@ a {
 .item-info {
   background-color: #FFF;
   color: black;
-  padding: 1vw;
+  padding: 5px;
 }
 
 .item-name {
   font-size: 2.5vh;
+  margin-bottom: 5px;
 }
 
 .item-price {
@@ -338,7 +339,7 @@ a {
   color: #FFF;
   background-image: linear-gradient(45deg, #FFC107 0%, #ff8b5f 100%);
   transition: .4s;
-  margin-right: 20px;
+  margin-right: 24px;
   align-items: center;
     
 }
@@ -351,7 +352,7 @@ a {
   color: #FFF;
   background-image: linear-gradient(45deg, #362c0e 0%, #412012 100%);
   transition: .4s;
-  margin-right: 20px;
+  margin-right: 24px;
   align-items: center;
 }
 
