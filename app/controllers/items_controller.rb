@@ -129,6 +129,7 @@ end
       
 
     @results = @p.result.includes(:category).page(params[:page]).per(params[:display_number])   # 検索条件にマッチした商品の情報を取得
+
     @results_all = @p.result.includes(:category)
 
     set_item_column
@@ -159,7 +160,7 @@ end
   private
 
   def item_params
-    params.require(:item).permit(:product_name, :description, :category_id, :condition_id, :delivery_burden_id, :shipping_address_id, :shipping_day_id, :price, images: []).merge(user_id: current_user.id)
+    params.require(:item).permit(:product_name, :description, :category_parent_id, :category_child_id, :category_id, :condition_id, :delivery_burden_id, :shipping_address_id, :shipping_day_id, :price, images: []).merge(user_id: current_user.id)
   end
 
   def login_check

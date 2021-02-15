@@ -7,7 +7,7 @@ $(function(){
   function appendChildrenBox(insertHTML){
     var childSelectHtml = "";
     childSelectHtml = `<div class="category__child" id="children_wrapper">
-                        <select id="child__category" name="q[category_name_eq_any]" class="select-box1">
+                        <select id="q_category_child_id_eq_any" name="q[category_child_id_eq_any]" class="select-box1">
                           <option value="">---</option>
                           ${insertHTML}
                         </select>
@@ -17,7 +17,7 @@ $(function(){
   function appendGrandchildrenBox(insertHTML){
     var grandchildSelectHtml = "";
     grandchildSelectHtml = `<div class="category__child" id="grandchildren_wrapper">
-    <select id="grandchild__category" name="item[category_id]" class="select-box1">
+    <select id="q_category_id_eq_any" name="q[category_id_eq_any]" class="select-box1">
       <option value="">---</option>
       ${insertHTML}
       </select>
@@ -25,8 +25,8 @@ $(function(){
     $('#ccategory_field').append(grandchildSelectHtml);
   }
 
-  $('#q_category_name_eq_any').on('change',function(){
-    // var parentId = document.getElementById('q_category_name_eq_any').value;
+  $('#q_category_parent_id_eq_any').on('change',function(){
+    var parentId = document.getElementById('q_category_parent_id_eq_any').value;
 
     if (parentId != ""){
       $.ajax({
@@ -52,8 +52,8 @@ $(function(){
       $('#grandchildren_wrapper').remove();
     }
   });
-  $('#ccategory_field').on('change','#child__category',function(){
-    var childId = document.getElementById('child__category').value;
+  $('#ccategory_field').on('change','#q_category_child_id_eq_any',function(){
+    var childId = document.getElementById('q_category_child_id_eq_any').value;
     if(childId != ""){
       $.ajax({
         url: '/items/get_category_grandchildren',

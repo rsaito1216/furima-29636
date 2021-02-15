@@ -56,10 +56,10 @@
 
 .select-box1 {
   height: 30px;
-  width: 100%;
+  width: 40%;
   background-color: #e0c9c9;
   padding-left: 20px;
-  margin: 5px 0 15px 0;
+  margin: 5px 0 15px 120px;
 }
 
 .select-box2 {
@@ -115,7 +115,7 @@
 
 .click-upload {
   padding: 10px 0 20px 0;
-  width: 505px;
+  width: 490px;
   border-bottom: solid 1px red;
 }
 

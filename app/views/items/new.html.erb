@@ -53,7 +53,7 @@
           上、中、下の３段を選択
         </div>
                 
-        <%= f.collection_select(:category_id, @parents, :id, :name, { include_blank: "---", selected:"" }, {class:"select-box1", id:"category_form"}) %>
+        <%= f.collection_select(:category_parent_id, @parents, :id, :name, { include_blank: "---", selected:"" }, {class:"select-box1", id:"category_form"}) %>
                 <div id="category_field"></div>
 
         <div class="weight-bold-text">

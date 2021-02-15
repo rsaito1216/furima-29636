@@ -7,7 +7,7 @@ $(function(){
   function appendChildrenBox(insertHTML){
     var childSelectHtml = "";
     childSelectHtml = `<div class="category__child" id="children_wrapper">
-                        <select id="child__category" name="item[category_id]" class="select-box1">
+                        <select id="child__category" name="item[category_child_id]" class="select-box1">
                           <option value="">---</option>
                           ${insertHTML}
                         </select>
