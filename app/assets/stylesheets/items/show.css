@@ -183,7 +183,7 @@
 }
 
 .comment-btn {
-  line-height: 48px;
+  line-height: 36px;
   background-color: #3CCACE;
   border: 1px solid #3CCACE;
   color: #fff;
@@ -330,7 +330,7 @@
 }
 
 .reply-submit{
-  margin-left: 10px;
+  margin-left: 20px;
   width: 65px;
 }
 
