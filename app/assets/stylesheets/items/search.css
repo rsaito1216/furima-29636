@@ -140,7 +140,7 @@
 }
 
 .form-control {
-	width: 100%;
+	width: 60%;
 	padding: 5px;
 	-webkit-appearance: none;
 	-moz-appearance: none;
@@ -270,5 +270,6 @@ select {
 
 .search-btn{
   cursor: pointer;
+  margin-bottom: 15px;
 
 }
