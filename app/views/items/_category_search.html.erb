@@ -1,0 +1,11 @@
+
+<div class="side-search hidden" id="seach-pulldown">
+  <div class="search-list-zone" >
+      <% @parents.each do |parent| %>
+          <%= link_to "#{ parent.name }" , parent_category_path(parent.id) ,{class:"search-pull-down" , id: "#{parent.id}"} %>
+            <% end %>
+  </div>
+  <div class="children_list" id="list"></div>
+  <div class="grand_children_list" id="list"></div>
+  </div>
+</div>

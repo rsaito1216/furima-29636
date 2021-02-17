@@ -1,15 +1,17 @@
 <%# CSS・・・assets/stylesheets/shared/header.css %>
-<header class='top-page-header'>
-  <div class='search-bar-contents'>
+<header class='top-page-header' >
+  <div class='search-bar-contents' id="category-search-no-area">
     <%= link_to image_tag("furima-logo-color.png", class:"furima-icon"), "/" %>
     
   </div>
 
   <div class='nav'>
     <ul class='lists-left'>
-      <li><%= link_to  categories_path, class: "category-list" do %>
+      <li><%= link_to  categories_path, id: "category-lists", class: "category-list" do %>
           カテゴリー<br> から探す
+          
        <% end %></li>
+       
       <li><%= link_to  "#", class: "brand-list" do %>
       ブランド<br> から探す
       <% end %></li>
@@ -53,7 +55,9 @@
 
   </div>
 </div>
-     
+
+
+
 </header>
 
 <script>

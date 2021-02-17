@@ -1,8 +1,9 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:parent, :child, :grandchild]
+  before_action :set_parents, only: [:index, :parent, :child, :grandchild ]
 
   def index
-    @parents =  Category.where(ancestry: nil)
+    
   end
 
   def parent
@@ -41,5 +42,9 @@ class CategoriesController < ApplicationController
   def set_category
   #パラメーターに入ってくカテゴリーidを基にクリックされたカテゴリーのレコードを取得
     @category = Category.find(params[:id])
+  end
+  
+  def set_parents
+    @parents = Category.where(ancestry: nil)
   end
 end

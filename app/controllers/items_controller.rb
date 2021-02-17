@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :login_check, only: [:new]
   before_action :set_item, only: [:edit, :show, :update, :destroy]
-  before_action :set_parents, only: [:new, :create ,:edit, :update]
+  before_action :set_parents, only: [:index, :show, :new, :create ,:edit, :update]
   before_action :search_item, only: [:index, :search]
   
 
@@ -10,7 +10,9 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all.page(params[:page]).per(PER)
+    
 
+   
 
     @items_sort = Item.order("#{sort_column} #{sort_direction}")
     @param = request.query_string
@@ -54,6 +56,7 @@ class ItemsController < ApplicationController
     @category_grandchild = Category.find(@category_id)
 
     @category = Category.find(params[:id])
+
 end
 
 def edit
