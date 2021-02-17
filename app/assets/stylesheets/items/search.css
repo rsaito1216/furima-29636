@@ -146,8 +146,9 @@
 	-moz-appearance: none;
 	appearance: none;
 	border: 1px solid #999;
-	background: #eee;
-	background-size: 20px, 100%;
+  background-size: 20px, 100%;
+  background: -webkit-linear-gradient(top, #fff 0%,#efebe1 100%);
+    border: 1px solid #999;
 }
 
 /* タイトル付　枠（影）1　*/

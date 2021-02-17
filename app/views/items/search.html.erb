@@ -6,13 +6,13 @@
     <div class="kakomi-box12"><span class="title-box12">商品詳細検索</span>
       
       <div class="clear">
-      <%= form_with(url: search_item_path(:id), local: true, method: :get) do |form| %>
+      <%= form_with(url: items_search_path, local: true, method: :get) do |form| %>
       <%= form.submit "検索条件を全て解除して検索し直す", class: "search-btn" %>
       <% end %>
       </div>
     <div>
 
-<%= search_form_for @p, url: search_item_path do |f| %>
+<%= search_form_for @p, url: items_search_path do |f| %>
   <%= hidden_field_tag :display_number, params[:display_number] %>
 
   <div class="btn-like-label">
@@ -71,7 +71,7 @@
 <div class="btn-like-label">
   <%= f.label :category_parent_id_eq, 'カテゴリー' %>
   </div>
-  <%= f.collection_select :category_parent_id_eq, @parents, :id, :name, include_blank: '指定なし' %>　←この段で選択したもので検索したければ「検索する」を押す
+  <%= f.collection_select :category_parent_id_eq_any, @parents, :id, :name, include_blank: '指定なし' %>　←この段で選択したもので検索したければ「検索する」を押す
       <div id="search_category_field"></div>
 
 <br>

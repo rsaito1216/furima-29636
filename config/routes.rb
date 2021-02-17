@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   }
   root to: "items#index"
   resources :users, only: [:new, :create, :edit, :update, :show]
-
+  get 'items/search'
   resources :items do
     resources :item_transactions, only:[:index, :create]
     resources :comments, only: [:create, :destroy]
@@ -14,9 +14,9 @@ Rails.application.routes.draw do
       get 'get_category_children', defaults: { fomat: 'json'}
       get 'get_category_grandchildren', defaults: { fomat: 'json'}
     end
-    member do
-      get 'search'
-    end
+    # member do
+    #   get 'search'
+    # end
   end
 
   resources :categories, only: [:index] do
