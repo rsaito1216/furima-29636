@@ -273,3 +273,19 @@ select {
   margin-bottom: 15px;
 
 }
+
+.checkbox-list{
+  width: 95%;
+    background-color: #FFEEFF;
+    margin: 10px 0 10px 20px;
+    padding: 0 20px 10px 20px;
+    border-radius: 10px;
+    
+    height: 200px;
+    
+}
+
+.sc-side__detail__field__form--checkbox__btn{
+  display: flex;
+  flex-wrap: wrap;
+}

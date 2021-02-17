@@ -9,9 +9,9 @@
 
 /* form-wrapは商品購入画面でも使用しています */
 .form-wrap {
-  width: 50%;
+  width: 55%;
   background-color: white;
-  padding-bottom: 70px;
+  padding: 0 15px 70px 15px;
 }
 
 .form-header {

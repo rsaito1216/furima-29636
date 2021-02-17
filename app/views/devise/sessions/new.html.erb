@@ -14,7 +14,9 @@
     <%= flash[:alert] %>
   </div>
 
-  <%= link_to 'Facebookでログイン', user_facebook_omniauth_authorize_path, method: :post%>
+  <%= link_to user_facebook_omniauth_authorize_path, method: :post do %>
+   <%= image_tag raw("facebook.png" ),size: '150x40' %> でログイン
+  <% end %>
   
   <div class="form-group">
     <div class='form-text-wrap'>

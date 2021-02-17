@@ -8,7 +8,9 @@
     </h1>
   </div>
   
-  <%= link_to raw('Facebookで登録<br />注意：↑メールアドレスを自動で入力して、パスワード入力を省略出来ますが、<br />ニックネーム欄に本名が自動で反映されてしまうのでニックネーム欄を変えてください'), user_facebook_omniauth_authorize_path, method: :post%>
+  <%= link_to user_facebook_omniauth_authorize_path,  method: :post do %>
+   <%= image_tag raw("facebook.png" ),size: '150x40' %> で登録
+  <% end %>
   
   <%= render 'devise/shared/error_messages', model: @user %>
 
