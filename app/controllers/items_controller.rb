@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :login_check, only: [:new]
   before_action :set_item, only: [:edit, :show, :update, :destroy]
-  before_action :set_parents, only: [:index, :show, :new, :create ,:edit, :update]
+  before_action :set_parents, only: [:index, :show, :new, :create ,:edit, :update, :search]
   before_action :search_item, only: [:index, :search]
   
 
@@ -131,13 +131,11 @@ end
     end
       
 
-    @results = @p.result.includes(:category).page(params[:page]).per(params[:display_number])   # 検索条件にマッチした商品の情報を取得
+    # @results = @p.result.includes(:category).page(params[:page]).per(params[:display_number])   # 検索条件にマッチした商品の情報を取得
 
     @results_all = @p.result.includes(:category)
 
-    set_item_column
     set_category_column
-    @parents =  Category.where(ancestry: nil)
 
     # favorites = Item.includes(:favorite_users).sort {|a,b| b.favorite_users.size <=> a.favorite_users.size}
 
@@ -184,11 +182,6 @@ end
   def search_item
     @p = Item.ransack(params[:q])  # 検索オブジェクトを生成
     
-  end
-
-  def set_item_column
-    @item_condition = Item.select("condition_id").distinct
-
   end
 
   def set_category_column
