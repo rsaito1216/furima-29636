@@ -4,7 +4,7 @@
 
 .top-page-header {
   width: 100vw;
-  padding: 2vh 12vw;
+  padding: 15px 12vw;
   display: flex;
   flex-direction: column;
   box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
@@ -19,8 +19,7 @@
 }
 
 .furima-icon {
-  width: 10vw;
-  margin-right: 10vw;
+  width: 150px;
 }
 
 
