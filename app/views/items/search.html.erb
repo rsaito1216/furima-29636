@@ -69,10 +69,9 @@
 </div>
 
 <div class="btn-like-label">
-  <%= f.label :category_id_eq, 'カテゴリー' %>
+  <%= f.label :category_parent_id_eq, 'カテゴリー' %>
   </div>
-  <%= f.collection_select :category_id_eq, Category.all, :id, :name, include_blank: '指定なし' %>　←この段で選択したもので検索したければ「検索する」を押す
-      <div id="search_category_field"></div>
+ <%= f.collection_select :category_parent_id_eq_any, @parents, :id, :name, include_blank: '指定なし' %>　←この段で選択したもので検索したければ「検索する」を押す      <div id="search_category_field"></div>
 
 <br>
   <div class="btn-like-label">
