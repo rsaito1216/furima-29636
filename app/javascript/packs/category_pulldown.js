@@ -32,7 +32,7 @@ window.addEventListener('load', function(){
 
 
   $(function() {
-
+    var jqxhr;
   // 子カテゴリーを追加するための処理です。
     function buildChildHTML(child){
       var html =`<li><a class="child_category" id="${child.id}" 
@@ -43,6 +43,9 @@ window.addEventListener('load', function(){
 
 
     $(".search-pull-down").on("mouseover", function() {
+      if (jqxhr) {
+        jqxhr.abort();
+    }
       var id = this.id//どのリンクにマウスが乗ってるのか取得します
       $(".now-selected-red").removeClass("now-selected-red")//赤色のcssのためです
       $('#' + id).addClass("now-selected-red");//赤色のcssのためです
@@ -70,6 +73,9 @@ window.addEventListener('load', function(){
     }
   
     $(document).on("mouseover", ".child_category", function () {//子カテゴリーのリストは動的に追加されたHTMLのため
+      if (jqxhr) {
+        jqxhr.abort();
+    }
       var id = this.id
       $(".now-selected-gray").removeClass("now-selected-gray");//灰色のcssのため
       $('#' + id).addClass("now-selected-gray");//灰色のcssのため
@@ -90,6 +96,9 @@ window.addEventListener('load', function(){
       });
     });  
     $(document).on("mouseover", ".grand_child_category", function () {
+      if (jqxhr) {
+        jqxhr.abort();
+    }
       var id = this.id
       $(".now-selected-blue").removeClass("now-selected-blue");
       $('#' + id).addClass("now-selected-blue");

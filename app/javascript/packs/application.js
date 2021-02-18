@@ -14,7 +14,7 @@ require('jquery')
 require('./category.js')
 require('./category_edit.js')
 require('./category_search.js')
-require('./search.js')
+require('./category_pulldown.js')
 
 require("channels")
 

@@ -279,7 +279,7 @@ select {
     margin: 10px 0 10px 20px;
     padding: 0 20px 10px 20px;
     border-radius: 10px;
-    
+    list-style: none;
     height: 200px;
     
 }

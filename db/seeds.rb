@@ -155,6 +155,7 @@ book_music_game_6 = book_music_game.children.create(name: "レコード")
 book_music_game_6.children.create([{name: "邦楽"},{name: "洋楽"},{name: "その他"}])
 book_music_game_7 = book_music_game.children.create(name: "テレビゲーム")
 book_music_game_7.children.create([{name: "家庭用ゲーム本体"},{name: "家庭用ゲームソフト"},{name: "携帯用ゲーム本体"},{name: "携帯用ゲームソフト"},{name: "PCゲーム"},{name: "その他"}])
+book_music_game_8.children.create([{name: "すべて"}])
 
 # おもちゃ・ホビー・グッズ
 toy_hobby_goods = Category.create(name: "おもちゃ・ホビー・グッズ")
