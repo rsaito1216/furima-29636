@@ -51,7 +51,7 @@ window.addEventListener('load', function(){
       $('#' + id).addClass("now-selected-red");//赤色のcssのためです
       $(".child_category").remove();//一旦出ている子カテゴリ消します！
       $(".grand_child_category").remove();
-      $.ajax({
+      jqxhr = $.ajax({
         url: '/items/get_category_children/',
         type: 'GET',
         data: {parent_id: id},
@@ -79,7 +79,7 @@ window.addEventListener('load', function(){
       var id = this.id
       $(".now-selected-gray").removeClass("now-selected-gray");//灰色のcssのため
       $('#' + id).addClass("now-selected-gray");//灰色のcssのため
-      $.ajax({
+      jqxhr = $.ajax({
         url: '/items/get_category_grandchildren',
         type: 'GET',
         data: {child_id: id},
