@@ -64,6 +64,8 @@ def edit
   @grandchild_category = @item.category
   @child_category = @grandchild_category.parent 
   @category_parent = @child_category.parent
+  @category_id = @item.category_id
+  
 
   #カテゴリー一覧を作成
   @category = Category.find(params[:id])
@@ -78,6 +80,8 @@ def update
   @grandchild_category = @item.category
   @child_category = @grandchild_category.parent 
   @category_parent = @child_category.parent
+  @category_id = @item.category_id
+  
 
   #カテゴリー一覧を作成
   @category = Category.find(params[:id])
@@ -87,24 +91,38 @@ def update
   @category_grandchildren = @item.category.parent.children
   
   
-  if params[:item][:image_ids]
-    params[:item][:image_ids].each do |image_id|
-      image = @item.images.find(image_id)
-      image.purge
-    end
-    if params[:item][:image_ids].nil?
-      render :edit
-    end
-  end
   
-
-    if @item.update(item_params)
+  #  if params[:item][:image_ids]
+  #     params[:item][:image_ids].each do |image_id|
+  #       image = @item.images.find(image_id)
+  #       image.purge
+  #     end
+  #     if params[:item][:image_ids].nil?
+  #       render :edit
+  #     end
+  #   end
+    # if @item.update(item_params)
       
-      redirect_to item_path(@item)
-    else
-      render action: :edit
-    end
+    #   redirect_to item_path(@item)
+    # else
+    #   render action: :edit
+    # end
+
+  @item.images.detach #一旦、すべてのimageの紐つけを解除
+  if @item.update(item_params)
+    redirect_to @item, notice: 'Item was successfully updated.'
+  else
+    render :edit
+  end
 end
+
+def upload_image
+  @image_blob = create_blob(params[:image])
+  respond_to do |format|
+    format.json { @image_blob.id }
+  end
+end
+
 
   def destroy
     if @item.user_id == current_user.id
@@ -161,7 +179,7 @@ end
   private
 
   def item_params
-    params.require(:item).permit(:product_name, :description, :category_parent_id, :category_child_id, :category_id, :condition_id, :delivery_burden_id, :shipping_address_id, :shipping_day_id, :price, images: []).merge(user_id: current_user.id)
+    params.require(:item).permit(:product_name, :description, :category_parent_id, :category_child_id, :category_id, :condition_id, :delivery_burden_id, :shipping_address_id, :shipping_day_id, :price, images: []).merge(user_id: current_user.id, images: uploaded_images)
   end
 
   def login_check
@@ -191,5 +209,17 @@ end
   def search_params
     params.permit(:sorts)
     # 他のパラメーターもここに入れる
+  end
+
+  def uploaded_images
+    params[:item][:images].map{|id| ActiveStorage::Blob.find(id)} if params[:item][:images]
+    # ActiveStorage::Blob.unattached.find_each(&:purge)  
+  end
+
+  def create_blob(uploading_file)
+    ActiveStorage::Blob.create_after_upload! \
+      io: uploading_file.open,
+      filename: uploading_file.original_filename,
+      content_type: uploading_file.content_type
   end
 end

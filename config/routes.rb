@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     collection do
       get 'get_category_children', defaults: { fomat: 'json'}
       get 'get_category_grandchildren', defaults: { fomat: 'json'}
+      post 'upload_image', defaults: { fomat: 'json'}
+
     end
     # member do
     #   get 'search'

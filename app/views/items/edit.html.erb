@@ -21,24 +21,27 @@ app/assets/stylesheets/items/new.css %>
       <div>
       <div class="click-upload">
       <p>
-          削除したい画像がある場合はチェックを入れて、下の「変更する」をクリック。
-          <br>(画像は一番左(上)が１枚目、その右隣が２枚目、、、と表示されています)
+          画像は一番左(上)が１枚目、その右隣が２枚目、、、と表示されています
         </p>
 
-        <div class="edit-image-lineup">
+        <div class="edit-image-lineup" id="image-list">
         <% @item.images.each do |image| %>
           <div class="edit-image-space">
               <%= image_tag image , class: "item-edit-image"%>
-              <%= f.check_box :image_ids, {multiple: true}, image.id, false %>
+              <%= f.hidden_field :images , name: "item[images][]", value: "#{image.blob.id}", style: "display: none;", class: "item-images-input" %>
+            <%= link_to "入れ替え", "", class: "btn-edit" %>
+            <%= file_field "edit-image","" , class: "edit-image-file-input file-input", style: "display: none;"%>
+                    <%= link_to "削除", "", class: "btn-delete" %>
+
           </div>
         <% end %>
         </div>
       </div>
       <div class="click-upload">
         <p>
-          画像を追加したい、変えたい場合はクリックしてファイルをアップロード。
-          <br>追加、変えたい場合は最初から画像を全部選んで下さい。
-          <br><font color="red">⬇️ここでクリックして画像を選ぶ場合は上のチェックは入れないで下さい</font>
+          画像を追加したい場合はクリックしてファイルをアップロード。
+          <br>今ある画像の最後に追加されます。
+          
         </p>
         
           <%= f.file_field :images, name: 'item[images][]', multiple: true,  id: 'item_image' ,accept: '.jpeg, .jpg, .gif, .png'%>
@@ -81,7 +84,7 @@ app/assets/stylesheets/items/new.css %>
        
      <div id="category_field_cyu">
 <b>中段から</b>変更するならこの欄を選択
-<%= f.collection_select(:category_id, @category_children , :id, :name,{selected:@child_category.id}, {class:"select-box-2", id:"edit-child__category"}) %>
+<%= f.collection_select(:category_id, @category_children , :id, :name,{selected:@child_category.id}, {class:"select-box2", id:"edit-child__category"}) %>
          <div id="category_field_ge">
 <b>下段だけ</b>変更するならこの欄を選択
 <%= f.collection_select(:category_id, @category_grandchildren, :id, :name, { }, {class:"select-box3", id:"edit-grandchild_form"}) %>

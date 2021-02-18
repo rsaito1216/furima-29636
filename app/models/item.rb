@@ -30,7 +30,7 @@ class Item < ApplicationRecord
   end
 
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to_active_hash :category
+  # belongs_to_active_hash :category
   belongs_to_active_hash :condition
   belongs_to_active_hash :delivery_burden
   belongs_to_active_hash :shipping_address

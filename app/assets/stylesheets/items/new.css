@@ -62,7 +62,7 @@
   margin: 5px 0 15px 0;
 }
 
-.select-box-2 {
+.select-box2 {
   height: 30px;
   width: 100%;
   background-color: #88db1b;
@@ -275,8 +275,8 @@
 
 
 .item-edit-image{
-  height: 80px;
-  width: 80px;
+  height: 110px;
+  width: 110px;
   border: 2px solid darkblue;
   /*object-fit: contain;*/
   
@@ -288,4 +288,21 @@
 
 .edit-image-space{
   margin: 0 20px 10px 0;
+  display: block;
+  width: 110px;
+}
+
+.image-box{
+  width: 150px;
+  margin: 0 10px 10px 0;
+}
+
+.btn-edit{
+  font-size:14px;
+  margin: 0 10px 0 10px;
+}
+
+.preview-new-list{
+  display: flex;
+  flex-wrap: wrap;
 }

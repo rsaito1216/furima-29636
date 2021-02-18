@@ -1,4 +1,4 @@
-if (document.URL.match(/categories/) || document.URL.match(/""/)) {
+if (document.URL.match(/categories/) || document.URL.match("")) {
 
 window.addEventListener('load', function(){
   const pullDownButton = document.getElementById("category-lists")

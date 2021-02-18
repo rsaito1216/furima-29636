@@ -18,10 +18,11 @@
       <div class="click-upload">
         <p>
           クリックしてファイルをアップロード<br>
-          複数投稿可
+          選択時に複数同時に選択可能、一つずつ追加選択も可能<br>
+          (プレビュー画像は左上から右隣に並んでいきます)
         </p>
           <%= f.file_field :images, name: 'item[images][]', multiple: true,  id: 'item_image' ,accept: '.jpeg, .jpg, .gif, .png', alt:"商品画像" %>
-          <div id="image-list"></div>
+          <div id="image-list" class="preview-new-list"></div>
       </div>
     </div>
     
