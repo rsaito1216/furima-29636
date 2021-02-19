@@ -86,7 +86,7 @@
 }
 
 .clear {
-  margin: 5px 0 0 300px;
+  margin: 10px 0 0 50px;
 }
 
 .btn-like-label {
@@ -176,7 +176,7 @@
 
  .change-zone{
    width: 790px;
-   padding: 0 0 0 170px;
+   padding: 0 0 0 100px;
    justify-content: space-between;
    display: flex;
  }

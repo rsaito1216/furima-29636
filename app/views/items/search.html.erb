@@ -18,13 +18,13 @@
   <div class="btn-like-label">
   <%= f.label :product_name_cont_any  , '商品名で一致するキーワード　' %>
   </div>
-  <%= f.search_field :product_name_cont_any, class: "form-control" ,placeholder:" スペースを空けると複数のキーワードを同時に検索出来ます" %>
+  <%= f.search_field :product_name_cont_any, class: "form-control" ,placeholder:" 現在、単語しか検索出来ず　　※スペースを空けると複数のキーワードを同時に検索出来ます" %>
   <br>
   
   <div class="btn-like-label">
   <%= f.label :description_cont_any , '商品説明で一致するキーワード' %>
   </div>
-  <%= f.search_field :description_cont_any, class: "form-control" ,placeholder:" スペースを空けると複数のキーワードを同時に検索出来ます" %>
+  <%= f.search_field :description_cont_any, class: "form-control" ,placeholder:" 現在、単語しか検索出来ず　　※スペースを空けると複数のキーワードを同時に検索出来ます" %>
   
 
   <div class="select-zone">
@@ -119,15 +119,14 @@ $('input[type=checkbox]', '#shippingArea').prop('checked', this.checked);
      <%=  f.select( :sorts, { '出品(編集)の新しい順': 'updated_at desc', '出品(編集)の古い順': 'updated_at asc', '価格の安い順': 'price asc', '価格の高い順': 'price desc','お気に入りの多い順': 'favorites_count desc' } , { selected: params[:sorts] } , { onchange: 'this.form.submit()'}  ) %>
     </div>
     <div>
-    <span class="btn-change-label"> 表示件数 :</span>
-    <%= select_tag :display_number, options_for_select([10, 20, 50, 100], params[:display_number]), :class => "form-con" , onchange: 'this.form.submit()' %>
+    <span class="btn-change-label"> 表示件数の切り替え :</span>
+    <%= select_tag :display_number, options_for_select([10, 20, 50, 100], params[:display_number]) , onchange: 'this.form.submit()' %>
      件
      </div>
   </div>  
   
 
 </div>
-
 
   <%# 商品一覧 %>
   <div class='item-contents'>

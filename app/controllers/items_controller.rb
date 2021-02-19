@@ -4,15 +4,13 @@ class ItemsController < ApplicationController
   before_action :set_parents, only: [:index, :show, :new, :create ,:edit, :update, :search]
   before_action :search_item, only: [:index, :search]
   
-
   helper_method :sort_column, :sort_direction
+
   PER = 20
 
   def index
     @items = Item.all.page(params[:page]).per(PER)
     
-
-   
 
     @items_sort = Item.order("#{sort_column} #{sort_direction}")
     @param = request.query_string
@@ -135,17 +133,31 @@ end
 
   def search
     # @items = Item.search(params[:keyword])
+
+    # search_params
+    # @p = Item.ransack(params[:q])  # 検索オブジェクトを生成
+    # @results = @p.result.includes(:category).page(params[:page]).per(params[:display_number])  # 検索条件にマッチした商品の情報を取得
+
     if params[:q].present?
-      params[:q]['product_name_cont_any'] = params[:q]['product_name_cont_any'].split(/[\p{blank}\s]+/)
-      params[:q]['description_cont_any'] = params[:q]['description_cont_any'].split(/[\p{blank}\s]+/)
+    
+      params[:q]['product_name_cont_any'] = params[:q]['product_name_cont_any']
+      params[:q]['description_cont_any'] = params[:q]['description_cont_any']
+      # params[:q]['product_name_cont_any'] = params[:q]['product_name_cont_any'].split(/[\p{blank}\s]+/)
+      # params[:q]['description_cont_any'] = params[:q]['description_cont_any'].split(/[\p{blank}\s]+/)
       search_params
-      @p = Item.ransack(params[:q])  # 検索オブジェクトを生成
-      @results = @p.result.includes(:category).page(params[:page]).per(params[:display_number])  # 検索条件にマッチした商品の情報を取得
+    @p = Item.ransack(params[:q])  # 検索オブジェクトを生成
+    @results = @p.result.includes(:category).page(params[:page]).per(params[:display_number])  # 検索条件にマッチした商品の情報を取得
+    # @results = @p.result.includes(:category).page(params[:page]).per(PER)  # 検索条件にマッチした商品の情報を取得
+
+      
     else
+
           # 検索フォーム以外からアクセスした時の処理
       search_params
       @p = Item.ransack(params[:q])  # 検索オブジェクトを生成
       @results = @p.result.includes(:category).page(params[:page]).per(params[:display_number])  # 検索条件にマッチした商品の情報を取得
+      # @results = @p.result.includes(:category).page(params[:page]).per(PER)  # 検索条件にマッチした商品の情報を取得
+
     end
       
 
