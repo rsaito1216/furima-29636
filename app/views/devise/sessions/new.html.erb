@@ -14,8 +14,8 @@
     <%= flash[:alert] %>
   </div>
 
-  <%= link_to user_facebook_omniauth_authorize_path, method: :post do %>
-   <%= image_tag raw("facebook.png" ),size: '150x40' %> でログイン
+  <%= link_to user_facebook_omniauth_authorize_path, method: :post ,class: "sns-title" do %>
+   <%= image_tag raw("facebook.png" ), class: "sns-img" %> でログイン
   <% end %>
   
   <div class="form-group">

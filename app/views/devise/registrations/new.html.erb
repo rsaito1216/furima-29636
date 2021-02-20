@@ -8,9 +8,11 @@
     </h1>
   </div>
   
-  <%= link_to user_facebook_omniauth_authorize_path,  method: :post do %>
-   <%= image_tag raw("facebook.png" ),size: '150x40' %> で登録
+  <div class="sns-log">
+  <%= link_to user_facebook_omniauth_authorize_path,  method: :post ,class: "sns-title" do %>
+   <%= image_tag raw("facebook.png" ), class: "sns-img" %> で登録
   <% end %>
+  </div>
   
   <%= render 'devise/shared/error_messages', model: @user %>
 
