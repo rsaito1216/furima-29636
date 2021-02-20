@@ -124,7 +124,7 @@ $('input[type=checkbox]', '#shippingArea').prop('checked', this.checked);
      <%=  f.select( :sorts, { '出品(編集)の新しい順': 'updated_at desc', '出品(編集)の古い順': 'updated_at asc', '価格の安い順': 'price asc', '価格の高い順': 'price desc','お気に入りの多い順': 'favorites_count desc' } , { selected: params[:sorts] } , { onchange: 'this.form.submit()'}  ) %>
     </div>
     <div>
-    <span class="btn-change-label"> 表示件数の切り替え :</span>
+    <span class="btn-change-label"> １ページ表示件数の切り替え :</span>
     <%= select_tag :display_number, options_for_select([ 10, 20, 50, 100], params[:display_number])  ,include_blank: '件数選択', onchange: 'this.form.submit()' %>
      件
      </div>
