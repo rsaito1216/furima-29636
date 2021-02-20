@@ -140,12 +140,12 @@ end
 
     if params[:q].present?
     
-      params[:q]['product_name_cont_any'] = params[:q]['product_name_cont_any']
-      params[:q]['description_cont_any'] = params[:q]['description_cont_any']
+      # params[:q]['product_name_cont_any'] = params[:q]['product_name_cont_any']
+      # params[:q]['description_cont_any'] = params[:q]['description_cont_any']
       # params[:q]['product_name_cont_any'] = params[:q]['product_name_cont_any'].split(/[\p{blank}\s]+/)
       # params[:q]['description_cont_any'] = params[:q]['description_cont_any'].split(/[\p{blank}\s]+/)
       search_params
-    @p = Item.ransack(params[:q])  # 検索オブジェクトを生成
+    @p = Item.with_keywords(params.dig(:q, :name_keywords)).with_description_keywords(params.dig(:q, :description_keywords)).ransack(params[:q])  # 検索オブジェクトを生成
     @results = @p.result.includes(:category).page(params[:page]).per(params[:display_number])  # 検索条件にマッチした商品の情報を取得
     # @results = @p.result.includes(:category).page(params[:page]).per(PER)  # 検索条件にマッチした商品の情報を取得
 
@@ -154,7 +154,7 @@ end
 
           # 検索フォーム以外からアクセスした時の処理
       search_params
-      @p = Item.ransack(params[:q])  # 検索オブジェクトを生成
+      @p = Item.with_keywords(params.dig(:q, :name_keywords)).with_description_keywords(params.dig(:q, :description_keywords)).ransack(params[:q])  # 検索オブジェクトを生成
       @results = @p.result.includes(:category).page(params[:page]).per(params[:display_number])  # 検索条件にマッチした商品の情報を取得
       # @results = @p.result.includes(:category).page(params[:page]).per(PER)  # 検索条件にマッチした商品の情報を取得
 

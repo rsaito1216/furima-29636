@@ -261,8 +261,8 @@ a {
 }
 
 .item-lists>.list {
-  width: 37vh;
-  padding: 1vw;
+  width: 38vh;
+  padding: 1.5vh;
   background-color: #FFF;
   box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
     position: relative;
@@ -273,10 +273,11 @@ a {
 
 .item-img-content {
   position: relative;
+  margin-left: 0.5vh;
 }
 
 .item-img {
-  width: 33vh;
+  width: 34vh;
   height: 33vh;
   object-fit: contain;
   background-color: rgb(250, 250, 250);
@@ -301,18 +302,19 @@ a {
 .item-info {
   background-color: #FFF;
   color: black;
-  padding: 5px;
+  padding: 2px;
 }
 
 .item-name {
-  font-size: 2.5vh;
+  font-size: 20px;
   margin-bottom: 5px;
 }
 
 .item-price {
-  font-size: 1.5vh;
+  font-size: 14px;
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
 }
 
 
@@ -322,13 +324,13 @@ a {
 }
 
 .star-icon {
-  height: 2vh;
-  width: 2vh;
+  height: 16px;
+  width: 16px;
   margin-right: 0.5vw;
 }
 
 .star-count {
-  font-size: 2vh;
+  font-size: 16px;
 }
 
 .btn-gradient-radius {
@@ -338,21 +340,21 @@ a {
   text-decoration: none;
   color: #FFF;
   background-image: linear-gradient(45deg, #FFC107 0%, #ff8b5f 100%);
-  transition: .4s;
-  margin-right: 24px;
+  transition: .3s;
+  margin-right: 20px;
   align-items: center;
     
 }
 
 .btn-gradient-unradius {
   display: inline-block;
-  padding: 5px 8px;
+  padding: 5px 3px;
   border-radius: 25px;
   text-decoration: none;
   color: #FFF;
   background-image: linear-gradient(45deg, #362c0e 0%, #412012 100%);
-  transition: .4s;
-  margin-right: 24px;
+  transition: .3s;
+  margin-right: 20px;
   align-items: center;
 }
 

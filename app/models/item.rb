@@ -7,7 +7,23 @@ class Item < ApplicationRecord
   has_many :favorite_users, through: :favorites, source: :user , dependent: :destroy
   belongs_to :category
   
-  
+  scope :with_keywords, -> name_keywords {
+    if name_keywords.present?
+      columns = [:product_name]
+      where(name_keywords.split(/[[:blank:]]+/).reject(&:empty?).map {|keyword|
+        columns.map { |a| arel_table[a].matches("%#{keyword}%") }.inject(:or)
+      }.inject(:or))
+    end
+  }
+  scope :with_description_keywords, -> description_keywords {
+    if description_keywords.present?
+      columns = [:description]
+      where(description_keywords.split(/[[:blank:]]+/).reject(&:empty?).map {|keyword|
+        columns.map { |a| arel_table[a].matches("%#{keyword}%") }.inject(:or)
+      }.inject(:or))
+    end
+  }
+
   def self.search(search)
     if search != ""
       Item.where('product_name LIKE(?) or description LIKE(?)', "%#{search}%","%#{search}%")

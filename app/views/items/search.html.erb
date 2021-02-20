@@ -15,17 +15,22 @@
 <%= search_form_for @p, url: items_search_path do |f| %>
   <%= hidden_field_tag :display_number, params[:display_number] %>
 
-  <div class="btn-like-label">
+  
+
+  
+<div class="btn-like-label">
   <%= f.label :product_name_cont_any  , '商品名で一致するキーワード　' %>
   </div>
-  <%= f.search_field :product_name_cont_any, class: "form-control" ,placeholder:" 現在、単語しか検索出来ず　　※スペースを空けると複数のキーワードを同時に検索出来ます" %>
+     <%= f.search_field :name_keywords, required: false, value: params.dig(:q, :name_keywords) , class: "form-control" ,placeholder:"キーワードの間にスペースを空けると同時に複数検索出来ます" %>
+
   <br>
-  
+
+
   <div class="btn-like-label">
   <%= f.label :description_cont_any , '商品説明で一致するキーワード' %>
   </div>
-  <%= f.search_field :description_cont_any, class: "form-control" ,placeholder:" 現在、単語しか検索出来ず　　※スペースを空けると複数のキーワードを同時に検索出来ます" %>
-  
+       <%= f.search_field :description_keywords, required: false, value: params.dig(:q, :description_keywords) , class: "form-control" ,placeholder:"キーワードの間にスペースを空けると同時に複数検索出来ます" %>
+
 
   <div class="select-zone">
   <div class="select-zone-space">
