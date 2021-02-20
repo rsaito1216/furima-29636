@@ -125,7 +125,7 @@ $('input[type=checkbox]', '#shippingArea').prop('checked', this.checked);
     </div>
     <div>
     <span class="btn-change-label"> 表示件数の切り替え :</span>
-    <%= select_tag :display_number, options_for_select([10, 20, 50, 100], params[:display_number]) , onchange: 'this.form.submit()' %>
+    <%= select_tag :display_number, options_for_select([ 10, 20, 50, 100], params[:display_number])  ,include_blank: '件数選択', onchange: 'this.form.submit()' %>
      件
      </div>
   </div>  
