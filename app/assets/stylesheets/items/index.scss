@@ -36,14 +36,8 @@ a {
   margin-top: 24px;
 }
 
-.apple-btn {
-  margin-right: 1vw;
-  height: 9vh;
-}
 
-.google-btn {
-  height: 9vh;
-}
+
 
 /* //画面上部の「人生を変えるフリマアプリ」帯部分 */
 
@@ -286,7 +280,7 @@ a {
 .sold-out {
   position: absolute;
   top: 40%;
-  width: 100%;
+  width: 98%;
   text-align: center;
   background-color: crimson;
   transform: skewY(-10deg);
@@ -295,6 +289,21 @@ a {
 .sold-out>span {
   color: #FFF;
   font-size: 45px;
+  font: bold;
+}
+
+.sold-out-2 {
+  position: absolute;
+  top: 35%;
+  width: 92%;
+  text-align: center;
+  background-color: crimson;
+  transform: skewY(-10deg);
+}
+
+.sold-out-2>span {
+  color: #FFF;
+  font-size: 30px;
   font: bold;
 }
 
