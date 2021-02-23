@@ -207,7 +207,7 @@ input[type=checkbox] {
 
 #conditionArea label {
   width: 180px;
-  margin-left: 10px;
+  margin-left: 5px;
   display: inline-block;
 
   border: 1px solid #999;
@@ -215,16 +215,34 @@ input[type=checkbox] {
   padding: 5px;
   cursor: pointer;
 }
+#conditionArea label:hover {
+  background: #FF9999;
+}
+
 #deliveryArea label {
   width: 180px;
-  margin-left: 10px;
+  margin-left: 5px;
   display: inline-block;
+  border: 1px solid #999;
+  border-radius: 5px;
+  padding: 5px;
+  cursor: pointer;
+}
+#deliveryArea label:hover {
+  background: #FF9999;
 }
 
 #shippingArea label {
   width: 180px;
-  margin-left: 10px;
+  margin-left: 5px;
   display: inline-block;
+  border: 1px solid #999;
+  border-radius: 5px;
+  padding: 5px;
+  cursor: pointer;
+}
+#shippingArea label:hover {
+  background: #FF9999;
 }
 
 input[type=submit] {
