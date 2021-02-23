@@ -73,11 +73,79 @@
   </div>
 </div>
 
-<div class="btn-like-label">
-  <%= f.label :category_parent_id_eq, 'カテゴリー' %>
-  </div>
- <%= f.collection_select :category_parent_id_eq_any, @parents, :id, :name, include_blank: '指定なし' %>　←この段で選択したもので検索したければ「検索する」を押す      
- <div id="search_category_field"></div>
+  
+
+
+      <ul class="field__input--category_search">
+      <% if @search_category.present? %>
+        <li>
+        <div class="btn-like-label"> 
+  <%= f.label :category_parent_id, 'カテゴリー' %>
+    </div>
+        <%= f.select :category_parent_id_eq, options_for_select(@search_parents, @category_key),{include_blank: "指定なし"}, {class:"search-select-box", id: 'q_category_parent_id_eq'} %> 　　←この段で検索したい時は「検索する」を押す
+
+        </li>
+        <li>
+          <% if @category_child.present? %>
+            <%= f.select :category_child_id_eq, options_for_select(@category_child_array, @category_child),{include_blank: "すべて"}, {class:"search-select-box-2", id: 'children_category_search'} %>
+          <% else %>
+            <%= f.select :category_child_id_eq, @category_child_array, {include_blank: "すべて"}, {class:"search-select-box-2", id: 'children_category_search'} %>
+          <% end %>
+        </li>
+        <% if @category_grandchild_array.present? %>
+          <li class="checkbox-list" id="grandchildren_category_checkboxes">
+            <div class="sc-side__detail__field">
+              <div class="sc-side__detail__field__form--checkbox__btn">
+                <input class="js-checkbox-all" id="grandchildren_category_all" type="checkbox"></input>
+              </div>
+              <div class="">
+                <%= label_tag :grandchildren_category_all, 'すべて選択・解除' %>
+              </div>
+            </div>
+            <%= f.collection_check_boxes :category_id_in, @category_grandchild_array, :id, :name, include_hidden: false do |b| %>
+              <div class="sc-side__detail__field__form--checkbox">
+                <div class="sc-side__detail__field__form--checkbox__btn js_search_checkbox">
+                  <%= b.check_box %>
+                </div>
+                <div id="glandchildcategory-area" class="sc-side__detail__field__form--checkbox__label">
+                  <%= b.label { b.text} %>
+                </div>
+              </div>
+        <% end %>
+          </li>
+        <%end%>
+      <% else %>
+        <li>
+        <div class="btn-like-label"> 
+  <%= f.label :category_parent_id, 'カテゴリー' %>
+    </div>
+        <%= f.collection_select :category_parent_id_eq, @parents, :id, :name, {include_blank: '指定なし'} ,{class:"search-select-box"} %> 　　←この段で検索したい時は「検索する」を押す
+        </li>
+      <% end %>
+      </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<%# <div class="btn-like-label"> %>
+  <%#= f.label :category_parent_id_eq, 'カテゴリー' %>
+  <%# </div> %>
+ <%#= f.collection_select :category_parent_id_eq_any, @parents, :id, :name, include_blank: '指定なし' %>     
+ <%# <div id="search_category_field"></div> %>
 
 <br>
   <div class="btn-like-label">
@@ -98,21 +166,9 @@
 </div>
 
 <script>
-$('#all-condition').on('change', function() {
-// idがupdateAreaの子要素のcheckboxにのみチェック状態を反映
-$('input[type=checkbox]', '#conditionArea').prop('checked', this.checked);
-});
 
-$('#all-delivery').on('change', function() {
-// idがupdateAreaの子要素のcheckboxにのみチェック状態を反映
-$('input[type=checkbox]', '#deliveryArea').prop('checked', this.checked);
-});
 
-//全選択・全解除をクリックしたとき
-$('#all-shipping').on('change', function() {
-//チェックしたチェックボックスの状態を他のチェックボックスに反映
-$('input[type=checkbox]', '#shippingArea').prop('checked', this.checked);
-});
+
 </script>
 
 </div>

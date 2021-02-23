@@ -132,6 +132,63 @@ end
   end
 
   def search
+    @search_parents = Category.where(ancestry: nil).pluck(:name,:id)
+# カテゴリが検索条件にあるとき
+if params[:q].present?
+  if params[:q][:category_parent_id_eq].present?
+
+  @category_key = params[:q][:category_parent_id_eq]
+    @search_category = Category.find_by(id: @category_key, ancestry: nil)
+  end
+
+  if @search_category.present?
+    if @search_category.ancestry.nil?
+      #親カテゴリ
+      @category_child_array = Category.where(ancestry: @search_category.id).pluck(:name, :id)
+      
+      grandchildren_id = @search_category.indirect_ids.sort
+      
+      # find_category_item(grandchildren_id)
+      
+      if params[:q][:category_child_id_eq].present?
+      @category_child = params[:q][:category_child_id_eq]
+      # @category_grandchild_array = @category_child.parent.children
+
+        if params[:q][:category_id_in].present?
+          @category_grandchild_key = params[:q][:category_id_in]
+          @search_child_category = Category.find_by(id: @category_child, ancestry: @category_key)
+
+          @category_grandchild_array = @search_child_category.children
+
+          grandchildren_id = params[:q][:category_id_in].sort
+                #  find_category_item(grandchildren_id)
+
+        end
+      end
+    elsif @search_category.ancestry.exclude?("/")
+      #子カテゴリ
+      @category_child = @search_category
+      @category_child_array = @search_category.siblings.pluck(:name, :id)
+      @category_grandchild_array = @search_category.children
+      grandchildren_id = @search_category.child_ids
+      # find_category_item(grandchildren_id)
+    end
+      #孫カテゴリはransackで拾う → category_id_in
+  end
+else
+  @search_parents = Category.where(ancestry: nil).pluck(:name)
+
+
+
+end
+
+
+   
+
+
+
+
+
     # @items = Item.search(params[:keyword])
 
     # search_params
@@ -159,7 +216,8 @@ end
       # @results = @p.result.includes(:category).page(params[:page]).per(PER)  # 検索条件にマッチした商品の情報を取得
 
     end
-      
+    # binding.pry
+
 
     # @results = @p.result.includes(:category).page(params[:page]).per(params[:display_number])   # 検索条件にマッチした商品の情報を取得
 
