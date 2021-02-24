@@ -4,8 +4,8 @@
 <div class='item-contents'>
 
   <% if user_signed_in? && (current_user.id == @user.id) %>
-    <h1 class='title'>ログインしている人がユーザー本人の場合この文字が表示されている。お気に入り一覧も</h1>
-  <font size="6" color="red"><%= @nickname %>さんのお気に入りした商品一覧</font>
+    <h1 class='title'>ログインしている人がユーザー本人の場合この文字が表示されている。お気に入り一覧、購入商品一覧も</h1>
+  <font size="6" color="red"><%= @nickname %>さんがお気に入りした商品一覧</font>
   <ul class='item-lists'>
     <% @user_favorites.each do |item| %>
       <li class='list'>
@@ -26,7 +26,6 @@
             <div class='item-price'>
               <span><%= item.price.to_s(:delimited) %>円<br>(税込み)</span>
                    <div class='star-btn'>
-                
                    <%= image_tag "star.png", class:"star-icon" %>
                    <span class='star-count'><%= item.favorites.count %></span>
             </div>
@@ -34,7 +33,42 @@
         <% end %>
       </li>
   </ul>
+
+  <font size="6" color="red"><%= @nickname %>さんが購入した商品一覧</font>
+  <ul class='item-lists'>
+     <% @user_transactions.each do |item| %>
+        <% item = Item.find_by(id: item.item_id) %>
+
+      <li class='list'>
+        <%= link_to item_path(item.id) do %>
+          <div class='item-img-content'>
+            <%= image_tag url_for(item.images[0]) , class: "item-img" %>
+              <% if item.item_transaction.present? %>
+              <div class='sold-out'>
+                <span>Sold Out!!</span>
+              </div>
+              <% end %>
+            <% end %>
+          </div>
+          <div class='item-info'>
+            <h3 class='item-name'>
+              <%= item.product_name %>
+            </h3>
+            <div class='item-price'>
+              <span><%= item.price.to_s(:delimited) %>円<br>(税込み)</span>
+                  <div class='star-btn'>
+                  <%= link_to item_favorites_path(item.id) do %>
+                  <%= image_tag "star.png", class:"star-icon"  %>
+                  <span class='star-count'><%= item.favorites.count %></span>
+                  <% end %>
+                  </div>
+            </div>
+          </div>
+        <% end %>
+      </li>
+  </ul>
   <% end %>
+
 
     <h1 class='title'>他ユーザーの場合は自己紹介と出品商品一覧だけ表示</h1>
 
