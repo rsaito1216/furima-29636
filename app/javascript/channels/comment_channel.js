@@ -21,7 +21,7 @@ consumer.subscriptions.create({
     const nickName = `<p>${data.user.nickname}</p>`;
 
     const HTML = `
-    <div class="comment-all-sita">
+    <div class="comment-all-center">
       <div class="upper-comment">
         <div class="comment-name">
           <p>${nickName}</p>

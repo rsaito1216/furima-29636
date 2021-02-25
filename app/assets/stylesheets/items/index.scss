@@ -267,11 +267,11 @@ a {
 
 .item-img-content {
   position: relative;
-  margin-left: 0.5vh;
+  margin: 0 auto;
 }
 
 .item-img {
-  width: 34vh;
+  width: 35vh;
   height: 33vh;
   object-fit: contain;
   background-color: rgb(250, 250, 250);
@@ -280,7 +280,7 @@ a {
 .sold-out {
   position: absolute;
   top: 40%;
-  width: 99%;
+  width: 100%;
   text-align: center;
   background-color: crimson;
   transform: skewY(-10deg);
@@ -295,7 +295,7 @@ a {
 .sold-out-2 {
   position: absolute;
   top: 35%;
-  width: 100%;
+  width: 168px;
   text-align: center;
   background-color: crimson;
   transform: skewY(-10deg);

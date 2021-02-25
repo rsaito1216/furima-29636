@@ -344,4 +344,12 @@
   margin: 15px 0 0 35px;
 }
 
+.swiper-button-prev{
+  border: solid 1px white;
+  background-color: rgb(238, 241, 234);
+}
 
+.swiper-button-next{
+  border: solid 1px white;
+  background-color: rgb(238, 241, 234);
+}
