@@ -192,16 +192,21 @@
         <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p></strong>
     <% end %>
     
-    <div class="comments">
+  <div class="comments">
 
          <p class="comment-description">＜コメント一覧＞  ※コメント投稿者だけが自分の投稿したコメントを削除出来ます</p>
 
-      <% @comments.each do |comment| %>
+    <% @comments.each do |comment| %>
           <% if comment.parent_id.present? || comment.id.blank? %>
             <% next %>
           <% end %>
-      <div id="comment-list-<%= comment.id %>">
-            <div class="comment-all">
+      <div id="comment-list"></div>
+          <div class="comment-all">
+
+            <div class="comment-all-up"></div>
+
+
+            <div class="comment-all-center">
               <div class="upper-comment">
                 <div class="comment-name">
                   <span><%= link_to comment.user.nickname, "/users/#{comment.user_id}" %>  さん</span>
@@ -218,29 +223,28 @@
                
               
 
-        <div id="reply-zone-<%= comment.id %>">
-          <% if comment.replies.present? %>
-            <div class="reply-description">このコメントへ投稿された返信</div>
-          <% end %>
-            <% comment.replies.order(:created_at).each do |reply| %>
-              <div class="comment-children">
-                  <div class="upper-comment">
-                    <div class="comment-name">
-                  <span><%= link_to reply.user.nickname, "/users/#{reply.user_id}" %>  さん</span>
+                <% if comment.replies.present? %>
+                  <div class="reply-description">このコメントへ投稿された返信</div>
+                <% end %>
+                <div id="<%= comment.id %>"></div>
+                  <% comment.replies.order(:created_at).each do |reply| %>
+                    <div  class="comment-children">
+                        <div class="upper-comment">
+                          <div class="comment-name">
+                        <span><%= link_to reply.user.nickname, "/users/#{reply.user_id}" %>  さん</span>
+                          </div>
+                        <span class="created-at"><%= reply.created_at.strftime("%Y-%m-%d %H:%M") %></span>
+                        <% if user_signed_in? && current_user.id == comment.user.id %>
+                          <%= link_to '削除', item_comment_path(comment.item.id, reply.id),method: :delete ,class:"comment-destroy", data: { confirm: "【確認】コメントを削除してもよろしいですか？" } %>
+                        <% end %>
+                      </div> 
+                      <div class="reply-textzone">
+                        <%= simple_format(h reply.text) %>
+                      </div>
                     </div>
-                  <span class="created-at"><%= reply.created_at.strftime("%Y-%m-%d %H:%M") %></span>
-                  <% if user_signed_in? && current_user.id == comment.user.id %>
-                    <%= link_to '削除', item_comment_path(comment.item.id, reply.id),method: :delete ,class:"comment-destroy", data: { confirm: "【確認】コメントを削除してもよろしいですか？" } %>
                   <% end %>
-                </div> 
-                <div class="reply-textzone">
-                  <%= simple_format(h reply.text) %>
-                </div>
-              </div>
-            <% end %>
-          </div>
         
-        <% if current_user %>
+              <% if current_user %>
                 <%= form_with(model:[@item,@comment_reply],local:true) do |form| %>
                     <div class="row">
                       <div class="reply-area">
@@ -256,12 +260,13 @@
                     
                 <% end %>
               <% end  %>
+        </div>
+                  <div class="comment-all-bottom"></div>
+
       </div>
-    </div>
-      
-  <% end %>
+    <% end %>
+  </div>
 </div>
-    </div>
   
   <div class="links">
     <% if @item.previous.present? %>

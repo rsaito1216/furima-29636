@@ -1,9 +1,9 @@
 import consumer from "./consumer"
 
-// document.addEventListener("DOMContentLoaded", function(){
+// document.addEventListener("turbolinks:load", function() {
 
 consumer.subscriptions.create({
-  channel: "CommentChannel",
+  channel: "ReplyChannel",
   item_id: window.location.pathname.match(/\d+/)[0]
 
 },{
@@ -19,9 +19,10 @@ consumer.subscriptions.create({
     const text = `<p>${data.content.text}</p>`;
     const createdAt = `<p>${data.time}</p>`;
     const nickName = `<p>${data.user.nickname}</p>`;
+    const parentId = `${data.parent_id}`;
 
     const HTML = `
-    <div class="comment-all-sita">
+    <div class="comment-children">
       <div class="upper-comment">
         <div class="comment-name">
           <p>${nickName}</p>
@@ -39,11 +40,12 @@ consumer.subscriptions.create({
      </div>
     `
 
-    const comments = document.getElementById('comment-list');
+    const repid = parentId;
+    const comments = document.getElementById(parentId);
     comments.insertAdjacentHTML('afterbegin', HTML);
     const newComment = document.getElementById('comment_text');
     newComment.value='';
     
   }
 });
-//  });
+// });

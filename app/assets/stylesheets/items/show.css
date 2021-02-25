@@ -229,6 +229,7 @@
   background:rgba(255,0,0,0.5);
   text-align:center;
   padding:5px 0;
+  margin-bottom: 10px;
 }
 .comment-destroy {
   border: 1px solid #4275a8;/* ラベルの境界線を実線で指定する */
@@ -239,12 +240,30 @@
   margin: 0 0 0 auto;
 }
 
-.comment-all{
-  padding: 10px 10px;
-  background-color: white; /* フォントの色を指定 */
-  border: 2px solid #006DD9;/* ラベルの境界線を実線で指定する */
-  margin-top: 15px;
-  border-radius: 10px;
+.comment-all-up{
+  width: 100%;
+  height: 50px;
+  /* padding: ; */
+  /* background-color: white; フォントの色を指定 */
+  background-image: url("../comment上.jpg");
+  background-size: 100% 100%;
+  /* border: 2px solid #006DD9;ラベルの境界線を実線で指定する */
+  margin-left: 2px;
+  /* border-radius: 10px; */
+}
+.comment-all-center{
+  width: 100%;
+  height: 100%;
+  padding: 15px 35px 10px;
+  background-image: url("../comment中央.jpg");
+  background-size: 100% 100%;
+}
+.comment-all-bottom{
+  width: 100%;
+  height: 25px;
+  background-image: url("../comment下.jpg");
+  background-size: 100% 100%;
+  margin-left: 1px;
 }
 
 .children{
@@ -349,10 +368,17 @@
   margin: 15px 0 0 35px;
 }
 .reply-description {
-  background:rgba(123, 185, 95, 0.5);
-  text-align:center;
-  padding:5px 0;
-  margin: 15px auto 0 auto;
-  width: 70%;
+  width: 380px;
+  height: 80px;
+  background-image: url('../comment_reply.png');
+  background-size: 100% 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 10px 70px 30px 70px;
+  margin: 15px 0 0 30px;
+  color: #fff;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.9);
 }
 

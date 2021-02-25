@@ -43,8 +43,7 @@ class ItemsController < ApplicationController
 
   def show
     # @comment = Comment.new
-    # @comments = @item.comments.includes(:user)
-    @comments = @item.comments
+    @comments = @item.comments.includes(:user)
     @comment = @item.comments.build #投稿全体へのコメント投稿用の変数
     @comment_reply = @item.comments.build
 
