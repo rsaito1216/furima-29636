@@ -14,7 +14,7 @@ consumer.subscriptions.create({
   disconnected() {
     // Called when the subscription has been terminated by the server
   },
-  
+
   received(data) {
     const text = `<p>${data.content.text}</p>`;
     const createdAt = `<p>${data.time}</p>`;
@@ -40,7 +40,6 @@ consumer.subscriptions.create({
      </div>
     `
 
-    const repid = parentId;
     const comments = document.getElementById(parentId);
     comments.insertAdjacentHTML('afterbegin', HTML);
     const newComment = document.getElementById('comment_text');

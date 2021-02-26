@@ -21,6 +21,7 @@ consumer.subscriptions.create({
     const nickName = `<p>${data.user.nickname}</p>`;
 
     const HTML = `
+    <div class="comment-all-up"></div>
     <div class="comment-all-center">
       <div class="upper-comment">
         <div class="comment-name">
@@ -37,6 +38,8 @@ consumer.subscriptions.create({
           <p>${text}</p>
         </div>
      </div>
+     <div class="comment-all-bottom"></div>
+
     `
 
     const comments = document.getElementById('comment-list');
